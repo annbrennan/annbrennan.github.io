@@ -1,5 +1,5 @@
 ---
-title: "Insightful Analytics<br><br>"
+title: "A. Brennan<br><br>"
 listing:
   contents: posts
 ---

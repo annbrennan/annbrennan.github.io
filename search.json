@@ -70,25 +70,53 @@
     "text": "Relationship - Critical Flag, Grade, Boro\nNext, we will look at how the proportion of CRITICAL FLAG varies by GRADE and BORO, this time using a barplot.\n\nggplot(restaurant) +\n  geom_bar(aes(x = `CRITICAL FLAG`,\n               y = after_stat(prop), group = 1)) +\n  facet_grid( GRADE ~ BORO )"
   },
   {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "Ann Brennan",
+    "objectID": "posts/beer-markets/beer-markets.html",
+    "href": "posts/beer-markets/beer-markets.html",
+    "title": "Beer Markets",
     "section": "",
-    "text": "Ann Brennan is pursuing a major in Data Analytics and minor in Mathematics at SUNY Geneseo. Ann also competes for the SUNY Geneseo cross country and track and field teams."
+    "text": "Let’s analyze the beer_mkts data:\nbeer_mkts &lt;- read_csv(\"https://bcdanl.github.io/data/beer_markets.csv\")"
   },
   {
-    "objectID": "index.html#education",
-    "href": "index.html#education",
-    "title": "Ann Brennan",
-    "section": "Education",
-    "text": "Education\nState University of New York at Geneseo | Geneseo, NY  B.S. in Data Analytics | Aug 2022 - May 2026  Minor in Mathematics"
+    "objectID": "posts/beer-markets/beer-markets.html#variable-description-for-beer_mkts-data.frame",
+    "href": "posts/beer-markets/beer-markets.html#variable-description-for-beer_mkts-data.frame",
+    "title": "Beer Markets",
+    "section": "Variable Description for beer_mkts data.frame",
+    "text": "Variable Description for beer_mkts data.frame\nThe following describes the variables in the beer_mkts data.frame.\n\nhh: Household identifier\n_purchase_desc: Description of the purchase\nquantity: The quantity of beer purchased\nbrand: The brand of beer\ndollar_spent: The amount spent\nbeer_floz: Fluid ounces of beer\nprice_per_floz: Price per fluid ounce\ncontainer: Type of container\npromo: Whether the purchase was on promotion\nmarket: The market where the purchase was made\nDemographics: age, employment status, degree, class of worker (cow), race, and household information like microwave, dishwasher, tvcable, singlefamilyhome, and npeople (number of people in the household)"
   },
   {
-    "objectID": "index.html#experience",
-    "href": "index.html#experience",
-    "title": "Ann Brennan",
-    "section": "Experience",
-    "text": "Experience\nHF-L Technology | Technology Intern | June 2023 - Aug 2023"
+    "objectID": "posts/beer-markets/beer-markets.html#purchase-patterns",
+    "href": "posts/beer-markets/beer-markets.html#purchase-patterns",
+    "title": "Beer Markets",
+    "section": "Purchase Patterns",
+    "text": "Purchase Patterns\nWe’ll explore the purchase patterns for beer purchases in the dataset. This will include finding the most popular brands and spending habits across different markets. Here are some specific analyses we can perform:\n\nFind top markets in terms of total quantity for each brand.\nCompare the proportion of loyal customers.\n\nI’ll begin with these analyses and create visualizations to help us understand the data better. I will start by finding the top 5 markets in terms of the total beer_floz.\n\ntop_5 &lt;- beer_mkts %&gt;% \n   group_by(market) %&gt;% \n   summarize(beer_floz_tot = sum(beer_floz, na.rm = T)) %&gt;% \n   arrange(-beer_floz_tot) %&gt;% \n   slice(1:5)\n\nLet’s visualize the top 5 markets in terms of the total beer_floz.\n\nggplot(top_5, aes(x = market, y = beer_floz_tot)) +\n  geom_bar(stat = \"identity\", fill = \"skyblue\") +\n  labs(title = \"Top 5 Beer Markets\",\n       x = \"Market\",\n       y = \"Total Beer (floz)\")\n\n\n\n\nNext, we can look at the top 5 markets in terms of the total beer_floz of a specific brand. For example, BUD LIGHT:\n\ntop_5_bud &lt;- beer_mkts %&gt;% \n  filter(brand == \"BUD LIGHT\") %&gt;% \n  group_by(market) %&gt;% \n  summarize(beer_floz_tot = sum(beer_floz, na.rm = T)) %&gt;% \n  arrange(-beer_floz_tot) %&gt;% \n  slice(1:5)\n\nJust like the top 5 beer markets, let’s visualize the top 5 markets for BUD LIGHT.\n\nggplot(top_5_bud, aes(x = market, y = beer_floz_tot)) +\n  geom_bar(stat = \"identity\") +\n  labs(title = \"Top 5 Beer Markets - Bud Light\",\n       x = \"Market\",\n       y = \"Total Beer (floz)\")\n\n\n\n\nI will do the same for BUSCH LIGHT, COORS LIGHT, MILLER LITE, and NATURAL LIGHT.\n\ntop_5_busch &lt;- beer_mkts %&gt;% \n  filter(brand == \"BUSCH LIGHT\") %&gt;% \n  group_by(market) %&gt;% \n  summarize(beer_floz_tot = sum(beer_floz, na.rm = T)) %&gt;% \n  arrange(-beer_floz_tot) %&gt;% \n  slice(1:5)\n\ntop_5_coors &lt;- beer_mkts %&gt;% \n  filter(brand == \"COORS LIGHT\") %&gt;% \n  group_by(market) %&gt;% \n  summarize(beer_floz_tot = sum(beer_floz, na.rm = T)) %&gt;% \n  arrange(-beer_floz_tot) %&gt;% \n  slice(1:5)\n\ntop_5_miller &lt;- beer_mkts %&gt;% \n  filter(brand == \"MILLER LITE\") %&gt;% \n  group_by(market) %&gt;% \n  summarize(beer_floz_tot = sum(beer_floz, na.rm = T)) %&gt;% \n  arrange(-beer_floz_tot) %&gt;% \n  slice(1:5)\n\ntop_5_natural &lt;- beer_mkts %&gt;% \n  filter(brand == \"NATURAL LIGHT\") %&gt;% \n  group_by(market) %&gt;% \n  summarize(beer_floz_tot = sum(beer_floz, na.rm = T)) %&gt;% \n  arrange(-beer_floz_tot) %&gt;% \n  slice(1:5)\n\nLet’s also look at a visualization for BUSCH LIGHT:\n\nggplot(top_5_busch, aes(x = market, y = beer_floz_tot)) +\n  geom_bar(stat = \"identity\") +\n  labs(title = \"Top 5 Beer Markets - Busch Light\",\n       x = \"Market\",\n       y = \"Total Beer (floz)\")\n\n\n\n\nNext, we will evaluate proportions of loyal customers for each brand. For example, for households that purchased BUD LIGHT at least once, I will find the fraction of households that purchased only BUD LIGHT. I will find the proportion of loyal customers for all 5 brands.\n\nloyal_customers &lt;- beer_mkts %&gt;% \n  mutate(bud = ifelse(brand==\"BUD LIGHT\", 1, 0), # 1 if brand==\"BUD LIGHT\"; 0 otherwise\n         busch = ifelse(brand==\"BUSCH LIGHT\", 1, 0),\n         coors = ifelse(brand==\"COORS LIGHT\", 1, 0),\n         miller = ifelse(brand==\"MILLER LITE\", 1, 0),\n         natural = ifelse(brand==\"NATURAL LIGHT\", 1, 0),\n         .after = hh) %&gt;% \n  select(hh:natural) %&gt;%  # select the variables we need\n  group_by(hh) %&gt;% \n  summarise(n_transactions = n(), # number of beer transactions for each hh\n            n_bud = sum(bud), # number of BUD LIGHT transactions for each hh\n            n_busch = sum(busch), \n            n_coors = sum(coors), \n            n_miller = sum(miller), \n            n_natural = sum(natural) \n  ) %&gt;% \n  summarise(loyal_bud = sum(n_transactions == n_bud) / sum(n_bud &gt; 0), \n              # sum(n_transactions == n_bud) : the number of households that purchased BUD LIGHT only\n              # sum(n_bud &gt; 0) : the number of households that purchased BUD LIGHT at least once.\n            loyal_busch = sum(n_transactions == n_busch) / sum(n_busch &gt; 0),\n            loyal_coors = sum(n_transactions == n_coors) / sum(n_coors &gt; 0),\n            loyal_miller = sum(n_transactions == n_miller) / sum(n_miller &gt; 0),\n            loyal_natural = sum(n_transactions == n_natural) / sum(n_natural &gt; 0)\n  )"
+  },
+  {
+    "objectID": "blog-post-title.html",
+    "href": "blog-post-title.html",
+    "title": "A. Brennan",
+    "section": "",
+    "text": "Beer Markets\n\n\n\n\n\n\n\n\n\n\n\n\nDec 11, 2023\n\n\nAnn Brennan\n\n\n\n\n\n\n  \n\n\n\n\nHomework 5 - NFL\n\n\n\n\n\n\n\n\n\n\n\n\nDec 11, 2023\n\n\nAnn Brennan\n\n\n\n\n\n\n  \n\n\n\n\nRestaurants\n\n\n\n\n\n\n\n\n\n\n\n\nOct 30, 2023\n\n\nAnn Brennan\n\n\n\n\n\n\n  \n\n\n\n\nSpotify\n\n\n\n\n\n\n\n\n\n\n\n\nOct 30, 2023\n\n\nAnn Brennan\n\n\n\n\n\n\n  \n\n\n\n\nWelcome To My Blog\n\n\n\n\n\n\n\n\n\n\n\n\nOct 27, 2023\n\n\nAnn Brennan\n\n\n\n\n\n\nNo matching items"
+  },
+  {
+    "objectID": "12.1.html",
+    "href": "12.1.html",
+    "title": "Untitled",
+    "section": "",
+    "text": "library(tidyverse)\n\n── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──\n✔ dplyr     1.1.2     ✔ readr     2.1.4\n✔ forcats   1.0.0     ✔ stringr   1.5.0\n✔ ggplot2   3.4.3     ✔ tibble    3.2.1\n✔ lubridate 1.9.2     ✔ tidyr     1.3.0\n✔ purrr     1.0.2     \n── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──\n✖ dplyr::filter() masks stats::filter()\n✖ dplyr::lag()    masks stats::lag()\nℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors\n\ntable1\n\n# A tibble: 6 × 4\n  country      year  cases population\n  &lt;chr&gt;       &lt;dbl&gt;  &lt;dbl&gt;      &lt;dbl&gt;\n1 Afghanistan  1999    745   19987071\n2 Afghanistan  2000   2666   20595360\n3 Brazil       1999  37737  172006362\n4 Brazil       2000  80488  174504898\n5 China        1999 212258 1272915272\n6 China        2000 213766 1280428583\n\ntable2\n\n# A tibble: 12 × 4\n   country      year type            count\n   &lt;chr&gt;       &lt;dbl&gt; &lt;chr&gt;           &lt;dbl&gt;\n 1 Afghanistan  1999 cases             745\n 2 Afghanistan  1999 population   19987071\n 3 Afghanistan  2000 cases            2666\n 4 Afghanistan  2000 population   20595360\n 5 Brazil       1999 cases           37737\n 6 Brazil       1999 population  172006362\n 7 Brazil       2000 cases           80488\n 8 Brazil       2000 population  174504898\n 9 China        1999 cases          212258\n10 China        1999 population 1272915272\n11 China        2000 cases          213766\n12 China        2000 population 1280428583\n\ntable3\n\n# A tibble: 6 × 3\n  country      year rate             \n  &lt;chr&gt;       &lt;dbl&gt; &lt;chr&gt;            \n1 Afghanistan  1999 745/19987071     \n2 Afghanistan  2000 2666/20595360    \n3 Brazil       1999 37737/172006362  \n4 Brazil       2000 80488/174504898  \n5 China        1999 212258/1272915272\n6 China        2000 213766/1280428583\n\n# Spread across two tibbles\ntable4a  # cases\n\n# A tibble: 3 × 3\n  country     `1999` `2000`\n  &lt;chr&gt;        &lt;dbl&gt;  &lt;dbl&gt;\n1 Afghanistan    745   2666\n2 Brazil       37737  80488\n3 China       212258 213766\n\ntable4b\n\n# A tibble: 3 × 3\n  country         `1999`     `2000`\n  &lt;chr&gt;            &lt;dbl&gt;      &lt;dbl&gt;\n1 Afghanistan   19987071   20595360\n2 Brazil       172006362  174504898\n3 China       1272915272 1280428583\n\ntable4a %&gt;% \n  pivot_longer(cols = c(`1999`, `2000`), \n               names_to = \"year\", \n               values_to = \"cases\")\n\n# A tibble: 6 × 3\n  country     year   cases\n  &lt;chr&gt;       &lt;chr&gt;  &lt;dbl&gt;\n1 Afghanistan 1999     745\n2 Afghanistan 2000    2666\n3 Brazil      1999   37737\n4 Brazil      2000   80488\n5 China       1999  212258\n6 China       2000  213766"
+  },
+  {
+    "objectID": "11.29.html",
+    "href": "11.29.html",
+    "title": "Untitled",
+    "section": "",
+    "text": "Section"
+  },
+  {
+    "objectID": "blog-listing.html",
+    "href": "blog-listing.html",
+    "title": "A. Brennan Analytics",
+    "section": "",
+    "text": "Order By\n       Default\n         \n          Title\n        \n         \n          Date - Oldest\n        \n         \n          Date - Newest\n        \n         \n          Author\n        \n     \n  \n    \n      \n      \n    \n\n\n\n\n  \n\n\n\n\nHomework 5 - NFL\n\n\n\n\n\n\n\n\n\nDec 11, 2023\n\n\nAnn Brennan\n\n\n5 min\n\n\n\n\n\n\n  \n\n\n\n\nBeer Markets\n\n\n\n\n\n\n\n\n\nDec 11, 2023\n\n\nAnn Brennan\n\n\n7 min\n\n\n\n\n\n\n  \n\n\n\n\nSpotify\n\n\n\n\n\n\n\n\n\nOct 30, 2023\n\n\nAnn Brennan\n\n\n4 min\n\n\n\n\n\n\n  \n\n\n\n\nRestaurants\n\n\n\n\n\n\n\n\n\nOct 30, 2023\n\n\nAnn Brennan\n\n\n4 min\n\n\n\n\n\n\n  \n\n\n\n\nWelcome To My Blog\n\n\n\n\n\n\n\n\n\nOct 27, 2023\n\n\nAnn Brennan\n\n\n1 min\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "danl-200-cw-10.html",
@@ -161,53 +189,88 @@
     "text": "9 Q3b\n\nUse the wide-form data.frame of covid to find the top 10 countries in terms of the correlation between their cases and the USA case.\n\nUse cor(data.frame), which returns a matrix.\nThen convert it to data.frame using as.data.frame(matrix)"
   },
   {
-    "objectID": "blog-listing.html",
-    "href": "blog-listing.html",
-    "title": "Insightful Analytics",
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Ann Brennan",
     "section": "",
-    "text": "Order By\n       Default\n         \n          Title\n        \n         \n          Date - Oldest\n        \n         \n          Date - Newest\n        \n         \n          Author\n        \n     \n  \n    \n      \n      \n    \n\n\n\n\n  \n\n\n\n\nBeer Markets\n\n\n\n\n\n\n\n\n\nDec 11, 2023\n\n\nAnn Brennan\n\n\n7 min\n\n\n\n\n\n\n  \n\n\n\n\nSpotify\n\n\n\n\n\n\n\n\n\nOct 30, 2023\n\n\nAnn Brennan\n\n\n4 min\n\n\n\n\n\n\n  \n\n\n\n\nRestaurants\n\n\n\n\n\n\n\n\n\nOct 30, 2023\n\n\nAnn Brennan\n\n\n4 min\n\n\n\n\n\n\n  \n\n\n\n\nWelcome To My Blog\n\n\n\n\n\n\n\n\n\nOct 27, 2023\n\n\nAnn Brennan\n\n\n1 min\n\n\n\n\n\n\nNo matching items"
+    "text": "Ann Brennan is pursuing a major in Data Analytics and minor in Mathematics at SUNY Geneseo. Ann also competes for the SUNY Geneseo cross country and track and field teams."
   },
   {
-    "objectID": "11.29.html",
-    "href": "11.29.html",
-    "title": "Untitled",
+    "objectID": "index.html#education",
+    "href": "index.html#education",
+    "title": "Ann Brennan",
+    "section": "Education",
+    "text": "Education\nState University of New York at Geneseo | Geneseo, NY  B.S. in Data Analytics | Aug 2022 - May 2026  Minor in Mathematics"
+  },
+  {
+    "objectID": "index.html#experience",
+    "href": "index.html#experience",
+    "title": "Ann Brennan",
+    "section": "Experience",
+    "text": "Experience\nHF-L Technology | Technology Intern | June 2023 - Aug 2023"
+  },
+  {
+    "objectID": "posts/homework/hw5.html",
+    "href": "posts/homework/hw5.html",
+    "title": "Homework 5 - NFL",
     "section": "",
-    "text": "Section"
+    "text": "The following is the data.frame for Question 2.\nNFL2022_stuffs &lt;- read_csv('https://bcdanl.github.io/data/NFL2022_stuffs.csv')"
   },
   {
-    "objectID": "12.1.html",
-    "href": "12.1.html",
-    "title": "Untitled",
-    "section": "",
-    "text": "library(tidyverse)\n\n── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──\n✔ dplyr     1.1.2     ✔ readr     2.1.4\n✔ forcats   1.0.0     ✔ stringr   1.5.0\n✔ ggplot2   3.4.3     ✔ tibble    3.2.1\n✔ lubridate 1.9.2     ✔ tidyr     1.3.0\n✔ purrr     1.0.2     \n── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──\n✖ dplyr::filter() masks stats::filter()\n✖ dplyr::lag()    masks stats::lag()\nℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors\n\ntable1\n\n# A tibble: 6 × 4\n  country      year  cases population\n  &lt;chr&gt;       &lt;dbl&gt;  &lt;dbl&gt;      &lt;dbl&gt;\n1 Afghanistan  1999    745   19987071\n2 Afghanistan  2000   2666   20595360\n3 Brazil       1999  37737  172006362\n4 Brazil       2000  80488  174504898\n5 China        1999 212258 1272915272\n6 China        2000 213766 1280428583\n\ntable2\n\n# A tibble: 12 × 4\n   country      year type            count\n   &lt;chr&gt;       &lt;dbl&gt; &lt;chr&gt;           &lt;dbl&gt;\n 1 Afghanistan  1999 cases             745\n 2 Afghanistan  1999 population   19987071\n 3 Afghanistan  2000 cases            2666\n 4 Afghanistan  2000 population   20595360\n 5 Brazil       1999 cases           37737\n 6 Brazil       1999 population  172006362\n 7 Brazil       2000 cases           80488\n 8 Brazil       2000 population  174504898\n 9 China        1999 cases          212258\n10 China        1999 population 1272915272\n11 China        2000 cases          213766\n12 China        2000 population 1280428583\n\ntable3\n\n# A tibble: 6 × 3\n  country      year rate             \n  &lt;chr&gt;       &lt;dbl&gt; &lt;chr&gt;            \n1 Afghanistan  1999 745/19987071     \n2 Afghanistan  2000 2666/20595360    \n3 Brazil       1999 37737/172006362  \n4 Brazil       2000 80488/174504898  \n5 China        1999 212258/1272915272\n6 China        2000 213766/1280428583\n\n# Spread across two tibbles\ntable4a  # cases\n\n# A tibble: 3 × 3\n  country     `1999` `2000`\n  &lt;chr&gt;        &lt;dbl&gt;  &lt;dbl&gt;\n1 Afghanistan    745   2666\n2 Brazil       37737  80488\n3 China       212258 213766\n\ntable4b\n\n# A tibble: 3 × 3\n  country         `1999`     `2000`\n  &lt;chr&gt;            &lt;dbl&gt;      &lt;dbl&gt;\n1 Afghanistan   19987071   20595360\n2 Brazil       172006362  174504898\n3 China       1272915272 1280428583\n\ntable4a %&gt;% \n  pivot_longer(cols = c(`1999`, `2000`), \n               names_to = \"year\", \n               values_to = \"cases\")\n\n# A tibble: 6 × 3\n  country     year   cases\n  &lt;chr&gt;       &lt;chr&gt;  &lt;dbl&gt;\n1 Afghanistan 1999     745\n2 Afghanistan 2000    2666\n3 Brazil      1999   37737\n4 Brazil      2000   80488\n5 China       1999  212258\n6 China       2000  213766"
+    "objectID": "posts/homework/hw5.html#variable-description",
+    "href": "posts/homework/hw5.html#variable-description",
+    "title": "Homework 5 - NFL",
+    "section": "Variable Description",
+    "text": "Variable Description\nplay_id: Numeric play identifier that when used with game_id and drive provides the unique identifier for a single play game_id: Ten digit identifier for NFL game. drive: Numeric drive number in the game. week: Season week. posteam: String abbreviation for the team with possession. qtr: Quarter of the game (5 is overtime). half_seconds_remaining: Numeric seconds remaining in the half. down: The down for the given play. Basically you get four attempts (aka downs) to move the ball 10 yards (by either running with it or passing it). If you make 10 yards then you get another set of four downs. pass: Binary indicator if the play was a pass play. wp: Estimated winning probability for the posteam given the current situation at the start of the given play."
   },
   {
-    "objectID": "blog-post-title.html",
-    "href": "blog-post-title.html",
-    "title": "Insightful Analytics",
-    "section": "",
-    "text": "Beer Markets\n\n\n\n\n\n\n\n\n\n\n\n\nDec 11, 2023\n\n\nAnn Brennan\n\n\n\n\n\n\n  \n\n\n\n\nRestaurants\n\n\n\n\n\n\n\n\n\n\n\n\nOct 30, 2023\n\n\nAnn Brennan\n\n\n\n\n\n\n  \n\n\n\n\nSpotify\n\n\n\n\n\n\n\n\n\n\n\n\nOct 30, 2023\n\n\nAnn Brennan\n\n\n\n\n\n\n  \n\n\n\n\nWelcome To My Blog\n\n\n\n\n\n\n\n\n\n\n\n\nOct 27, 2023\n\n\nAnn Brennan\n\n\n\n\n\n\nNo matching items"
+    "objectID": "posts/homework/hw5.html#q2a",
+    "href": "posts/homework/hw5.html#q2a",
+    "title": "Homework 5 - NFL",
+    "section": "Q2a",
+    "text": "Q2a\nIn data.frame, NFL2022_stuffs, remove observations for which values of posteam is missing.\n\nNFL2022_stuffs &lt;- na.omit(NFL2022_stuffs)"
   },
   {
-    "objectID": "posts/beer-markets/beer-markets.html",
-    "href": "posts/beer-markets/beer-markets.html",
-    "title": "Beer Markets",
-    "section": "",
-    "text": "Let’s analyze the beer_mkts data:\nbeer_mkts &lt;- read_csv(\"https://bcdanl.github.io/data/beer_markets.csv\")"
+    "objectID": "posts/homework/hw5.html#q2b",
+    "href": "posts/homework/hw5.html#q2b",
+    "title": "Homework 5 - NFL",
+    "section": "Q2b",
+    "text": "Q2b\nSummarize the mean value of pass for each posteam when all the following conditions hold: 1. wp is greater than 20% and less than 75%; 2. down is less than or equal to 2; and 3. half_seconds_remaining is greater than 120.\n\nq2b &lt;- NFL2022_stuffs %&gt;%\n  filter(wp &gt; 0.2 & wp &lt; 0.75 & down &lt;= 2 & half_seconds_remaining &gt; 120) %&gt;%\n  group_by(posteam) %&gt;%\n  summarise(mean_pass = mean(pass, na.rm = TRUE))"
   },
   {
-    "objectID": "posts/beer-markets/beer-markets.html#variable-description-for-beer_mkts-data.frame",
-    "href": "posts/beer-markets/beer-markets.html#variable-description-for-beer_mkts-data.frame",
-    "title": "Beer Markets",
-    "section": "Variable Description for beer_mkts data.frame",
-    "text": "Variable Description for beer_mkts data.frame\nThe following describes the variables in the beer_mkts data.frame.\n\nhh: Household identifier\n_purchase_desc: Description of the purchase\nquantity: The quantity of beer purchased\nbrand: The brand of beer\ndollar_spent: The amount spent\nbeer_floz: Fluid ounces of beer\nprice_per_floz: Price per fluid ounce\ncontainer: Type of container\npromo: Whether the purchase was on promotion\nmarket: The market where the purchase was made\nDemographics: age, employment status, degree, class of worker (cow), race, and household information like microwave, dishwasher, tvcable, singlefamilyhome, and npeople (number of people in the household)"
+    "objectID": "posts/homework/hw5.html#q2c",
+    "href": "posts/homework/hw5.html#q2c",
+    "title": "Homework 5 - NFL",
+    "section": "Q2c",
+    "text": "Q2c\nProvide both (1) a ggplot code with geom_point() using the resulting data.frame in Q2b and (2) a simple comments to describe the mean value of pass for each posteam.\nIn the ggplot, reorder the posteam categories based on the mean value of pass in ascending or in descending order.\n\nggplot(q2b, aes(x = reorder(posteam, mean_pass), y = mean_pass)) +\n  geom_point() +\n  labs(x = \"team with possession\",\n       y = \"percentage of pass plays\") +\n  coord_flip()\n\n\n\n\nThe teams listed at the top of the graph have the largest mean value of pass, whereas the teams at the bottom have the smallest mean value of pass. The teams are in descending order based on mean value of pass. CIN and KC have the highest mean value of pass. WAS and ATL have the lowest mean value of pass."
   },
   {
-    "objectID": "posts/beer-markets/beer-markets.html#purchase-patterns",
-    "href": "posts/beer-markets/beer-markets.html#purchase-patterns",
-    "title": "Beer Markets",
-    "section": "Purchase Patterns",
-    "text": "Purchase Patterns\nWe’ll explore the purchase patterns for beer purchases in the dataset. This will include finding the most popular brands and spending habits across different markets. Here are some specific analyses we can perform:\n\nFind top markets in terms of total quantity for each brand.\nCompare the proportion of loyal customers.\n\nI’ll begin with these analyses and create visualizations to help us understand the data better. I will start by finding the top 5 markets in terms of the total beer_floz.\n\ntop_5 &lt;- beer_mkts %&gt;% \n   group_by(market) %&gt;% \n   summarize(beer_floz_tot = sum(beer_floz, na.rm = T)) %&gt;% \n   arrange(-beer_floz_tot) %&gt;% \n   slice(1:5)\n\nLet’s visualize the top 5 markets in terms of the total beer_floz.\n\nggplot(top_5, aes(x = market, y = beer_floz_tot)) +\n  geom_bar(stat = \"identity\", fill = \"skyblue\") +\n  labs(title = \"Top 5 Beer Markets\",\n       x = \"Market\",\n       y = \"Total Beer (floz)\")\n\n\n\n\nNext, we can look at the top 5 markets in terms of the total beer_floz of a specific brand. For example, BUD LIGHT:\n\ntop_5_bud &lt;- beer_mkts %&gt;% \n  filter(brand == \"BUD LIGHT\") %&gt;% \n  group_by(market) %&gt;% \n  summarize(beer_floz_tot = sum(beer_floz, na.rm = T)) %&gt;% \n  arrange(-beer_floz_tot) %&gt;% \n  slice(1:5)\n\nJust like the top 5 beer markets, let’s visualize the top 5 markets for BUD LIGHT.\n\nggplot(top_5_bud, aes(x = market, y = beer_floz_tot)) +\n  geom_bar(stat = \"identity\") +\n  labs(title = \"Top 5 Beer Markets - Bud Light\",\n       x = \"Market\",\n       y = \"Total Beer (floz)\")\n\n\n\n\nI will do the same for BUSCH LIGHT, COORS LIGHT, MILLER LITE, and NATURAL LIGHT.\n\ntop_5_busch &lt;- beer_mkts %&gt;% \n  filter(brand == \"BUSCH LIGHT\") %&gt;% \n  group_by(market) %&gt;% \n  summarize(beer_floz_tot = sum(beer_floz, na.rm = T)) %&gt;% \n  arrange(-beer_floz_tot) %&gt;% \n  slice(1:5)\n\ntop_5_coors &lt;- beer_mkts %&gt;% \n  filter(brand == \"COORS LIGHT\") %&gt;% \n  group_by(market) %&gt;% \n  summarize(beer_floz_tot = sum(beer_floz, na.rm = T)) %&gt;% \n  arrange(-beer_floz_tot) %&gt;% \n  slice(1:5)\n\ntop_5_miller &lt;- beer_mkts %&gt;% \n  filter(brand == \"MILLER LITE\") %&gt;% \n  group_by(market) %&gt;% \n  summarize(beer_floz_tot = sum(beer_floz, na.rm = T)) %&gt;% \n  arrange(-beer_floz_tot) %&gt;% \n  slice(1:5)\n\ntop_5_natural &lt;- beer_mkts %&gt;% \n  filter(brand == \"NATURAL LIGHT\") %&gt;% \n  group_by(market) %&gt;% \n  summarize(beer_floz_tot = sum(beer_floz, na.rm = T)) %&gt;% \n  arrange(-beer_floz_tot) %&gt;% \n  slice(1:5)\n\nLet’s also look at a visualization for BUSCH LIGHT:\n\nggplot(top_5_busch, aes(x = market, y = beer_floz_tot)) +\n  geom_bar(stat = \"identity\") +\n  labs(title = \"Top 5 Beer Markets - Busch Light\",\n       x = \"Market\",\n       y = \"Total Beer (floz)\")\n\n\n\n\nNext, we will evaluate proportions of loyal customers for each brand. For example, for households that purchased BUD LIGHT at least once, I will find the fraction of households that purchased only BUD LIGHT. I will find the proportion of loyal customers for all 5 brands.\n\nloyal_customers &lt;- beer_mkts %&gt;% \n  mutate(bud = ifelse(brand==\"BUD LIGHT\", 1, 0), # 1 if brand==\"BUD LIGHT\"; 0 otherwise\n         busch = ifelse(brand==\"BUSCH LIGHT\", 1, 0),\n         coors = ifelse(brand==\"COORS LIGHT\", 1, 0),\n         miller = ifelse(brand==\"MILLER LITE\", 1, 0),\n         natural = ifelse(brand==\"NATURAL LIGHT\", 1, 0),\n         .after = hh) %&gt;% \n  select(hh:natural) %&gt;%  # select the variables we need\n  group_by(hh) %&gt;% \n  summarise(n_transactions = n(), # number of beer transactions for each hh\n            n_bud = sum(bud), # number of BUD LIGHT transactions for each hh\n            n_busch = sum(busch), \n            n_coors = sum(coors), \n            n_miller = sum(miller), \n            n_natural = sum(natural) \n  ) %&gt;% \n  summarise(loyal_bud = sum(n_transactions == n_bud) / sum(n_bud &gt; 0), \n              # sum(n_transactions == n_bud) : the number of households that purchased BUD LIGHT only\n              # sum(n_bud &gt; 0) : the number of households that purchased BUD LIGHT at least once.\n            loyal_busch = sum(n_transactions == n_busch) / sum(n_busch &gt; 0),\n            loyal_coors = sum(n_transactions == n_coors) / sum(n_coors &gt; 0),\n            loyal_miller = sum(n_transactions == n_miller) / sum(n_miller &gt; 0),\n            loyal_natural = sum(n_transactions == n_natural) / sum(n_natural &gt; 0)\n  )"
+    "objectID": "posts/homework/hw5.html#q2d",
+    "href": "posts/homework/hw5.html#q2d",
+    "title": "Homework 5 - NFL",
+    "section": "Q2d",
+    "text": "Q2d\nConsider the following data.frame, NFL2022_epa:\n\nNFL2022_epa &lt;- read_csv('https://bcdanl.github.io/data/NFL2022_epa.csv')\n\nCreate the data.frame, NFL2022_stuffs_EPA, that includes: - All the variables in the data.frame, NFL2022_stuffs; - The variables, passer, receiver, and epa, from the data.frame, NFL2022_epa. by joining the two data.frames.\nIn the resulting data.frame, NFL2022_stuffs_EPA, remove observations with NA in passer.\n\nNFL2022_stuffs_EPA &lt;- left_join(NFL2022_stuffs, NFL2022_epa[, c(\"play_id\", \"passer\", \"receiver\", \"epa\")], by = \"play_id\")\n\nNFL2022_stuffs_EPA &lt;- NFL2022_stuffs_EPA %&gt;%\n  filter(!is.na(passer))"
+  },
+  {
+    "objectID": "posts/homework/hw5.html#q2e",
+    "href": "posts/homework/hw5.html#q2e",
+    "title": "Homework 5 - NFL",
+    "section": "Q2e",
+    "text": "Q2e\nProvide both (1) a single ggplot and (2) a simple comment to describe the NFL weekly trend of weekly mean value of epa for each of the following two passers, 1. “J.Allen” 2. “P.Mahomes”\n\nq2e &lt;- NFL2022_stuffs_EPA %&gt;%\n  filter(passer %in% c(\"J.Allen\", \"P.Mahomes\"))\n\nggplot(q2e, aes(x = week, y = epa, color = passer)) +\n  geom_line(stat = \"summary\", fun = \"mean\") +\n  labs(x = \"Week\",\n       y = \"Mean EPA\",\n       color = \"Passer\") + scale_color_manual(values = c(\"J.Allen\" = \"blue\", \"P.Mahomes\" = \"red\"))\n\n\n\n\nOverall, P. Mahomes generally had a higher mean EPA than J. Allen. However, in the most recent weeks, J. Allen’s mean EPA has risen significantly and is now much higher than P. Mahomes. Meanwhile, P. Mahomes’ mean EPA decreased slightly."
+  },
+  {
+    "objectID": "posts/homework/hw5.html#q2f",
+    "href": "posts/homework/hw5.html#q2f",
+    "title": "Homework 5 - NFL",
+    "section": "Q2f",
+    "text": "Q2f\nCalculate the difference between the mean value of epa for “J.Allen” the mean value of epa for “P.Mahomes” for each value of week.\n\nmean_epa_by_week &lt;- q2e %&gt;%\n  group_by(passer, week) %&gt;%\n  summarise(mean_epa = mean(epa, na.rm = TRUE)) %&gt;% \n  pivot_wider(names_from = passer, values_from = mean_epa)\n\nmean_epa_by_week$epa_difference &lt;- mean_epa_by_week$`J.Allen` - mean_epa_by_week$`P.Mahomes`"
+  },
+  {
+    "objectID": "posts/homework/hw5.html#q2g",
+    "href": "posts/homework/hw5.html#q2g",
+    "title": "Homework 5 - NFL",
+    "section": "Q2g",
+    "text": "Q2g\nSummarize the resulting data.frame in Q2d, with the following four variables:\n\nposteam: String abbreviation for the team with possession.\npasser: Name of the player who passed a ball to a receiver by initially taking a three-step drop, and backpedaling into the pocket to make a pass. (Mostly, they are quarterbacks.)\nmean_epa: Mean value of epa in 2022 for each passer\nn_pass: Number of observations for each passer\n\nThen find the top 10 NFL passers in 2022 in terms of the mean value of epa, conditioning that n_pass must be greater than or equal to the third quantile level of n_pass.\n\nsummary &lt;- NFL2022_stuffs_EPA %&gt;%\n  group_by(posteam, passer) %&gt;%\n  summarise(mean_epa = mean(epa, na.rm = TRUE),\n            n_pass = n())\n\nthird_quantile &lt;- quantile(summary$n_pass, 0.75)\n\nq2f &lt;- summary %&gt;%\n  filter(n_pass &gt;= third_quantile) %&gt;%\n  arrange(desc(mean_epa)) %&gt;%\n  slice_head(n = 10)"
   },
   {
     "objectID": "posts/spotify/spotify_df.html",
