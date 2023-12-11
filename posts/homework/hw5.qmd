@@ -1,0 +1,46 @@
+---
+title: "Spotify"
+author: "Ann Brennan"
+date: "2023-10-30"
+categories: [spotify, code, analysis]
+image: "unnamed.png"
+
+execute: 
+  warning: false
+  message: false
+  
+toc: true
+---
+```{r}
+#| include: false
+
+library(knitr)
+library(rmarkdown)
+library(tidyverse)
+library(skimr)
+library(ggthemes)
+library(hrbrthemes)
+
+theme_set(theme_ipsum()+
+          theme(strip.background =element_rect(fill="lightgray"),
+                axis.title.x  = element_text(angle = 0,
+                                            size = rel(1.5),
+                                            margin = margin(10,0,0,0)),
+                axis.title.y  = element_text(angle = 0,
+                                            size = rel(1.5),
+                                            margin = margin(0,10,0,0))
+                )
+          )
+```
+
+Let's analyze the `spotify` data:
+
+```{r}
+spotify_all <- read_csv('https://bcdanl.github.io/data/spotify_all.csv')
+```
+
+
+```{r}
+#| results: asis
+rmarkdown::paged_table(spotify_all) 
+```

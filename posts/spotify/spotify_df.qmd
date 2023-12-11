@@ -1,0 +1,153 @@
+---
+title: "Spotify"
+author: "Ann Brennan"
+date: "2023-10-30"
+categories: [spotify, code, analysis]
+image: "unnamed.png"
+
+execute: 
+  warning: false
+  message: false
+  
+toc: true
+---
+```{r}
+#| include: false
+
+library(knitr)
+library(rmarkdown)
+library(tidyverse)
+library(skimr)
+library(ggthemes)
+library(hrbrthemes)
+
+theme_set(theme_ipsum()+
+          theme(strip.background =element_rect(fill="lightgray"),
+                axis.title.x  = element_text(angle = 0,
+                                            size = rel(1.5),
+                                            margin = margin(10,0,0,0)),
+                axis.title.y  = element_text(angle = 0,
+                                            size = rel(1.5),
+                                            margin = margin(0,10,0,0))
+                )
+          )
+```
+
+Let's analyze the `spotify` data:
+
+```{r}
+spotify_all <- read_csv('https://bcdanl.github.io/data/spotify_all.csv')
+```
+
+
+```{r}
+#| results: asis
+rmarkdown::paged_table(spotify_all) 
+```
+
+
+
+## Variable Description for `spotify` data.frame
+
+The following describes the variables in the `spotify` data.frame.
+
+
+pid: playlist ID; unique ID for playlist
+
+playlist_name: a name of playlist
+
+pos: a position of the track within a playlist (starting from 0)
+
+artist_name: name of the track’s primary artist
+
+track_name: name of the track
+
+duration_ms: duration of the track in milliseconds
+
+album_name: name of the track’s album
+
+
+
+
+## Popular Songs
+
+A value of a song is defined as a combination of a artist_name value and a track_name value.
+
+Here, I will find the 10 most popular songs and their respective artists.
+
+```{r}
+top_10_songs <- spotify_all %>% 
+  count(artist_name, track_name) %>% 
+  arrange(-n) %>% 
+  head(10)
+top_10_songs
+```
+We can visualize the top 10 songs on Spotify in this data.frame using a barplot:
+
+
+```{r}
+ggplot(top_10_songs, aes(x = reorder(track_name, -n), y = n)) +
+  geom_bar(stat = "identity") +
+  labs(title = "Top 10 Songs on Spotify",
+       x = "Song",
+       y = "Number of Occurrences") + coord_flip()
+```
+
+
+## Popular Artists
+
+We can also find the most popular artists based on how many times their name occurs in the data. I will find the 5 most popular artists and each artist's most popular song.
+
+```{r}
+top_artists <- spotify_all %>% 
+  group_by(artist_name) %>% 
+  mutate(n_popular_artist = n()) %>% 
+  ungroup() %>% 
+  mutate( artist_ranking = dense_rank( desc(n_popular_artist) ) ) %>% 
+  filter( artist_ranking <= 5) %>% 
+  group_by(artist_name, track_name) %>% 
+  mutate(n_popular_track = n()) %>% 
+  group_by(artist_name) %>% 
+  mutate(track_ranking = dense_rank( desc(n_popular_track) ) ) %>% 
+  filter( track_ranking <= 2) %>%   # I just wanted to see the top two tracks for each artist
+  select(artist_name, artist_ranking, n_popular_artist, track_name, track_ranking, n_popular_track) %>% 
+  distinct() %>% 
+  arrange(artist_ranking, track_ranking)
+
+top_artists
+```
+Let's visualize the number of occurences of the top 5 artists on Spotify.
+
+```{r}
+
+ggplot(top_artists, aes(x = artist_name, y = n_popular_artist)) +
+  geom_bar(stat = "identity") +
+  labs(title = "Top 5 Artists on Spotify",
+       x = "Artist",
+       y = "Number of Occurrences") + coord_flip()
+
+```
+
+
+
+
+I am interested in looking at the relationship between pos and the ten most popular artists. Let's visualize this. 
+
+```{r}
+top_10_artists <- spotify_all %>% 
+  group_by(artist_name) %>% 
+  mutate(n_popular_artist = n()) %>% 
+  ungroup() %>% 
+  mutate( artist_ranking = dense_rank( desc(n_popular_artist) ) ) %>% 
+  filter( artist_ranking <= 10) 
+  
+# boxplot
+ggplot(top_10_artists,
+       aes(x = pos, y = fct_reorder(artist_name, -artist_ranking)) ) +
+  geom_boxplot() +
+  stat_summary(
+    fun = mean,
+    color = 'red'
+  )
+```
+

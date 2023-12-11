@@ -3,8 +3,17 @@
     "listing": "/blog-listing.html",
     "items": [
       "/posts/beer-markets/beer-markets.html",
-      "/posts/starwars/starwars_df.html",
-      "/posts/post-with-code/index.html",
+      "/posts/spotify/spotify_df.html",
+      "/posts/restaurants/restaurants.html",
+      "/posts/welcome/index.html"
+    ]
+  },
+  {
+    "listing": "/blog-post-title.html",
+    "items": [
+      "/posts/beer-markets/beer-markets.html",
+      "/posts/restaurants/restaurants.html",
+      "/posts/spotify/spotify_df.html",
       "/posts/welcome/index.html"
     ]
   }

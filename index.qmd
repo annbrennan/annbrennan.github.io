@@ -1,41 +1,38 @@
 ---
-title: "YOUR NAME"
+title: "Ann Brennan"
 about:
   template: trestles  # jolla  trestles  solana  marquee  broadside
-  image: img/profile.png
+  image: img/4J7A2370.JPG
   image-width: 15em
   image-shape: round # rectangle  round  rounded
   
   links:
     - icon: linkedin
       text: LinkedIn
-      href: https://linkedin.com
-    - icon: instagram
-      text: Instagram
-      href: https://instagram.com
+      href: https://www.linkedin.com/in/ann-brennan-4138b928b/
     - icon: github
       text: GitHub
-      href: https://github.com
+      href: https://github.com/annbrennan/annbrennan.github.io
     - icon: file-earmark-pdf
       text: Resumé
       href: https://GITHUB_USERNAME.github.io/resume-example.pdf
     - icon: mailbox
       text: Email
-      href: mailto:YOUR_EMAIL@geneseo.edu
+      href: mailto:ab105@geneseo.edu
 
 ---
 
 
-Finley Malloc majors in Data Analytics at SUNY Geneseo. When not working on data analytics, Finley enjoys spending time unicycling and playing with her pet iguana.
+Ann Brennan is pursuing a major in Data Analytics and minor in Mathematics at SUNY Geneseo. Ann also competes for the SUNY Geneseo cross country and track and field teams.
 
 ## Education
 
 State University of New York at Geneseo | Geneseo, NY <br>
 B.S. in Data Analytics | Aug 2022 - May 2026 <br>
-Minor in Business Administration 
+Minor in Mathematics 
 
 ## Experience
 
-Starbucks Analytics | Data Analyst Intern | May 2024 - Aug 2024
+HF-L Technology | Technology Intern | June 2023 - Aug 2023
 
 

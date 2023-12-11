@@ -1,0 +1,149 @@
+---
+title: "Restaurants"
+author: "Ann Brennan"
+date: "2023-10-30"
+categories: [restaurants, code, analysis]
+image: "bakerstable_hb-4234.jpg"
+
+execute: 
+  warning: false
+  message: false
+  
+toc: true
+---
+```{r}
+#| include: false
+
+library(knitr)
+library(rmarkdown)
+library(tidyverse)
+library(skimr)
+library(ggthemes)
+library(hrbrthemes)
+
+theme_set(theme_ipsum()+
+          theme(strip.background =element_rect(fill="lightgray"),
+                axis.title.x  = element_text(angle = 0,
+                                            size = rel(1.5),
+                                            margin = margin(10,0,0,0)),
+                axis.title.y  = element_text(angle = 0,
+                                            size = rel(1.5),
+                                            margin = margin(0,10,0,0))
+                )
+          )
+```
+
+Let's analyze the `restaurant` data:
+
+```{r}
+restaurant <- read_csv('https://bcdanl.github.io/data/DOHMH_NYC_Restaurant_Inspection.csv')
+```
+
+
+```{r}
+#| results: asis
+rmarkdown::paged_table(restaurant) 
+```
+
+
+## Variable Description
+
+CAMIS:
+This is an unique identifier for the entity (restaurant);
+10-digit integer
+
+DBA:
+This field represents the name (doing business as) of the entity (restaurant);
+Public business name, may change at discretion of restaurant owner
+BORO:
+Borough in which the entity (restaurant) is located.;
+• 1 = MANHATTAN
+• 2 = BRONX
+• 3 = BROOKLYN
+• 4 = QUEENS
+• 5 = STATEN ISLAND
+• 0 = Missing;
+
+CUISINE DESCRIPTION:
+This field describes the entity (restaurant) cuisine.
+ACTION:
+This field represents the actions that is associated with each restaurant inspection. ;
+• Violations were cited in the following area(s).
+• No violations were recorded at the time of this inspection.
+• Establishment re-opened by DOHMH
+• Establishment re-closed by DOHMH
+• Establishment Closed by DOHMH.
+• Violations were cited in the following area(s) and those requiring immediate action were addressed.
+
+VIOLATION CODE:
+Violation code associated with an establishment (restaurant) inspection
+VIOLATION DESCRIPTION:
+Violation description associated with an establishment (restaurant) inspection
+
+CRITICAL FLAG:
+Indicator of critical violation;
+• Critical
+• Not Critical
+• Not Applicable;
+Critical violations are those most likely to contribute to food-borne illness
+
+SCORE:
+Total score for a particular inspection;
+
+GRADE:
+Grade associated with the inspection;
+• N = Not Yet Graded
+• A = Grade A
+• B = Grade B
+• C = Grade C
+• Z = Grade Pending
+• P = Grade Pending issued on re-opening following an initial inspection that resulted in a closure
+
+
+## Summary Statistics
+
+First, we can find the mean, standard deviation, first quartile, median, third quartile, and maximum of SCORE for each GRADE of restaurants
+
+```{r}
+restaurant %>% group_by(GRADE) %>% skim(SCORE) %>% select(-n_missing)
+```
+
+## Restaurant Grade
+
+How many restaurants with a GRADE of A are there in NYC?
+
+How much percentage of restaurants in NYC are a GRADE of C?
+
+```{r}
+freq <- as.data.frame( table(restaurant$GRADE) )
+prop <- as.data.frame( 100 * prop.table(table(restaurant$GRADE)) )
+```
+
+## Relationship - Score, Grade, Critical Flag
+
+We will look at  visualization to show how the distribution of SCORE varies by GRADE and CRITICAL FLAG.
+
+```{r}
+ggplot(restaurant) +
+  geom_boxplot(aes(x = SCORE, y = GRADE, fill = GRADE) ) +
+  facet_grid( `CRITICAL FLAG` ~ . )
+```
+We could also show this same relationship using a histogram:
+
+```{r}
+ggplot(restaurant) +
+  geom_histogram(aes(x = SCORE), binwidth = 1 ) +
+  facet_wrap( `CRITICAL FLAG` ~ GRADE, scales = 'free' )
+```
+
+## Relationship - Critical Flag, Grade, Boro
+
+Next, we will look at how the proportion of CRITICAL FLAG varies by GRADE and BORO, this time using a barplot.
+
+```{r}
+ggplot(restaurant) +
+  geom_bar(aes(x = `CRITICAL FLAG`,
+               y = after_stat(prop), group = 1)) +
+  facet_grid( GRADE ~ BORO )
+```
+
