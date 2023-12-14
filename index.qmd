@@ -15,7 +15,7 @@ about:
       href: https://github.com/annbrennan/annbrennan.github.io
     - icon: file-earmark-pdf
       text: Resumé
-      href: file:///C:/Users/15856/Documents/ann-brennan-resume.pdf
+      href: file:///C:/Users/15856/AppData/Local/Microsoft/Windows/INetCache/Content.Outlook/SQQ3V94B/Ann-Brennan-Resume.pdf
     - icon: mailbox
       text: Email
       href: ab105@geneseo.edu
