@@ -96,6 +96,8 @@ skim(climate_finance) %>%
   select(-n_missing)
 ```
 
+# Analysis
+
 ## Financial Contributions to Other Countries
 
 Various parties in the climate_finance data frame have made positive financial contributions to other countries for adaptation projects. Here, we will find the number of parties that made a positive contribution to another country for every year between 2011 and 2018.

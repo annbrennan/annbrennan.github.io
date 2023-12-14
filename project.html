@@ -156,8 +156,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul class="collapse">
   <li><a href="#variable-description" id="toc-variable-description" class="nav-link" data-scroll-target="#variable-description"><span class="header-section-number">2.1</span> Variable Description</a></li>
   <li><a href="#summary-statistics" id="toc-summary-statistics" class="nav-link" data-scroll-target="#summary-statistics"><span class="header-section-number">2.2</span> Summary Statistics</a></li>
-  <li><a href="#financial-contributions-to-other-countries" id="toc-financial-contributions-to-other-countries" class="nav-link" data-scroll-target="#financial-contributions-to-other-countries"><span class="header-section-number">2.3</span> Financial Contributions to Other Countries</a></li>
-  <li><a href="#types-of-contributions" id="toc-types-of-contributions" class="nav-link" data-scroll-target="#types-of-contributions"><span class="header-section-number">2.4</span> Types of Contributions</a></li>
+  </ul></li>
+  <li><a href="#analysis" id="toc-analysis" class="nav-link" data-scroll-target="#analysis"><span class="header-section-number">3</span> Analysis</a>
+  <ul class="collapse">
+  <li><a href="#financial-contributions-to-other-countries" id="toc-financial-contributions-to-other-countries" class="nav-link" data-scroll-target="#financial-contributions-to-other-countries"><span class="header-section-number">3.1</span> Financial Contributions to Other Countries</a></li>
+  <li><a href="#types-of-contributions" id="toc-types-of-contributions" class="nav-link" data-scroll-target="#types-of-contributions"><span class="header-section-number">3.2</span> Types of Contributions</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -432,8 +435,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </section>
-<section id="financial-contributions-to-other-countries" class="level2" data-number="2.3">
-<h2 data-number="2.3" class="anchored" data-anchor-id="financial-contributions-to-other-countries"><span class="header-section-number">2.3</span> Financial Contributions to Other Countries</h2>
+</section>
+<section id="analysis" class="level1" data-number="3">
+<h1 data-number="3"><span class="header-section-number">3</span> Analysis</h1>
+<section id="financial-contributions-to-other-countries" class="level2" data-number="3.1">
+<h2 data-number="3.1" class="anchored" data-anchor-id="financial-contributions-to-other-countries"><span class="header-section-number">3.1</span> Financial Contributions to Other Countries</h2>
 <p>Various parties in the climate_finance data frame have made positive financial contributions to other countries for adaptation projects. Here, we will find the number of parties that made a positive contribution to another country for every year between 2011 and 2018.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>positive_contributions <span class="ot">&lt;-</span> climate_finance <span class="sc">%&gt;%</span> </span>
@@ -455,8 +461,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </section>
-<section id="types-of-contributions" class="level2" data-number="2.4">
-<h2 data-number="2.4" class="anchored" data-anchor-id="types-of-contributions"><span class="header-section-number">2.4</span> Types of Contributions</h2>
+<section id="types-of-contributions" class="level2" data-number="3.2">
+<h2 data-number="3.2" class="anchored" data-anchor-id="types-of-contributions"><span class="header-section-number">3.2</span> Types of Contributions</h2>
 <p>There are two different types of contributions that a party can make: adaptation and mitigation. The type of contribution is decided based on the type of project it supports. Adaptation contributions go to an adaptation climate change project. A mitigation contribution goes to a mitigation climate change project.</p>
 <p>First, we will calculate the ratio between adaptation contribution and mitigation contribution for each type of Status for each Party each year.</p>
 <div class="cell">
