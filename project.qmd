@@ -96,13 +96,52 @@ skim(climate_finance) %>%
   select(-n_missing)
 ```
 
-## MPG and a Type of Cars
+## Financial Contributions to Other Countries
 
-The following boxplot shows how the distribution of highway MPG (`hwy`) varies by a type of cars (`class`) :blue_car: :truck: :minibus:.
+Various parties in the climate_finance data frame have made positive financial contributions to other countries for adaptation projects. Here, we will find the number of parties that made a positive contribution to another country for every year between 2011 and 2018.
 
 ```{r}
-ggplot(data = mpg) +
-  geom_boxplot(aes(x = class, y = hwy, fill = class),
-               show.legend = F) +
-  labs(x = "Class", y = "Highway\nMPG") 
+positive_contributions <- climate_finance %>% 
+  filter(Status == "provided",                       
+         `Type of support` == "adaptation") %>%      
+  group_by(Party, Year) %>%                          
+  summarise(Contribution = sum(Contribution, na.rm = T)) %>%  
+  filter(Contribution > 0) %>%                       
+  group_by(Party) %>%                                
+  count() %>%                                        
+  filter(n == 2018 - 2011 + 1)  %>%                  
+  select(Party) %>% 
+  distinct()    
 ```
+```{r}
+nrow(positive_contributions)
+```
+## Types of Contributions
+
+There are two different types of contributions that a party can make: adaptation and mitigation. The type of contribution is decided based on the type of project it supports. Adaptation contributions go to an adaptation climate change project. A mitigation contribution goes to a mitigation climate change project.
+
+First, we will calculate the ratio between adaptation contribution and mitigation contribution for each type of Status for each Party each year.
+
+```{r}
+ratio <- climate_finance %>% 
+  group_by(Party, Year, Status, `Type of support`) %>% 
+  summarise(Contribution = sum(Contribution, na.rm = T)) %>% 
+  filter(Contribution != 0) %>% 
+  group_by(Party, Year, Status) %>% 
+  mutate(lag_Contribution = lag(Contribution), 
+         am_ratio = lag_Contribution / Contribution ) %>% 
+  filter(!is.na(am_ratio)) %>% 
+  rename(mitigation = Contribution, 
+         adaptation = lag_Contribution) %>% 
+  select(-`Type of support`) 
+```
+
+Here, we will visualize the distribution of the ratio between adaption contribution and mitigation contribution based on our calculation.
+
+```{r}
+ggplot(ratio, aes(x = log(am_ratio))) +
+  geom_histogram(bins = 75) + labs(x = "log(ratio)", y = "count", title = "Distribution of the Ratio of Contributions") +
+  geom_vline(xintercept = 0, color = 'red', lty = 2)
+```
+
+This histogram depicts a generally normal distribution of the ratio between adaptation contribution and mitigation contribution.
