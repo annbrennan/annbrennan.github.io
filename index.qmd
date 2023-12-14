@@ -18,7 +18,7 @@ about:
       href: https://sunygeneseo-my.sharepoint.com/:w:/g/personal/ab105_geneseo_edu/EVHd7VTZ36pIsWLuJfxcCYUB2QDCKMOIRG2dN8ZxpgBM5Q?e=hAipUE
     - icon: mailbox
       text: Email
-      href: ab105@geneseo.edu
+      href: mailto:ab105@geneseo.edu
 
 ---
 
