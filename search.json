@@ -116,7 +116,7 @@
     "href": "blog-listing.html",
     "title": "A. Brennan Analytics",
     "section": "",
-    "text": "Order By\n       Default\n         \n          Title\n        \n         \n          Date - Oldest\n        \n         \n          Date - Newest\n        \n         \n          Author\n        \n     \n  \n    \n      \n      \n    \n\n\n\n\n  \n\n\n\n\nHomework 5 - NFL\n\n\n\n\n\n\n\n\n\nDec 11, 2023\n\n\nAnn Brennan\n\n\n5 min\n\n\n\n\n\n\n  \n\n\n\n\nBeer Markets\n\n\n\n\n\n\n\n\n\nDec 11, 2023\n\n\nAnn Brennan\n\n\n7 min\n\n\n\n\n\n\n  \n\n\n\n\nSpotify\n\n\n\n\n\n\n\n\n\nOct 30, 2023\n\n\nAnn Brennan\n\n\n4 min\n\n\n\n\n\n\n  \n\n\n\n\nRestaurants\n\n\n\n\n\n\n\n\n\nOct 30, 2023\n\n\nAnn Brennan\n\n\n4 min\n\n\n\n\n\n\n  \n\n\n\n\nWelcome To My Blog\n\n\n\n\n\n\n\n\n\nOct 27, 2023\n\n\nAnn Brennan\n\n\n1 min\n\n\n\n\n\n\nNo matching items"
+    "text": "Order By\n       Default\n         \n          Title\n        \n         \n          Date - Oldest\n        \n         \n          Date - Newest\n        \n         \n          Author\n        \n     \n  \n    \n      \n      \n    \n\n\n\n\n  \n\n\n\n\nHomework 5 - NFL\n\n\n\n\n\n\n\n\n\nDec 11, 2023\n\n\nAnn Brennan\n\n\n6 min\n\n\n\n\n\n\n  \n\n\n\n\nBeer Markets\n\n\n\n\n\n\n\n\n\nDec 11, 2023\n\n\nAnn Brennan\n\n\n7 min\n\n\n\n\n\n\n  \n\n\n\n\nSpotify\n\n\n\n\n\n\n\n\n\nOct 30, 2023\n\n\nAnn Brennan\n\n\n4 min\n\n\n\n\n\n\n  \n\n\n\n\nRestaurants\n\n\n\n\n\n\n\n\n\nOct 30, 2023\n\n\nAnn Brennan\n\n\n4 min\n\n\n\n\n\n\n  \n\n\n\n\nWelcome To My Blog\n\n\n\n\n\n\n\n\n\nOct 27, 2023\n\n\nAnn Brennan\n\n\n1 min\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "danl-200-cw-10.html",
@@ -210,64 +210,64 @@
     "text": "Experience\nHF-L Technology | Technology Intern | June 2023 - Aug 2023"
   },
   {
-    "objectID": "posts/homework/hw5.html",
-    "href": "posts/homework/hw5.html",
+    "objectID": "posts/homework/danl200-hw5-brennan-ann.html",
+    "href": "posts/homework/danl200-hw5-brennan-ann.html",
     "title": "Homework 5 - NFL",
     "section": "",
-    "text": "The following is the data.frame for Question 2.\nNFL2022_stuffs &lt;- read_csv('https://bcdanl.github.io/data/NFL2022_stuffs.csv')"
+    "text": "My Github repository: https://github.com/annbrennan/annbrennan.github.io\nThe following is the data.frame for Question 2.\nNFL2022_stuffs &lt;- read_csv('https://bcdanl.github.io/data/NFL2022_stuffs.csv')"
   },
   {
-    "objectID": "posts/homework/hw5.html#variable-description",
-    "href": "posts/homework/hw5.html#variable-description",
+    "objectID": "posts/homework/danl200-hw5-brennan-ann.html#variable-description",
+    "href": "posts/homework/danl200-hw5-brennan-ann.html#variable-description",
     "title": "Homework 5 - NFL",
     "section": "Variable Description",
     "text": "Variable Description\nplay_id: Numeric play identifier that when used with game_id and drive provides the unique identifier for a single play game_id: Ten digit identifier for NFL game. drive: Numeric drive number in the game. week: Season week. posteam: String abbreviation for the team with possession. qtr: Quarter of the game (5 is overtime). half_seconds_remaining: Numeric seconds remaining in the half. down: The down for the given play. Basically you get four attempts (aka downs) to move the ball 10 yards (by either running with it or passing it). If you make 10 yards then you get another set of four downs. pass: Binary indicator if the play was a pass play. wp: Estimated winning probability for the posteam given the current situation at the start of the given play."
   },
   {
-    "objectID": "posts/homework/hw5.html#q2a",
-    "href": "posts/homework/hw5.html#q2a",
+    "objectID": "posts/homework/danl200-hw5-brennan-ann.html#q2a",
+    "href": "posts/homework/danl200-hw5-brennan-ann.html#q2a",
     "title": "Homework 5 - NFL",
     "section": "Q2a",
     "text": "Q2a\nIn data.frame, NFL2022_stuffs, remove observations for which values of posteam is missing.\n\nNFL2022_stuffs &lt;- na.omit(NFL2022_stuffs)"
   },
   {
-    "objectID": "posts/homework/hw5.html#q2b",
-    "href": "posts/homework/hw5.html#q2b",
+    "objectID": "posts/homework/danl200-hw5-brennan-ann.html#q2b",
+    "href": "posts/homework/danl200-hw5-brennan-ann.html#q2b",
     "title": "Homework 5 - NFL",
     "section": "Q2b",
     "text": "Q2b\nSummarize the mean value of pass for each posteam when all the following conditions hold: 1. wp is greater than 20% and less than 75%; 2. down is less than or equal to 2; and 3. half_seconds_remaining is greater than 120.\n\nq2b &lt;- NFL2022_stuffs %&gt;%\n  filter(wp &gt; 0.2 & wp &lt; 0.75 & down &lt;= 2 & half_seconds_remaining &gt; 120) %&gt;%\n  group_by(posteam) %&gt;%\n  summarise(mean_pass = mean(pass, na.rm = TRUE))"
   },
   {
-    "objectID": "posts/homework/hw5.html#q2c",
-    "href": "posts/homework/hw5.html#q2c",
+    "objectID": "posts/homework/danl200-hw5-brennan-ann.html#q2c",
+    "href": "posts/homework/danl200-hw5-brennan-ann.html#q2c",
     "title": "Homework 5 - NFL",
     "section": "Q2c",
     "text": "Q2c\nProvide both (1) a ggplot code with geom_point() using the resulting data.frame in Q2b and (2) a simple comments to describe the mean value of pass for each posteam.\nIn the ggplot, reorder the posteam categories based on the mean value of pass in ascending or in descending order.\n\nggplot(q2b, aes(x = reorder(posteam, mean_pass), y = mean_pass)) +\n  geom_point() +\n  labs(x = \"team with possession\",\n       y = \"percentage of pass plays\") +\n  coord_flip()\n\n\n\n\nThe teams listed at the top of the graph have the largest mean value of pass, whereas the teams at the bottom have the smallest mean value of pass. The teams are in descending order based on mean value of pass. CIN and KC have the highest mean value of pass. WAS and ATL have the lowest mean value of pass."
   },
   {
-    "objectID": "posts/homework/hw5.html#q2d",
-    "href": "posts/homework/hw5.html#q2d",
+    "objectID": "posts/homework/danl200-hw5-brennan-ann.html#q2d",
+    "href": "posts/homework/danl200-hw5-brennan-ann.html#q2d",
     "title": "Homework 5 - NFL",
     "section": "Q2d",
     "text": "Q2d\nConsider the following data.frame, NFL2022_epa:\n\nNFL2022_epa &lt;- read_csv('https://bcdanl.github.io/data/NFL2022_epa.csv')\n\nCreate the data.frame, NFL2022_stuffs_EPA, that includes: - All the variables in the data.frame, NFL2022_stuffs; - The variables, passer, receiver, and epa, from the data.frame, NFL2022_epa. by joining the two data.frames.\nIn the resulting data.frame, NFL2022_stuffs_EPA, remove observations with NA in passer.\n\nNFL2022_stuffs_EPA &lt;- left_join(NFL2022_stuffs, NFL2022_epa[, c(\"play_id\", \"passer\", \"receiver\", \"epa\")], by = \"play_id\")\n\nNFL2022_stuffs_EPA &lt;- NFL2022_stuffs_EPA %&gt;%\n  filter(!is.na(passer))"
   },
   {
-    "objectID": "posts/homework/hw5.html#q2e",
-    "href": "posts/homework/hw5.html#q2e",
+    "objectID": "posts/homework/danl200-hw5-brennan-ann.html#q2e",
+    "href": "posts/homework/danl200-hw5-brennan-ann.html#q2e",
     "title": "Homework 5 - NFL",
     "section": "Q2e",
     "text": "Q2e\nProvide both (1) a single ggplot and (2) a simple comment to describe the NFL weekly trend of weekly mean value of epa for each of the following two passers, 1. “J.Allen” 2. “P.Mahomes”\n\nq2e &lt;- NFL2022_stuffs_EPA %&gt;%\n  filter(passer %in% c(\"J.Allen\", \"P.Mahomes\"))\n\nggplot(q2e, aes(x = week, y = epa, color = passer)) +\n  geom_line(stat = \"summary\", fun = \"mean\") +\n  labs(x = \"Week\",\n       y = \"Mean EPA\",\n       color = \"Passer\") + scale_color_manual(values = c(\"J.Allen\" = \"blue\", \"P.Mahomes\" = \"red\"))\n\n\n\n\nOverall, P. Mahomes generally had a higher mean EPA than J. Allen. However, in the most recent weeks, J. Allen’s mean EPA has risen significantly and is now much higher than P. Mahomes. Meanwhile, P. Mahomes’ mean EPA decreased slightly."
   },
   {
-    "objectID": "posts/homework/hw5.html#q2f",
-    "href": "posts/homework/hw5.html#q2f",
+    "objectID": "posts/homework/danl200-hw5-brennan-ann.html#q2f",
+    "href": "posts/homework/danl200-hw5-brennan-ann.html#q2f",
     "title": "Homework 5 - NFL",
     "section": "Q2f",
     "text": "Q2f\nCalculate the difference between the mean value of epa for “J.Allen” the mean value of epa for “P.Mahomes” for each value of week.\n\nmean_epa_by_week &lt;- q2e %&gt;%\n  group_by(passer, week) %&gt;%\n  summarise(mean_epa = mean(epa, na.rm = TRUE)) %&gt;% \n  pivot_wider(names_from = passer, values_from = mean_epa)\n\nmean_epa_by_week$epa_difference &lt;- mean_epa_by_week$`J.Allen` - mean_epa_by_week$`P.Mahomes`"
   },
   {
-    "objectID": "posts/homework/hw5.html#q2g",
-    "href": "posts/homework/hw5.html#q2g",
+    "objectID": "posts/homework/danl200-hw5-brennan-ann.html#q2g",
+    "href": "posts/homework/danl200-hw5-brennan-ann.html#q2g",
     "title": "Homework 5 - NFL",
     "section": "Q2g",
     "text": "Q2g\nSummarize the resulting data.frame in Q2d, with the following four variables:\n\nposteam: String abbreviation for the team with possession.\npasser: Name of the player who passed a ball to a receiver by initially taking a three-step drop, and backpedaling into the pocket to make a pass. (Mostly, they are quarterbacks.)\nmean_epa: Mean value of epa in 2022 for each passer\nn_pass: Number of observations for each passer\n\nThen find the top 10 NFL passers in 2022 in terms of the mean value of epa, conditioning that n_pass must be greater than or equal to the third quantile level of n_pass.\n\nsummary &lt;- NFL2022_stuffs_EPA %&gt;%\n  group_by(posteam, passer) %&gt;%\n  summarise(mean_epa = mean(epa, na.rm = TRUE),\n            n_pass = n())\n\nthird_quantile &lt;- quantile(summary$n_pass, 0.75)\n\nq2f &lt;- summary %&gt;%\n  filter(n_pass &gt;= third_quantile) %&gt;%\n  arrange(desc(mean_epa)) %&gt;%\n  slice_head(n = 10)"
@@ -305,20 +305,27 @@
     "href": "project.html",
     "title": "DANL Project",
     "section": "",
-    "text": "About this project 👏\n\n1 + 1\n\n[1] 2"
+    "text": "About this project 👏"
+  },
+  {
+    "objectID": "project.html#variable-description",
+    "href": "project.html#variable-description",
+    "title": "DANL Project",
+    "section": "2.1 Variable Description",
+    "text": "2.1 Variable Description\n\nParty: a party (country) that provides a funding contribution to recipient country/region for their cliamte change project.\nRecipient country/region: Recipient country or region\nProject/programme/activity: Details in the climate change project\nType of support:\n\nadaptation if the climate change project is related to adaptation project.\nmitigation if the climate change project is related to mitigation project.\n\nYear: Year that funding contribution is committed or provided.\nContribution: An amount of funding contribution for the climate change project (in USD).\nStatus:\n\ncommitted if a party commits to providing the funding contribution for the climate change project, but the funding contribution is NOT actually provided.\nprovided if the funding contribution was provided for the climate change project.\n\nEnergy:\n\nTRUE if the project is energy-related;\nFALSE otherwise."
   },
   {
     "objectID": "project.html#summary-statistics",
     "href": "project.html#summary-statistics",
     "title": "DANL Project",
-    "section": "2.1 Summary Statistics",
-    "text": "2.1 Summary Statistics\n\nmpg &lt;- ggplot2::mpg\n\n\n\n\n  \n\n\n\nskim(mpg) %&gt;% \n  select(-n_missing)\n\n\nData summary\n\n\nName\nmpg\n\n\nNumber of rows\n234\n\n\nNumber of columns\n11\n\n\n_______________________\n\n\n\nColumn type frequency:\n\n\n\ncharacter\n6\n\n\nnumeric\n5\n\n\n________________________\n\n\n\nGroup variables\nNone\n\n\n\nVariable type: character\n\n\n\nskim_variable\ncomplete_rate\nmin\nmax\nempty\nn_unique\nwhitespace\n\n\n\n\nmanufacturer\n1\n4\n10\n0\n15\n0\n\n\nmodel\n1\n2\n22\n0\n38\n0\n\n\ntrans\n1\n8\n10\n0\n10\n0\n\n\ndrv\n1\n1\n1\n0\n3\n0\n\n\nfl\n1\n1\n1\n0\n5\n0\n\n\nclass\n1\n3\n10\n0\n7\n0\n\n\n\nVariable type: numeric\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nskim_variable\ncomplete_rate\nmean\nsd\np0\np25\np50\np75\np100\nhist\n\n\n\n\ndispl\n1\n3.47\n1.29\n1.6\n2.4\n3.3\n4.6\n7\n▇▆▆▃▁\n\n\nyear\n1\n2003.50\n4.51\n1999.0\n1999.0\n2003.5\n2008.0\n2008\n▇▁▁▁▇\n\n\ncyl\n1\n5.89\n1.61\n4.0\n4.0\n6.0\n8.0\n8\n▇▁▇▁▇\n\n\ncty\n1\n16.86\n4.26\n9.0\n14.0\n17.0\n19.0\n35\n▆▇▃▁▁\n\n\nhwy\n1\n23.44\n5.95\n12.0\n18.0\n24.0\n27.0\n44\n▅▅▇▁▁"
+    "section": "2.2 Summary Statistics",
+    "text": "2.2 Summary Statistics\n\n\n\n  \n\n\n\nskim(climate_finance) %&gt;% \n  select(-n_missing)\n\n\nData summary\n\n\nName\nclimate_finance\n\n\nNumber of rows\n16853\n\n\nNumber of columns\n8\n\n\n_______________________\n\n\n\nColumn type frequency:\n\n\n\ncharacter\n5\n\n\nlogical\n1\n\n\nnumeric\n2\n\n\n________________________\n\n\n\nGroup variables\nNone\n\n\n\nVariable type: character\n\n\n\n\n\n\n\n\n\n\n\n\nskim_variable\ncomplete_rate\nmin\nmax\nempty\nn_unique\nwhitespace\n\n\n\n\nParty\n1.00\n5\n24\n0\n34\n0\n\n\nRecipient country/region\n1.00\n3\n293\n0\n1310\n0\n\n\nProject/programme/activity\n0.68\n3\n1473\n0\n7908\n0\n\n\nType of support\n1.00\n10\n10\n0\n2\n0\n\n\nStatus\n1.00\n8\n9\n0\n2\n0\n\n\n\nVariable type: logical\n\n\n\nskim_variable\ncomplete_rate\nmean\ncount\n\n\n\n\nEnergy\n1\n0.19\nFAL: 13710, TRU: 3143\n\n\n\nVariable type: numeric\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nskim_variable\ncomplete_rate\nmean\nsd\np0\np25\np50\np75\np100\nhist\n\n\n\n\nYear\n1\n2015.72\n1.82\n2011\n2015\n2016\n2017\n2018\n▁▂▆▅▇\n\n\nContribution\n1\n3311433.39\n9714907.28\n3000\n100000\n420000\n2200000\n100000000\n▇▁▁▁▁"
   },
   {
     "objectID": "project.html#mpg-and-a-type-of-cars",
     "href": "project.html#mpg-and-a-type-of-cars",
     "title": "DANL Project",
-    "section": "2.2 MPG and a Type of Cars",
-    "text": "2.2 MPG and a Type of Cars\nThe following boxplot shows how the distribution of highway MPG (hwy) varies by a type of cars (class) 🚙 🚚 🚐.\n\nggplot(data = mpg) +\n  geom_boxplot(aes(x = class, y = hwy, fill = class),\n               show.legend = F) +\n  labs(x = \"Class\", y = \"Highway\\nMPG\")"
+    "section": "2.3 MPG and a Type of Cars",
+    "text": "2.3 MPG and a Type of Cars\nThe following boxplot shows how the distribution of highway MPG (hwy) varies by a type of cars (class) 🚙 🚚 🚐.\n\nggplot(data = mpg) +\n  geom_boxplot(aes(x = class, y = hwy, fill = class),\n               show.legend = F) +\n  labs(x = \"Class\", y = \"Highway\\nMPG\")"
   }
 ]

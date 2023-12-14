@@ -86,17 +86,13 @@ climate_finance <- read_csv(path)
 ## Summary Statistics
 
 ```{r}
-mpg <- ggplot2::mpg
-```
-
-```{r}
 #| results: asis
 #| echo: false
-rmarkdown::paged_table(mpg) 
+rmarkdown::paged_table(climate_finance) 
 ```
 
 ```{r}
-skim(mpg) %>% 
+skim(climate_finance) %>% 
   select(-n_missing)
 ```
 
