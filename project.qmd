@@ -46,6 +46,8 @@ theme_set(theme_ipsum()+
 
 About this project :clap:
 
+This project will address the various financial actions taken by various parties to address climate change.
+
 # Data
 
 ```{r}
@@ -147,3 +149,33 @@ ggplot(ratio, aes(x = log(am_ratio))) +
 ```
 
 This histogram depicts a generally normal distribution of the ratio between adaptation contribution and mitigation contribution.
+
+## Yearly trend of total funding contributions varies by Energy and Status
+
+With these graphs we can see the amount of committed funding has been increasing at a significant rate while provided funding seems to stay constant. The gap we see in provided funding size between the energy and non energy sectors is likely due to these projects requiring a significant amount of funds upfront.
+
+```{r}
+climate_finance %>% 
+  group_by(Energy, Status, Year) %>% 
+  summarise(funding_tot = sum(Contribution, na.rm = T)) %>% 
+  ggplot(aes(x = Year, y = funding_tot)) +
+  geom_line(aes(color = Status)) +
+  geom_point() +
+  facet_wrap(Energy ~.) +
+  scale_y_comma()
+```
+
+## Yearly Contribution varying by Energy and Status
+
+For both sectors (energy and non-energy), the amount of the committed funding has been increasing yearly, while the amount of provided funding has stayed relatively constant. Energy related projects usually require a much greater upfront cost than non-energy related projects, hence why there is a gap for the provided amounts.
+
+```{r}
+ggplot(climate_finance,
+       aes(color = `Type of support`, x = log(Contribution))) +
+  geom_freqpoly() +
+  facet_wrap(.~ Status) +
+  theme(legend.position = 'top')
+```
+
+# Summary
+There is not one set path or action to take to solve the climate change crisis, as demonstrated by the various amounts and types of funding actions. Climate finance is a complicated subject, but to solve the problem, more action (such as actually providing funds instead of just committing to it) is needed by all parties.

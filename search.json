@@ -305,7 +305,7 @@
     "href": "project.html",
     "title": "DANL Project",
     "section": "",
-    "text": "About this project 👏"
+    "text": "About this project 👏\nThis project will address the various financial actions taken by various parties to address climate change."
   },
   {
     "objectID": "project.html#variable-description",
@@ -334,5 +334,19 @@
     "title": "DANL Project",
     "section": "3.2 Types of Contributions",
     "text": "3.2 Types of Contributions\nThere are two different types of contributions that a party can make: adaptation and mitigation. The type of contribution is decided based on the type of project it supports. Adaptation contributions go to an adaptation climate change project. A mitigation contribution goes to a mitigation climate change project.\nFirst, we will calculate the ratio between adaptation contribution and mitigation contribution for each type of Status for each Party each year.\n\nratio &lt;- climate_finance %&gt;% \n  group_by(Party, Year, Status, `Type of support`) %&gt;% \n  summarise(Contribution = sum(Contribution, na.rm = T)) %&gt;% \n  filter(Contribution != 0) %&gt;% \n  group_by(Party, Year, Status) %&gt;% \n  mutate(lag_Contribution = lag(Contribution), \n         am_ratio = lag_Contribution / Contribution ) %&gt;% \n  filter(!is.na(am_ratio)) %&gt;% \n  rename(mitigation = Contribution, \n         adaptation = lag_Contribution) %&gt;% \n  select(-`Type of support`) \n\nHere, we will visualize the distribution of the ratio between adaption contribution and mitigation contribution based on our calculation.\n\nggplot(ratio, aes(x = log(am_ratio))) +\n  geom_histogram(bins = 75) + labs(x = \"log(ratio)\", y = \"count\", title = \"Distribution of the Ratio of Contributions\") +\n  geom_vline(xintercept = 0, color = 'red', lty = 2)\n\n\n\n\nThis histogram depicts a generally normal distribution of the ratio between adaptation contribution and mitigation contribution."
+  },
+  {
+    "objectID": "project.html#yearly-trend-of-total-funding-contributions-varies-by-energy-and-status",
+    "href": "project.html#yearly-trend-of-total-funding-contributions-varies-by-energy-and-status",
+    "title": "DANL Project",
+    "section": "3.3 Yearly trend of total funding contributions varies by Energy and Status",
+    "text": "3.3 Yearly trend of total funding contributions varies by Energy and Status\nWith these graphs we can see the amount of committed funding has been increasing at a significant rate while provided funding seems to stay constant. The gap we see in provided funding size between the energy and non energy sectors is likely due to these projects requiring a significant amount of funds upfront.\n\nclimate_finance %&gt;% \n  group_by(Energy, Status, Year) %&gt;% \n  summarise(funding_tot = sum(Contribution, na.rm = T)) %&gt;% \n  ggplot(aes(x = Year, y = funding_tot)) +\n  geom_line(aes(color = Status)) +\n  geom_point() +\n  facet_wrap(Energy ~.) +\n  scale_y_comma()"
+  },
+  {
+    "objectID": "project.html#yearly-contribution-varying-by-energy-and-status",
+    "href": "project.html#yearly-contribution-varying-by-energy-and-status",
+    "title": "DANL Project",
+    "section": "3.4 Yearly Contribution varying by Energy and Status",
+    "text": "3.4 Yearly Contribution varying by Energy and Status\nFor both sectors (energy and non-energy), the amount of the committed funding has been increasing yearly, while the amount of provided funding has stayed relatively constant. Energy related projects usually require a much greater upfront cost than non-energy related projects, hence why there is a gap for the provided amounts.\n\nggplot(climate_finance,\n       aes(color = `Type of support`, x = log(Contribution))) +\n  geom_freqpoly() +\n  facet_wrap(.~ Status) +\n  theme(legend.position = 'top')"
   }
 ]
