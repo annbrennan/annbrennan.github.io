@@ -15,10 +15,10 @@ about:
       href: https://github.com/annbrennan/annbrennan.github.io
     - icon: file-earmark-pdf
       text: Resumé
-      href: https://GITHUB_USERNAME.github.io/resume-example.pdf
+      href: file:///C:/Users/15856/Documents/ann-brennan-resume.pdf
     - icon: mailbox
       text: Email
-      href: mailto:ab105@geneseo.edu
+      href: ab105@geneseo.edu
 
 ---
 
