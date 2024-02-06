@@ -4,7 +4,7 @@ about:
   template: trestles  # jolla  trestles  solana  marquee  broadside
   image: img/4J7A2370.JPG
   image-width: 15em
-  image-shape: round # rectangle  round  rounded
+  image-shape: rounded # rectangle  round  rounded
   
   links:
     - icon: linkedin
@@ -15,10 +15,10 @@ about:
       href: https://github.com/annbrennan/annbrennan.github.io
     - icon: file-earmark-pdf
       text: Resumé
-      href: https://sunygeneseo-my.sharepoint.com/:w:/g/personal/ab105_geneseo_edu/EVHd7VTZ36pIsWLuJfxcCYUB2QDCKMOIRG2dN8ZxpgBM5Q?e=hAipUE
+      href: ann-brennan-resume-2
     - icon: mailbox
       text: Email
-      href: mailto:ab105@geneseo.edu
+      href: ab105@geneseo.edu
 
 ---
 

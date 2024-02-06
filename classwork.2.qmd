@@ -1,0 +1,63 @@
+---
+title: "Untitled"
+editor: visual
+---
+
+# Basic Syntax
+
+## Headings
+
+# Heading 1
+
+## Heading 2
+
+### Heading 3
+
+## Emphasis
+
+*italic*
+
+*italic*
+
+**bold**
+
+**bold**
+
+## Lists
+
+-   Item 1
+
+-   Item 2
+
+    -   Sub item 2.1
+
+    -   Sub item 2.2
+
+1.  First Item
+2.  Second Item
+
+## Links and Images
+
+[DANL 210](https://bcdanl.github.io/210) ![Geneseo Logo](https://bcdanl.github.io/img/geneseo-logo.gif)
+
+# Advanced Syntax
+
+## Blockquote
+
+> Be yourself. Everyone else is already taken. - Oscar Wilde.
+
+## Emojis
+
+😄
+
+😸
+
+## Code Blocks
+
+```         
+"string"
+```
+
+``` python
+import numpy as np
+```
