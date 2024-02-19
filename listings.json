@@ -1,21 +1,21 @@
 [
   {
-    "listing": "/blog-post-title.html",
-    "items": [
-      "/posts/beer-markets/beer-markets.html",
-      "/posts/homework/danl200-hw5-brennan-ann.html",
-      "/posts/restaurants/restaurants.html",
-      "/posts/spotify/spotify_df.html",
-      "/posts/welcome/index.html"
-    ]
-  },
-  {
     "listing": "/blog-listing.html",
     "items": [
       "/posts/homework/danl200-hw5-brennan-ann.html",
       "/posts/beer-markets/beer-markets.html",
       "/posts/spotify/spotify_df.html",
       "/posts/restaurants/restaurants.html",
+      "/posts/welcome/index.html"
+    ]
+  },
+  {
+    "listing": "/blog-post-title.html",
+    "items": [
+      "/posts/beer-markets/beer-markets.html",
+      "/posts/homework/danl200-hw5-brennan-ann.html",
+      "/posts/restaurants/restaurants.html",
+      "/posts/spotify/spotify_df.html",
       "/posts/welcome/index.html"
     ]
   }

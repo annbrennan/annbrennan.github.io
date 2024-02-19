@@ -14,9 +14,7 @@ website:
       - text: Python Data Analysis
         menu: 
           - text: Python Basics
-          - href: basic-python-intro.ipynb
-          - text: Using Python and R together!
-          - href: danl-210-quarto-reticulate.qmd
+          - href: python_basics_blog.ipynb
   page-footer: 
     center: "Powered with GitHub and Quarto<br>© Brennan, 2023"
 
