@@ -7,10 +7,12 @@ website:
   navbar:
     pinned: true
     left:
-      - text: Project
+      - text: DANL200 Project
         href: project.qmd
       - text: Blog
         href: blog-listing.qmd
+      - text: DANL210 Project
+        href: project-210.qmd
   page-footer: 
     center: "Powered with GitHub and Quarto<br>© Brennan, 2023"
 

@@ -1,0 +1,148 @@
+---
+title: DANL210 Project
+subtitle: "Stock Performance vs Ethical Performance"
+author: 
+  - Ann Brennan
+
+toc: true
+toc-title: "Table of Contents"
+toc-depth: 2
+number-sections: true
+
+fig-width: 9
+
+execute:
+  code-tools: true
+  message: false
+  warning: false
+
+from: markdown+emoji
+---
+
+```{r setup}
+#| include: false
+library(tidyverse)
+library(skimr)
+library(ggthemes)
+library(hrbrthemes)
+
+theme_set(theme_ipsum()+
+          theme(strip.background =element_rect(fill="lightgray"),
+                axis.title.x = 
+                  element_text(angle = 0,
+                               size = rel(1.33),
+                               margin = margin(10,0,0,0)),
+                axis.title.y = 
+                  element_text(angle = 0,
+                               size = rel(1.33),
+                               margin = margin(0,10,0,0))
+                )
+          )
+```
+
+# Introduction
+
+This project will address the relationship between Environmental, Governance, and Social (ESG) risk ratings and stock performance. ESG risk ratings evaluate a company's ethical performance and how well they manage risks and opportunities in environmental, social, and governance areas. Given this, I will be able to analyze the relationship between stock performance and ethical performance. All data was collected from Yahoo Finance.
+
+# Data
+
+``` {python}
+import numpy as np
+import pandas as pd
+import seaborn as sns
+import yfinance as yf
+```
+
+``` {python}
+tickers_history = pd.read_csv("tickers-hist.csv")
+esg_data = pd.read_csv("esg.csv")
+```
+
+``` {python}
+esg_data = esg_data.rename(columns={'0': 'total-esg', '0.1': 'enviro_risk', '0.2':'social_risk', '0.3':'gov_risk', '0.4':'controversy'})
+```
+
+## Variable Description
+
+### esg_data
+
+-   **total_esg:** Total ESG rating. Environmental, social, and government risk ratings combined.
+
+-   **enviro_risk:** Environmental risk rating.
+
+-   **social_risk:** Social risk rating.
+
+-   **gov_risk:** Governmental risk rating.
+
+-   **controversy:** Controversy level.
+
+
+# Descriptive Statistics
+
+## Summary Statistics
+
+```{python}
+esg_data['enviro_risk'].describe()
+esg_data['social_risk'].describe()
+esg_data['gov_risk'].describe()
+```
+```{python}
+tickers_history['Close'].describe()
+tickers_history['High'].describe()
+tickers_history['Low'].describe()
+```
+Merge the data frames esg_data and tickers_history in order to compare:
+``` {python}
+merged_df = pd.merge(esg_data, tickers_history, left_index = True, right_index = True, how = 'inner')
+```
+
+Distribution of Close:
+``` {python}
+sns.histplot(merged_df['Close'])
+```
+Distribution of Environmental Risk Rating:
+``` {python}
+sns.histplot(merged_df['enviro_risk'])
+```
+
+
+# Exploratory Data Analysis
+
+## Correlation Heat Map of ESG Data:
+``` {python}
+import matplotlib.pyplot as plt
+corr = esg_data.corr()
+plt.figure(figsize=(8,6))
+sns.heatmap(corr, annot=True, cmap='coolwarm', fmt='.2f', linewidths = .5)
+plt.title('Correlation Heatmap of ESG Data')
+plt.show()
+```
+
+## Relationship between Close Price and Environmental Risk Score:
+``` {python}
+sns.lmplot(merged_df, x = 'enviro_risk', y = 'Close')
+```
+There is not much correlation between Close Price and Environmental Risk Score. 
+Our scatter plot and best fit line are relatively flat. If anything, there is a slight positive relationship. Higher risk might mean a higher close price, however, we cannot make a conclusion from this.
+
+## Next, relationship between Close Price and Social Risk Score:
+``` {python}
+sns.lmplot(merged_df, x = 'social_risk', y = 'Close')
+```
+
+Again, there is not much correlation between Close Price and Social Risk Score. Based on the graph, there could be a slight negative relationship, if any. Higher risk could mean lower close price. However, we cannot conclude this. 
+
+
+## Finally, relationship between Close Price and Government Risk Score:
+``` {python}
+sns.lmplot(merged_df, x = 'gov_risk', y = 'Close')
+```
+
+Once again, there is not much correlation between the two. Like environmental risk, there could be a slight positive relationship. As risk increases, so does close price. However, we cannot conclude this.
+
+
+# Conclusion
+There may be somewhat of a relationship between stock performance, such as a company's Close Price, and ethical performance. However, more research is needed. A conclusion can not be reached simply from Yahoo Finance. There are also other factors besides risk ratings that affect stock performance. Examples include macroeconomic conditions, industry trends, and company financials. 
+
+# Significance
+It is important for companies to pay attention to their own ethical and stock performance and how the two interact. Companies that perform well in ESG ratings may be able to achieve long term sustainability in their business. Long term sustainability may in turn attract new investors and minimize risk. In addition, they can use ESG ratings to see how well they are handling risks and opportunities. This may give companies a competitive edge.
