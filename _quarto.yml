@@ -7,12 +7,23 @@ website:
   navbar:
     pinned: true
     left:
-      - text: DANL200 Project
-        href: project.qmd
+      - text: Final Projects
+        menu:
+        - text: DANL200
+          href: project.qmd
+        - text: DANL210
+          href: project-210.qmd
       - text: Blog
         href: blog-listing.qmd
-      - text: DANL210 Project
-        href: project-210.qmd
+      - text: Project
+        href: danl_proj_nba.ipynb
+      - text: Python Data Analysis
+        menu: 
+          - text: Pandas Basics
+            href: pandas_basics.ipynb
+          - text: Seaborn Basics
+            href: seaborn_basics.ipynb
+        
   page-footer: 
     center: "Powered with GitHub and Quarto<br>© Brennan, 2023"
 

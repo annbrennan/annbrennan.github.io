@@ -21,123 +21,137 @@
     "text": "Human vs. Droid\n\nggplot(data = \n         starwars %&gt;% \n         filter(species %in% c(\"Human\", \"Droid\"))) +\n  geom_boxplot(aes(x = species, y = mass, \n                   fill = species),\n               show.legend = FALSE)"
   },
   {
-    "objectID": "project.html",
-    "href": "project.html",
-    "title": "DANL Project",
+    "objectID": "seaborn_basics.html",
+    "href": "seaborn_basics.html",
+    "title": "Seaborn Example",
     "section": "",
-    "text": "About this project 👏\nThis project will address the various financial actions taken by various parties to address climate change."
+    "text": "import seaborn as sns\nimport matplotlib.pyplot as plt\nimport pandas as pd\n\n# Sample data\ndata = {\n    'Category': ['A', 'B', 'C', 'D'],\n    'Values': [23, 45, 56, 78]\n}\ndf = pd.DataFrame(data)\n\n# Create a barplot\nsns.set(style=\"whitegrid\")  # Optional: Set a clean grid style\nplt.figure(figsize=(8, 6))  # Set the figure size\nsns.barplot(data=df, x='Category', y='Values', palette='viridis')\n\n# Customize the plot\nplt.title(\"Bar Plot Example\", fontsize=16)\nplt.xlabel(\"Category\", fontsize=12)\nplt.ylabel(\"Values\", fontsize=12)\n\n# Show the plot\nplt.show()\n\nFutureWarning: \n\nPassing `palette` without assigning `hue` is deprecated and will be removed in v0.14.0. Assign the `x` variable to `hue` and set `legend=False` for the same effect.\n\n  sns.barplot(data=df, x='Category', y='Values', palette='viridis')"
   },
   {
-    "objectID": "project.html#variable-description",
-    "href": "project.html#variable-description",
-    "title": "DANL Project",
+    "objectID": "project-210.html",
+    "href": "project-210.html",
+    "title": "DANL210 Project",
+    "section": "",
+    "text": "This project will address the relationship between Environmental, Governance, and Social (ESG) risk ratings and stock performance. ESG risk ratings evaluate a company’s ethical performance and how well they manage risks and opportunities in environmental, social, and governance areas. Given this, I will be able to analyze the relationship between stock performance and ethical performance. All data was collected from Yahoo Finance."
+  },
+  {
+    "objectID": "project-210.html#variable-description",
+    "href": "project-210.html#variable-description",
+    "title": "DANL210 Project",
     "section": "2.1 Variable Description",
-    "text": "2.1 Variable Description\n\nParty: a party (country) that provides a funding contribution to recipient country/region for their cliamte change project.\nRecipient country/region: Recipient country or region\nProject/programme/activity: Details in the climate change project\nType of support:\n\nadaptation if the climate change project is related to adaptation project.\nmitigation if the climate change project is related to mitigation project.\n\nYear: Year that funding contribution is committed or provided.\nContribution: An amount of funding contribution for the climate change project (in USD).\nStatus:\n\ncommitted if a party commits to providing the funding contribution for the climate change project, but the funding contribution is NOT actually provided.\nprovided if the funding contribution was provided for the climate change project.\n\nEnergy:\n\nTRUE if the project is energy-related;\nFALSE otherwise."
+    "text": "2.1 Variable Description\n\n2.1.1 esg_data\n\ntotal_esg: Total ESG rating. Environmental, social, and government risk ratings combined.\nenviro_risk: Environmental risk rating.\nsocial_risk: Social risk rating.\ngov_risk: Governmental risk rating.\ncontroversy: Controversy level."
   },
   {
-    "objectID": "project.html#summary-statistics",
-    "href": "project.html#summary-statistics",
-    "title": "DANL Project",
-    "section": "2.2 Summary Statistics",
-    "text": "2.2 Summary Statistics\n\n\n\n  \n\n\n\nskim(climate_finance) %&gt;% \n  select(-n_missing)\n\n\nData summary\n\n\nName\nclimate_finance\n\n\nNumber of rows\n16853\n\n\nNumber of columns\n8\n\n\n_______________________\n\n\n\nColumn type frequency:\n\n\n\ncharacter\n5\n\n\nlogical\n1\n\n\nnumeric\n2\n\n\n________________________\n\n\n\nGroup variables\nNone\n\n\n\nVariable type: character\n\n\n\n\n\n\n\n\n\n\n\n\nskim_variable\ncomplete_rate\nmin\nmax\nempty\nn_unique\nwhitespace\n\n\n\n\nParty\n1.00\n5\n24\n0\n34\n0\n\n\nRecipient country/region\n1.00\n3\n293\n0\n1310\n0\n\n\nProject/programme/activity\n0.68\n3\n1473\n0\n7908\n0\n\n\nType of support\n1.00\n10\n10\n0\n2\n0\n\n\nStatus\n1.00\n8\n9\n0\n2\n0\n\n\n\nVariable type: logical\n\n\n\nskim_variable\ncomplete_rate\nmean\ncount\n\n\n\n\nEnergy\n1\n0.19\nFAL: 13710, TRU: 3143\n\n\n\nVariable type: numeric\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nskim_variable\ncomplete_rate\nmean\nsd\np0\np25\np50\np75\np100\nhist\n\n\n\n\nYear\n1\n2015.72\n1.82\n2011\n2015\n2016\n2017\n2018\n▁▂▆▅▇\n\n\nContribution\n1\n3311433.39\n9714907.28\n3000\n100000\n420000\n2200000\n100000000\n▇▁▁▁▁"
+    "objectID": "project-210.html#summary-statistics",
+    "href": "project-210.html#summary-statistics",
+    "title": "DANL210 Project",
+    "section": "3.1 Summary Statistics",
+    "text": "3.1 Summary Statistics\n\nesg_data['enviro_risk'].describe()\n\ncount    537.000000\nmean       5.827188\nstd        5.301806\nmin        0.000000\n25%        1.800000\n50%        4.000000\n75%        9.000000\nmax       27.300000\nName: enviro_risk, dtype: float64\n\nesg_data['social_risk'].describe()\n\ncount    537.000000\nmean       9.042644\nstd        3.612652\nmin        0.800000\n25%        6.700000\n50%        8.900000\n75%       11.100000\nmax       22.500000\nName: social_risk, dtype: float64\n\nesg_data['gov_risk'].describe()\n\ncount    537.000000\nmean       6.811173\nstd        2.378037\nmin        2.400000\n25%        5.200000\n50%        6.300000\n75%        7.900000\nmax       19.400000\nName: gov_risk, dtype: float64\n\n\n\ntickers_history['Close'].describe()\n\ncount    357202.000000\nmean        142.152567\nstd         297.241789\nmin           0.980000\n25%          40.449798\n50%          81.209999\n75%         152.080002\nmax        8099.959961\nName: Close, dtype: float64\n\ntickers_history['High'].describe()\n\ncount    357202.000000\nmean        143.808907\nstd         300.607248\nmin           1.060000\n25%          40.966236\n50%          82.190002\n75%         153.830002\nmax        8158.990234\nName: High, dtype: float64\n\ntickers_history['Low'].describe()\n\ncount    357202.000000\nmean        140.424490\nstd         293.761505\nmin           0.780000\n25%          39.901238\n50%          80.220911\n75%         150.270004\nmax        8010.000000\nName: Low, dtype: float64\n\n\nMerge the data frames esg_data and tickers_history in order to compare:\n\nmerged_df = pd.merge(esg_data, tickers_history, left_index = True, right_index = True, how = 'inner')\n\nDistribution of Close:\n\nsns.histplot(merged_df['Close'])\n\n\n\n\nDistribution of Environmental Risk Rating:\n\nsns.histplot(merged_df['enviro_risk'])"
   },
   {
-    "objectID": "project.html#financial-contributions-to-other-countries",
-    "href": "project.html#financial-contributions-to-other-countries",
-    "title": "DANL Project",
-    "section": "3.1 Financial Contributions to Other Countries",
-    "text": "3.1 Financial Contributions to Other Countries\nVarious parties in the climate_finance data frame have made positive financial contributions to other countries for adaptation projects. Here, we will find the number of parties that made a positive contribution to another country for every year between 2011 and 2018.\n\npositive_contributions &lt;- climate_finance %&gt;% \n  filter(Status == \"provided\",                       \n         `Type of support` == \"adaptation\") %&gt;%      \n  group_by(Party, Year) %&gt;%                          \n  summarise(Contribution = sum(Contribution, na.rm = T)) %&gt;%  \n  filter(Contribution &gt; 0) %&gt;%                       \n  group_by(Party) %&gt;%                                \n  count() %&gt;%                                        \n  filter(n == 2018 - 2011 + 1)  %&gt;%                  \n  select(Party) %&gt;% \n  distinct()    \n\n\nnrow(positive_contributions)\n\n[1] 8"
+    "objectID": "project-210.html#correlation-heat-map-of-esg-data",
+    "href": "project-210.html#correlation-heat-map-of-esg-data",
+    "title": "DANL210 Project",
+    "section": "4.1 Correlation Heat Map of ESG Data:",
+    "text": "4.1 Correlation Heat Map of ESG Data:\n\nimport matplotlib.pyplot as plt\ncorr = esg_data.corr()\nplt.figure(figsize=(8,6))\nsns.heatmap(corr, annot=True, cmap='coolwarm', fmt='.2f', linewidths = .5)\nplt.title('Correlation Heatmap of ESG Data')\nplt.show()"
   },
   {
-    "objectID": "project.html#types-of-contributions",
-    "href": "project.html#types-of-contributions",
-    "title": "DANL Project",
-    "section": "3.2 Types of Contributions",
-    "text": "3.2 Types of Contributions\nThere are two different types of contributions that a party can make: adaptation and mitigation. The type of contribution is decided based on the type of project it supports. Adaptation contributions go to an adaptation climate change project. A mitigation contribution goes to a mitigation climate change project.\nFirst, we will calculate the ratio between adaptation contribution and mitigation contribution for each type of Status for each Party each year.\n\nratio &lt;- climate_finance %&gt;% \n  group_by(Party, Year, Status, `Type of support`) %&gt;% \n  summarise(Contribution = sum(Contribution, na.rm = T)) %&gt;% \n  filter(Contribution != 0) %&gt;% \n  group_by(Party, Year, Status) %&gt;% \n  mutate(lag_Contribution = lag(Contribution), \n         am_ratio = lag_Contribution / Contribution ) %&gt;% \n  filter(!is.na(am_ratio)) %&gt;% \n  rename(mitigation = Contribution, \n         adaptation = lag_Contribution) %&gt;% \n  select(-`Type of support`) \n\nHere, we will visualize the distribution of the ratio between adaption contribution and mitigation contribution based on our calculation.\n\nggplot(ratio, aes(x = log(am_ratio))) +\n  geom_histogram(bins = 75) + labs(x = \"log(ratio)\", y = \"count\", title = \"Distribution of the Ratio of Contributions\") +\n  geom_vline(xintercept = 0, color = 'red', lty = 2)\n\n\n\n\nThis histogram depicts a generally normal distribution of the ratio between adaptation contribution and mitigation contribution."
+    "objectID": "project-210.html#relationship-between-close-price-and-environmental-risk-score",
+    "href": "project-210.html#relationship-between-close-price-and-environmental-risk-score",
+    "title": "DANL210 Project",
+    "section": "4.2 Relationship between Close Price and Environmental Risk Score:",
+    "text": "4.2 Relationship between Close Price and Environmental Risk Score:\n\nsns.lmplot(merged_df, x = 'enviro_risk', y = 'Close')\n\n\n\n\n\n\n\nThere is not much correlation between Close Price and Environmental Risk Score. Our scatter plot and best fit line are relatively flat. If anything, there is a slight positive relationship. Higher risk might mean a higher close price, however, we cannot make a conclusion from this."
   },
   {
-    "objectID": "project.html#yearly-trend-of-total-funding-contributions-varies-by-energy-and-status",
-    "href": "project.html#yearly-trend-of-total-funding-contributions-varies-by-energy-and-status",
-    "title": "DANL Project",
-    "section": "3.3 Yearly trend of total funding contributions varies by Energy and Status",
-    "text": "3.3 Yearly trend of total funding contributions varies by Energy and Status\nWith these graphs we can see the amount of committed funding has been increasing at a significant rate while provided funding seems to stay constant. The gap we see in provided funding size between the energy and non energy sectors is likely due to these projects requiring a significant amount of funds upfront.\n\nclimate_finance %&gt;% \n  group_by(Energy, Status, Year) %&gt;% \n  summarise(funding_tot = sum(Contribution, na.rm = T)) %&gt;% \n  ggplot(aes(x = Year, y = funding_tot)) +\n  geom_line(aes(color = Status)) +\n  geom_point() +\n  facet_wrap(Energy ~.) +\n  scale_y_comma()"
+    "objectID": "project-210.html#next-relationship-between-close-price-and-social-risk-score",
+    "href": "project-210.html#next-relationship-between-close-price-and-social-risk-score",
+    "title": "DANL210 Project",
+    "section": "4.3 Next, relationship between Close Price and Social Risk Score:",
+    "text": "4.3 Next, relationship between Close Price and Social Risk Score:\n\nsns.lmplot(merged_df, x = 'social_risk', y = 'Close')\n\n\n\n\n\n\n\nAgain, there is not much correlation between Close Price and Social Risk Score. Based on the graph, there could be a slight negative relationship, if any. Higher risk could mean lower close price. However, we cannot conclude this."
   },
   {
-    "objectID": "project.html#yearly-contribution-varying-by-energy-and-status",
-    "href": "project.html#yearly-contribution-varying-by-energy-and-status",
-    "title": "DANL Project",
-    "section": "3.4 Yearly Contribution varying by Energy and Status",
-    "text": "3.4 Yearly Contribution varying by Energy and Status\nFor both sectors (energy and non-energy), the amount of the committed funding has been increasing yearly, while the amount of provided funding has stayed relatively constant. Energy related projects usually require a much greater upfront cost than non-energy related projects, hence why there is a gap for the provided amounts.\n\nggplot(climate_finance,\n       aes(color = `Type of support`, x = log(Contribution))) +\n  geom_freqpoly() +\n  facet_wrap(.~ Status) +\n  theme(legend.position = 'top')"
+    "objectID": "project-210.html#finally-relationship-between-close-price-and-government-risk-score",
+    "href": "project-210.html#finally-relationship-between-close-price-and-government-risk-score",
+    "title": "DANL210 Project",
+    "section": "4.4 Finally, relationship between Close Price and Government Risk Score:",
+    "text": "4.4 Finally, relationship between Close Price and Government Risk Score:\n\nsns.lmplot(merged_df, x = 'gov_risk', y = 'Close')\n\n\n\n\n\n\n\nOnce again, there is not much correlation between the two. Like environmental risk, there could be a slight positive relationship. As risk increases, so does close price. However, we cannot conclude this."
   },
   {
-    "objectID": "posts/welcome/index.html",
-    "href": "posts/welcome/index.html",
-    "title": "Welcome To My Blog",
+    "objectID": "posts/spotify/spotify_willie_nelson.html",
+    "href": "posts/spotify/spotify_willie_nelson.html",
+    "title": "Spotify Data Frame",
     "section": "",
-    "text": "This is the first post in a Quarto blog. Welcome!\n\nSince this post doesn’t specify an explicit image, the first image in the post will be used in the listing page of posts."
+    "text": "Below is the Spotify Data Frame that reads the file spotify_all.csv containing data of Spotify users’ playlist information (Source: Spotify Million Playlist Dataset Challenge).\nimport pandas as pd\nfrom google.colab import data_table\ndata_table.enable_dataframe_formatter()\n\nspotify = pd.read_csv('https://bcdanl.github.io/data/spotify_all.csv')\nspotify\n\nWarning: total number of rows (198005) exceeds max_rows (20000). Falling back to pandas display.\n\n\n\n  \n    \n\n\n\n\n\n\npid\nplaylist_name\npos\nartist_name\ntrack_name\nduration_ms\nalbum_name\n\n\n\n\n0\n0\nThrowbacks\n0\nMissy Elliott\nLose Control (feat. Ciara & Fat Man Scoop)\n226863\nThe Cookbook\n\n\n1\n0\nThrowbacks\n1\nBritney Spears\nToxic\n198800\nIn The Zone\n\n\n2\n0\nThrowbacks\n2\nBeyoncé\nCrazy In Love\n235933\nDangerously In Love (Alben für die Ewigkeit)\n\n\n3\n0\nThrowbacks\n3\nJustin Timberlake\nRock Your Body\n267266\nJustified\n\n\n4\n0\nThrowbacks\n4\nShaggy\nIt Wasn't Me\n227600\nHot Shot\n\n\n...\n...\n...\n...\n...\n...\n...\n...\n\n\n198000\n999998\n✝️\n6\nChris Tomlin\nWaterfall\n209573\nLove Ran Red\n\n\n198001\n999998\n✝️\n7\nChris Tomlin\nThe Roar\n220106\nLove Ran Red\n\n\n198002\n999998\n✝️\n8\nCrowder\nLift Your Head Weary Sinner (Chains)\n224666\nNeon Steeple\n\n\n198003\n999998\n✝️\n9\nChris Tomlin\nWe Fall Down\n280960\nHow Great Is Our God: The Essential Collection\n\n\n198004\n999998\n✝️\n10\nCaleb and Kelsey\n10,000 Reasons / What a Beautiful Name\n178189\n10,000 Reasons / What a Beautiful Name\n\n\n\n\n\n198005 rows × 7 columns"
   },
   {
-    "objectID": "posts/python basics/python_basics_blog.html",
-    "href": "posts/python basics/python_basics_blog.html",
-    "title": "Python Basics",
+    "objectID": "posts/spotify/spotify_willie_nelson.html#variable-description",
+    "href": "posts/spotify/spotify_willie_nelson.html#variable-description",
+    "title": "Spotify Data Frame",
+    "section": "Variable Description",
+    "text": "Variable Description\n\npid: playlist ID; unique ID for playlist\nplaylist_name: a name of playlist\npos: a position of the track within a playlist (starting from 0)\nartist_name: name of the track’s primary artist\ntrack_name: name of the track\nduration_ms: duration of the track in milliseconds\nalbum_name: name of the track’s album"
+  },
+  {
+    "objectID": "posts/spotify/spotify_willie_nelson.html#favorite-artist",
+    "href": "posts/spotify/spotify_willie_nelson.html#favorite-artist",
+    "title": "Spotify Data Frame",
+    "section": "Favorite Artist",
+    "text": "Favorite Artist\nMy favorite artist in the Spotify data frame is Willie Nelson.\nAll of Willie Nelson’s songs in the Spotify data frame and their details are displayed below:\n\n(\n    spotify\n    .set_index('artist_name')\n    .loc['Willie Nelson']\n)\n\n\n  \n    \n\n\n\n\n\n\npid\nplaylist_name\npos\ntrack_name\nduration_ms\nalbum_name\n\n\nartist_name\n\n\n\n\n\n\n\n\n\n\nWillie Nelson\n9\nold country\n0\nHighwayman\n182973\nNashville Rebel\n\n\nWillie Nelson\n9\nold country\n1\nHighwayman\n182973\nNashville Rebel\n\n\nWillie Nelson\n83\nFlorida\n66\nAlways On My Mind\n212666\nAlways On My Mind\n\n\nWillie Nelson\n83\nFlorida\n67\nLuckenback Texas\n94520\nCountry Outlaws\n\n\nWillie Nelson\n90\nFor the Road\n67\nHighwayman\n182973\nNashville Rebel\n\n\n...\n...\n...\n...\n...\n...\n...\n\n\nWillie Nelson\n999873\ndads\n2\nI Gotta Get Drunk\n129759\nWalking the Line\n\n\nWillie Nelson\n999873\ndads\n6\nPancho and Lefty\n286066\nWalking the Line\n\n\nWillie Nelson\n999873\ndads\n45\nSeven Spanish Angels (With Ray Charles)\n229533\nHalf Nelson\n\n\nWillie Nelson\n999897\nKings\n153\nOn the Road Again\n153106\nGreatest Hits (& Some That Will Be)\n\n\nWillie Nelson\n999936\nRoad Trip\n67\nOn the Road Again\n153106\nGreatest Hits (& Some That Will Be)\n\n\n\n\n\n62 rows × 6 columns"
+  },
+  {
+    "objectID": "posts/spotify/spotify_willie_nelson.html#number-of-songs",
+    "href": "posts/spotify/spotify_willie_nelson.html#number-of-songs",
+    "title": "Spotify Data Frame",
+    "section": "Number of Songs",
+    "text": "Number of Songs\n\nwillie_nelson = (\n    spotify\n    .set_index('artist_name')\n    .loc['Willie Nelson']\n)\nlen(willie_nelson)\n\n62\n\n\nThere are 62 Willie Nelson songs in this data frame."
+  },
+  {
+    "objectID": "posts/spotify/spotify_willie_nelson.html#longest-song",
+    "href": "posts/spotify/spotify_willie_nelson.html#longest-song",
+    "title": "Spotify Data Frame",
+    "section": "Longest Song",
+    "text": "Longest Song\n\n(\n    willie_nelson\n    .sort_values(['duration_ms'], ascending = False)\n    .head(1)\n)\n\n\n  \n    \n\n\n\n\n\n\npid\nplaylist_name\npos\ntrack_name\nduration_ms\nalbum_name\n\n\nartist_name\n\n\n\n\n\n\n\n\n\n\nWillie Nelson\n114\nWillie\n13\nSunday Mornin' Comin' Down\n422173\nWillie Nelson Sings Kristofferson\n\n\n\n\n\n\n    \n\n  \n    \n\n  \n    \n  \n    \n\n  \n\n    \n  \n\n\n    \n  \n\n\nThe longest Willie Nelson song in this data set is “Sunday Mornin’ Comin’ Down” at 422173 milliseconds."
+  },
+  {
+    "objectID": "posts/spotify/spotify_willie_nelson.html#shortest-song",
+    "href": "posts/spotify/spotify_willie_nelson.html#shortest-song",
+    "title": "Spotify Data Frame",
+    "section": "Shortest Song",
+    "text": "Shortest Song\n\n(\n    willie_nelson\n    .sort_values(['duration_ms'], ascending = True)\n    .head(1)\n)\n\n\n  \n    \n\n\n\n\n\n\npid\nplaylist_name\npos\ntrack_name\nduration_ms\nalbum_name\n\n\nartist_name\n\n\n\n\n\n\n\n\n\n\nWillie Nelson\n83\nFlorida\n67\nLuckenback Texas\n94520\nCountry Outlaws\n\n\n\n\n\n\n    \n\n  \n    \n\n  \n    \n  \n    \n\n  \n\n    \n  \n\n\n    \n  \n\n\nThe shortest Willie Nelson song is “Luckenback Texas” at 94520 milliseconds."
+  },
+  {
+    "objectID": "posts/spotify/spotify_willie_nelson.html#songs-between-150000-and-200000-ms-in-the-willie-playlist",
+    "href": "posts/spotify/spotify_willie_nelson.html#songs-between-150000-and-200000-ms-in-the-willie-playlist",
+    "title": "Spotify Data Frame",
+    "section": "Songs between 150000 and 200000 ms in the “Willie” playlist",
+    "text": "Songs between 150000 and 200000 ms in the “Willie” playlist\nBelow are all songs in the “Willie” playlist that are greater than 150000 ms but less than 200000 ms:\n\ngreater_than_15 = willie_nelson['duration_ms'] &gt; 150000\nless_than_20 = willie_nelson['duration_ms'] &lt; 200000\nwillie_playlist = willie_nelson['playlist_name'] == 'Willie'\nwillie_nelson[greater_than_15 & less_than_20 & willie_playlist]\n\n\n  \n    \n\n\n\n\n\n\npid\nplaylist_name\npos\ntrack_name\nduration_ms\nalbum_name\n\n\nartist_name\n\n\n\n\n\n\n\n\n\n\nWillie Nelson\n114\nWillie\n1\nLittle House on the Hill\n182080\nGod's Problem Child\n\n\nWillie Nelson\n114\nWillie\n3\nNothing I Can Do About It Now\n199160\nA Horse Called Music\n\n\nWillie Nelson\n114\nWillie\n8\nNight Life\n197813\nFor the Good Times: A Tribute to Ray Price\n\n\nWillie Nelson\n114\nWillie\n10\nIf You Can Touch Her At All\n183866\nFunny How Time Slips Away - The Best Of\n\n\nWillie Nelson\n114\nWillie\n11\nStay All Night (Stay A Little Longer)\n154160\nShotgun Willie\n\n\nWillie Nelson\n114\nWillie\n12\nSad Songs And Waltzes\n185213\nShotgun Willie\n\n\nWillie Nelson\n114\nWillie\n19\nFly Me To The Moon\n169960\nAmerican Classic\n\n\nWillie Nelson\n114\nWillie\n21\nMona Lisa\n151826\nSomewhere over the Rainbow\n\n\nWillie Nelson\n114\nWillie\n22\nTexas On A Saturday Night (With Mel Tillis)\n159533\nHalf Nelson\n\n\n\n\n\n\n    \n\n  \n    \n\n  \n    \n  \n    \n\n  \n\n    \n  \n\n\n\n  \n\n\n    \n        \n    \n\n  \n\n\n\n  \n\n\n    \n  \n\n\n\nwillie_songs = willie_nelson[greater_than_15 & less_than_20 & willie_playlist]\nlen(willie_songs)\n\n9\n\n\nThere are 9 songs in the “Willie” playlist within this range."
+  },
+  {
+    "objectID": "posts/PySpark Basics/pyspark-basics.html",
+    "href": "posts/PySpark Basics/pyspark-basics.html",
+    "title": "PySpark Basics",
     "section": "",
-    "text": "A variable is a name that refers to a value.\n\na = 10\nprint(a)\n\n10\n\n\nThe most basic built-in data types that we’ll need to know about are integers, floats, strings, and booleans.\n\nlist_example = [10, 1.23, \"like this\", True, None]\nprint(list_example)\ntype(list_example)\n\n[10, 1.23, 'like this', True, None]\n\n\nlist"
+    "text": "Apache Hadoop is an open source software framework. It is used for storing and processing large data sets. It has two components: Hadoop Distributed File System (HDFS) and MapReduce. HDFS is used for distributed data storage and MapReduce is used as the data processing model. Hadoop allows distributed processing of large data sets across computer clusters. First, large data sets are split into smaller blocks and are stored across multiple servers in the cluster. Then, they are processed with MapReduce."
   },
   {
-    "objectID": "posts/python basics/python_basics_blog.html#variables",
-    "href": "posts/python basics/python_basics_blog.html#variables",
-    "title": "Python Basics",
-    "section": "",
-    "text": "A variable is a name that refers to a value.\n\na = 10\nprint(a)\n\n10\n\n\nThe most basic built-in data types that we’ll need to know about are integers, floats, strings, and booleans.\n\nlist_example = [10, 1.23, \"like this\", True, None]\nprint(list_example)\ntype(list_example)\n\n[10, 1.23, 'like this', True, None]\n\n\nlist"
+    "objectID": "posts/PySpark Basics/pyspark-basics.html#sparksession-entry-point",
+    "href": "posts/PySpark Basics/pyspark-basics.html#sparksession-entry-point",
+    "title": "PySpark Basics",
+    "section": "SparkSession Entry Point",
+    "text": "SparkSession Entry Point\nThe entry point provides the functionality for data transformation.\nfrom pyspark.sql import SparkSession\nspark = SparkSession.builder.master(\"local[*]\").getOrCreate()"
   },
   {
-    "objectID": "posts/python basics/python_basics_blog.html#booleans-and-conditions",
-    "href": "posts/python basics/python_basics_blog.html#booleans-and-conditions",
-    "title": "Python Basics",
-    "section": "Booleans and Conditions",
-    "text": "Booleans and Conditions\nBoolean data have either True or False value.\nConditions are expressions that evaluate as booleans.\n\n20 == '20'\n\nFalse\n\n\nExisting booleans can be combined, which create a boolean when executed.\n\nx = 4.0\ny = .5\nz = 3*y - x\n\nx &lt; y or 3*y &lt; x\n\nTrue\n\n\n\nboolean_condition1 = 10 == 20\nprint(boolean_condition1)\n\nboolean_condition2 = 10 == '10'\nprint(boolean_condition2)\n\nFalse\nFalse\n\n\nThe real power of conditions comes when we start to use them in more complex examples, such as if statements.\n\nname = \"Geneseo\"\nscore = 99\n\nif name == \"Geneseo\" and score &gt; 90:\n    print(\"Geneseo, you achieved a high score.\")\n\nif name == \"Geneseo\" or score &gt; 90:\n    print(\"You could be called Geneseo or have a high score\")\n\nif name != \"Geneseo\" and score &gt; 90:\n    print(\"You are not called Geneseo and you have a high score\")\n\nGeneseo, you achieved a high score.\nYou could be called Geneseo or have a high score\n\n\nThe if-else chain:\n\nscore = 98\n\nif score == 100:\n    print(\"Top marks!\")\nelif score &gt; 90 and score &lt; 100:\n    print(\"High score!\")\nelif score &gt; 10 and score &lt;= 90:\n    pass\nelse:\n    print(\"Better luck next time.\")\n\nHigh score!"
+    "objectID": "posts/PySpark Basics/pyspark-basics.html#reading-a-web-csv-file-into-the-spark-framework",
+    "href": "posts/PySpark Basics/pyspark-basics.html#reading-a-web-csv-file-into-the-spark-framework",
+    "title": "PySpark Basics",
+    "section": "Reading a Web CSV File into the Spark Framework",
+    "text": "Reading a Web CSV File into the Spark Framework\nWe can convert the Pandas DataFrame to a Spark DataFrame.\nimport pandas as pd\nfrom pyspark.sql import SparkSession\nspark = SparkSession.builder.master(\"local[*]\").getOrCreate()\ndf_pd = pd.read_csv('https://bcdanl.github.io/data/nba.csv')\ndf = spark.createDataFrame(df_pd)"
   },
   {
-    "objectID": "posts/python basics/python_basics_blog.html#for-loops",
-    "href": "posts/python basics/python_basics_blog.html#for-loops",
-    "title": "Python Basics",
-    "section": "For Loops",
-    "text": "For Loops\nA loop is a way of executing a similar piece of code over and over in a similar way. The most useful type is for loops.\n\nname_list = [\"Ben\", \"Chris\", \"Kate\", \"Mary\"]\n\nfor name in name_list:\n    print(name)\n\nBen\nChris\nKate\nMary"
-  },
-  {
-    "objectID": "posts/python basics/python_basics_blog.html#dictionaries",
-    "href": "posts/python basics/python_basics_blog.html#dictionaries",
-    "title": "Python Basics",
-    "section": "Dictionaries",
-    "text": "Dictionaries\nA dictionary maps one set of variables to another (one-to-one or many-to-one).\n\ncities_to_temps = {\"Paris\": 28, \"London\": 22, \"Seville\": 36, \"Wellesley\": 29}\n\ncities_to_temps.keys()\ncities_to_temps.values()\ncities_to_temps.items()\n\ndict_items([('Paris', 28), ('London', 22), ('Seville', 36), ('Wellesley', 29)])"
-  },
-  {
-    "objectID": "posts/python basics/python_basics_blog.html#running-on-empty",
-    "href": "posts/python basics/python_basics_blog.html#running-on-empty",
-    "title": "Python Basics",
-    "section": "Running on Empty",
-    "text": "Running on Empty\nCreating empty containers is useful when creating loops. The commands to create empty lists, tuples, dictionaries, and sets are lst = [], tup=(), dic={}, and st = set() respectively."
-  },
-  {
-    "objectID": "posts/python basics/python_basics_blog.html#slicing-methods",
-    "href": "posts/python basics/python_basics_blog.html#slicing-methods",
-    "title": "Python Basics",
-    "section": "Slicing Methods",
-    "text": "Slicing Methods\nWe can extract a substring (a part of a string) from a string by using a slice.\n\nletters = 'abcdefghij'\nletters[:]\n\n'abcdefghij'\n\n\n\nletters = 'abcdefghij'\nletters[4:]\nletters[2:]\nletters[-3:]\nletters[-50:]\n\n'abcdefghij'\n\n\n\nletters = 'abcdefghij'\nletters[2:5]\nletters[-26:-24]\nletters[35:37]\n\n''\n\n\nWe can extract a single value from a list by specifying its index:\n\nsuny = ['Geneseo', 'Brockport', 'Oswego', 'Binghamton',\n        'Stony Brook', 'New Paltz']\n\n\nsuny[0]\nsuny[1]\nsuny[2]\n\n'Oswego'\n\n\nExample from Classwork 4.3:\n\nfare = \"$10.00\"\ntip = \"2.00$\"\ntax = \"$ 0.80\"\ntotal = fare[0:2] + tip[0] + tax[3:6]\nprint(\"The total trip cost is:\", total)\n\nThe total trip cost is: $12.80"
-  },
-  {
-    "objectID": "posts/python basics/python_basics_blog.html#functions-arguments-parameters",
-    "href": "posts/python basics/python_basics_blog.html#functions-arguments-parameters",
-    "title": "Python Basics",
-    "section": "Functions, Arguments, Parameters",
-    "text": "Functions, Arguments, Parameters\nA function can take any number and type of input parameters and return any number and type of output results.\n\nprint(\"Cherry\", \"Strawberry\", \"Key Lime\")\nprint(\"Cherry\", \"Strawberry\", \"Key Lime\", sep = \"!\")\nprint(\"Cherry\", \"Strawberry\", \"Key Lime\", sep=\" \")\n\nCherry Strawberry Key Lime\nCherry!Strawberry!Key Lime\nCherry Strawberry Key Lime\n\n\nA function can accept inputs called arguments.\nA parameter is an expected function argument.\nExample from Classwork 4.4:\n\nlist_variable = [100,144,169,1000,8]\nx =max(list_variable)\nprint('The largest value in the list is:',x)\n\nThe largest value in the list is: 1000"
-  },
-  {
-    "objectID": "posts/python basics/python_basics_blog.html#installing-modules-packages-and-libraries",
-    "href": "posts/python basics/python_basics_blog.html#installing-modules-packages-and-libraries",
-    "title": "Python Basics",
-    "section": "Installing Modules, Packages, and Libraries",
-    "text": "Installing Modules, Packages, and Libraries\nTo install a module module_name on your Google Colab, run:\n\n!pip install module_name\n\nFrom Classwork 4.5: Import the pandas library as pd. Install the itables package. From itables, import the functions init_notebook_mode and show.\n\nimport pandas as pd\n!pip install itables\nfrom itables import init_notebook_mode\nfrom itables import show\n\nCollecting itables\n  Downloading itables-1.7.0-py3-none-any.whl (200 kB)\n     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 0.0/200.9 kB ? eta -:--:--     ━━━━━━━━━━━━━━╺━━━━━━━━━━━━━━━━━━━━━━━━━ 71.7/200.9 kB 1.9 MB/s eta 0:00:01     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 200.9/200.9 kB 2.9 MB/s eta 0:00:00\nRequirement already satisfied: IPython in /usr/local/lib/python3.10/dist-packages (from itables) (7.34.0)\nRequirement already satisfied: pandas in /usr/local/lib/python3.10/dist-packages (from itables) (1.5.3)\nRequirement already satisfied: numpy in /usr/local/lib/python3.10/dist-packages (from itables) (1.25.2)\nRequirement already satisfied: setuptools&gt;=18.5 in /usr/local/lib/python3.10/dist-packages (from IPython-&gt;itables) (67.7.2)\nCollecting jedi&gt;=0.16 (from IPython-&gt;itables)\n  Downloading jedi-0.19.1-py2.py3-none-any.whl (1.6 MB)\n     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1.6/1.6 MB 7.3 MB/s eta 0:00:00\nRequirement already satisfied: decorator in /usr/local/lib/python3.10/dist-packages (from IPython-&gt;itables) (4.4.2)\nRequirement already satisfied: pickleshare in /usr/local/lib/python3.10/dist-packages (from IPython-&gt;itables) (0.7.5)\nRequirement already satisfied: traitlets&gt;=4.2 in /usr/local/lib/python3.10/dist-packages (from IPython-&gt;itables) (5.7.1)\nRequirement already satisfied: prompt-toolkit!=3.0.0,!=3.0.1,&lt;3.1.0,&gt;=2.0.0 in /usr/local/lib/python3.10/dist-packages (from IPython-&gt;itables) (3.0.43)\nRequirement already satisfied: pygments in /usr/local/lib/python3.10/dist-packages (from IPython-&gt;itables) (2.16.1)\nRequirement already satisfied: backcall in /usr/local/lib/python3.10/dist-packages (from IPython-&gt;itables) (0.2.0)\nRequirement already satisfied: matplotlib-inline in /usr/local/lib/python3.10/dist-packages (from IPython-&gt;itables) (0.1.6)\nRequirement already satisfied: pexpect&gt;4.3 in /usr/local/lib/python3.10/dist-packages (from IPython-&gt;itables) (4.9.0)\nRequirement already satisfied: python-dateutil&gt;=2.8.1 in /usr/local/lib/python3.10/dist-packages (from pandas-&gt;itables) (2.8.2)\nRequirement already satisfied: pytz&gt;=2020.1 in /usr/local/lib/python3.10/dist-packages (from pandas-&gt;itables) (2023.4)\nRequirement already satisfied: parso&lt;0.9.0,&gt;=0.8.3 in /usr/local/lib/python3.10/dist-packages (from jedi&gt;=0.16-&gt;IPython-&gt;itables) (0.8.3)\nRequirement already satisfied: ptyprocess&gt;=0.5 in /usr/local/lib/python3.10/dist-packages (from pexpect&gt;4.3-&gt;IPython-&gt;itables) (0.7.0)\nRequirement already satisfied: wcwidth in /usr/local/lib/python3.10/dist-packages (from prompt-toolkit!=3.0.0,!=3.0.1,&lt;3.1.0,&gt;=2.0.0-&gt;IPython-&gt;itables) (0.2.13)\nRequirement already satisfied: six&gt;=1.5 in /usr/local/lib/python3.10/dist-packages (from python-dateutil&gt;=2.8.1-&gt;pandas-&gt;itables) (1.16.0)\nInstalling collected packages: jedi, itables\nSuccessfully installed itables-1.7.0 jedi-0.19.1"
+    "objectID": "posts/PySpark Basics/pyspark-basics.html#pyspark-basics",
+    "href": "posts/PySpark Basics/pyspark-basics.html#pyspark-basics",
+    "title": "PySpark Basics",
+    "section": "PySpark Basics",
+    "text": "PySpark Basics\n\nGetting a Summary\n\nprintSchema()\ndescribe()\n\n\n\nSelecting and Reordering\n\nselect()\n\n\n\nCounting Values\n\ngroupBy().count()\ncountDistinct()\ncount()\n\n\n\nSorting\n\norderBy()\n\n\n\nAdding a New Variable\n\nwithColumn()\n\n\n\nRenaming a Variable\n\nwithColumnRenamed()\n\n\n\nConverting Data Types\n\ncast()\n\n\n\nFiltering Observations\n\nfilter()\n\n\n\nDealing with Missing Values and Duplicates\n\nna.drop()\nna.fill()\ndropDuplicates()"
   },
   {
     "objectID": "posts/beer-markets/beer-markets.html",
@@ -159,6 +173,223 @@
     "title": "Beer Markets",
     "section": "Purchase Patterns",
     "text": "Purchase Patterns\nWe’ll explore the purchase patterns for beer purchases in the dataset. This will include finding the most popular brands and spending habits across different markets. Here are some specific analyses we can perform:\n\nFind top markets in terms of total quantity for each brand.\nCompare the proportion of loyal customers.\n\nI’ll begin with these analyses and create visualizations to help us understand the data better. I will start by finding the top 5 markets in terms of the total beer_floz.\n\ntop_5 &lt;- beer_mkts %&gt;% \n   group_by(market) %&gt;% \n   summarize(beer_floz_tot = sum(beer_floz, na.rm = T)) %&gt;% \n   arrange(-beer_floz_tot) %&gt;% \n   slice(1:5)\n\nLet’s visualize the top 5 markets in terms of the total beer_floz.\n\nggplot(top_5, aes(x = market, y = beer_floz_tot)) +\n  geom_bar(stat = \"identity\", fill = \"skyblue\") +\n  labs(title = \"Top 5 Beer Markets\",\n       x = \"Market\",\n       y = \"Total Beer (floz)\")\n\n\n\n\nNext, we can look at the top 5 markets in terms of the total beer_floz of a specific brand. For example, BUD LIGHT:\n\ntop_5_bud &lt;- beer_mkts %&gt;% \n  filter(brand == \"BUD LIGHT\") %&gt;% \n  group_by(market) %&gt;% \n  summarize(beer_floz_tot = sum(beer_floz, na.rm = T)) %&gt;% \n  arrange(-beer_floz_tot) %&gt;% \n  slice(1:5)\n\nJust like the top 5 beer markets, let’s visualize the top 5 markets for BUD LIGHT.\n\nggplot(top_5_bud, aes(x = market, y = beer_floz_tot)) +\n  geom_bar(stat = \"identity\") +\n  labs(title = \"Top 5 Beer Markets - Bud Light\",\n       x = \"Market\",\n       y = \"Total Beer (floz)\")\n\n\n\n\nI will do the same for BUSCH LIGHT, COORS LIGHT, MILLER LITE, and NATURAL LIGHT.\n\ntop_5_busch &lt;- beer_mkts %&gt;% \n  filter(brand == \"BUSCH LIGHT\") %&gt;% \n  group_by(market) %&gt;% \n  summarize(beer_floz_tot = sum(beer_floz, na.rm = T)) %&gt;% \n  arrange(-beer_floz_tot) %&gt;% \n  slice(1:5)\n\ntop_5_coors &lt;- beer_mkts %&gt;% \n  filter(brand == \"COORS LIGHT\") %&gt;% \n  group_by(market) %&gt;% \n  summarize(beer_floz_tot = sum(beer_floz, na.rm = T)) %&gt;% \n  arrange(-beer_floz_tot) %&gt;% \n  slice(1:5)\n\ntop_5_miller &lt;- beer_mkts %&gt;% \n  filter(brand == \"MILLER LITE\") %&gt;% \n  group_by(market) %&gt;% \n  summarize(beer_floz_tot = sum(beer_floz, na.rm = T)) %&gt;% \n  arrange(-beer_floz_tot) %&gt;% \n  slice(1:5)\n\ntop_5_natural &lt;- beer_mkts %&gt;% \n  filter(brand == \"NATURAL LIGHT\") %&gt;% \n  group_by(market) %&gt;% \n  summarize(beer_floz_tot = sum(beer_floz, na.rm = T)) %&gt;% \n  arrange(-beer_floz_tot) %&gt;% \n  slice(1:5)\n\nLet’s also look at a visualization for BUSCH LIGHT:\n\nggplot(top_5_busch, aes(x = market, y = beer_floz_tot)) +\n  geom_bar(stat = \"identity\") +\n  labs(title = \"Top 5 Beer Markets - Busch Light\",\n       x = \"Market\",\n       y = \"Total Beer (floz)\")\n\n\n\n\nNext, we will evaluate proportions of loyal customers for each brand. For example, for households that purchased BUD LIGHT at least once, I will find the fraction of households that purchased only BUD LIGHT. I will find the proportion of loyal customers for all 5 brands.\n\nloyal_customers &lt;- beer_mkts %&gt;% \n  mutate(bud = ifelse(brand==\"BUD LIGHT\", 1, 0), # 1 if brand==\"BUD LIGHT\"; 0 otherwise\n         busch = ifelse(brand==\"BUSCH LIGHT\", 1, 0),\n         coors = ifelse(brand==\"COORS LIGHT\", 1, 0),\n         miller = ifelse(brand==\"MILLER LITE\", 1, 0),\n         natural = ifelse(brand==\"NATURAL LIGHT\", 1, 0),\n         .after = hh) %&gt;% \n  select(hh:natural) %&gt;%  # select the variables we need\n  group_by(hh) %&gt;% \n  summarise(n_transactions = n(), # number of beer transactions for each hh\n            n_bud = sum(bud), # number of BUD LIGHT transactions for each hh\n            n_busch = sum(busch), \n            n_coors = sum(coors), \n            n_miller = sum(miller), \n            n_natural = sum(natural) \n  ) %&gt;% \n  summarise(loyal_bud = sum(n_transactions == n_bud) / sum(n_bud &gt; 0), \n              # sum(n_transactions == n_bud) : the number of households that purchased BUD LIGHT only\n              # sum(n_bud &gt; 0) : the number of households that purchased BUD LIGHT at least once.\n            loyal_busch = sum(n_transactions == n_busch) / sum(n_busch &gt; 0),\n            loyal_coors = sum(n_transactions == n_coors) / sum(n_coors &gt; 0),\n            loyal_miller = sum(n_transactions == n_miller) / sum(n_miller &gt; 0),\n            loyal_natural = sum(n_transactions == n_natural) / sum(n_natural &gt; 0)\n  )"
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Ann Brennan",
+    "section": "",
+    "text": "Ann Brennan is pursuing a major in Data Analytics and minor in Mathematics at SUNY Geneseo. Ann also competes for the SUNY Geneseo cross country and track and field teams."
+  },
+  {
+    "objectID": "index.html#education",
+    "href": "index.html#education",
+    "title": "Ann Brennan",
+    "section": "Education",
+    "text": "Education\nState University of New York at Geneseo | Geneseo, NY  B.S. in Data Analytics | Aug 2022 - May 2026  Minor in Mathematics"
+  },
+  {
+    "objectID": "index.html#experience",
+    "href": "index.html#experience",
+    "title": "Ann Brennan",
+    "section": "Experience",
+    "text": "Experience\nGallagher | Financial & Actuarial Consulting Intern  June 2024 - August 2024"
+  },
+  {
+    "objectID": "danl_proj_nba.html#salary-distribution-among-teams",
+    "href": "danl_proj_nba.html#salary-distribution-among-teams",
+    "title": "Data Analysis Project",
+    "section": "Salary Distribution Among Teams",
+    "text": "Salary Distribution Among Teams\nLet’s start with the salary distribution among teams using seaborn for visualization. ​​\n\n\n# Handle missing values in 'Salary' by replacing them with the median salary\nmedian_salary = nba['Salary'].median()\nnba['Salary'].fillna(median_salary, inplace=True)\n\n/var/folders/_m/d6jf0jhd2zzdfd5kzdhl_24w0000gn/T/ipykernel_79892/1671011424.py:3: FutureWarning: A value is trying to be set on a copy of a DataFrame or Series through chained assignment using an inplace method.\nThe behavior will change in pandas 3.0. This inplace method will never work because the intermediate object on which we are setting values always behaves as a copy.\n\nFor example, when doing 'df[col].method(value, inplace=True)', try using 'df.method({col: value}, inplace=True)' or df[col] = df[col].method(value) instead, to perform the operation inplace on the original object.\n\n\n  nba['Salary'].fillna(median_salary, inplace=True)\n\n\n\n# Set the aesthetic style of the plots\nsns.set_style(\"whitegrid\")\n\n# Calculate total salary by team\nteam_salary = (\n    nba\n    .groupby('Team')['Salary']\n    .sum()\n    .reset_index()\n    .sort_values(by='Salary', ascending=False)\n)\n\n# Plot total salary by team\nplt.figure(figsize=(10, 16))\nsns.barplot(data = team_salary,\n            x = 'Salary', y = 'Team',\n            palette = 'coolwarm')\nplt.title('Total Salary Distribution Among NBA Teams')\nplt.xlabel('Total Salary')\nplt.ylabel('Team')\nplt.xticks(rotation=45)\nplt.show()\n\n\n\n\nThe visualization above displays the total salary distribution among NBA teams, with teams sorted by their total salary expenditure. This bar plot reveals which teams are the biggest spenders on player salaries and which are more conservative. The color gradient provides a visual cue to easily distinguish between the higher and lower spending teams.\nNotice that Portland Trail Blazers has the highest total salary followed by Golden State Warriors and Philadelphia 76ers, and Memphis Grizzlies has the lowest total salary."
+  },
+  {
+    "objectID": "danl_proj_nba.html#player-age-distribution",
+    "href": "danl_proj_nba.html#player-age-distribution",
+    "title": "Data Analysis Project",
+    "section": "Player Age Distribution",
+    "text": "Player Age Distribution\nNext, let’s explore the Player Age Distribution across the NBA. We’ll create a histogram to visualize how player ages are distributed, which will help us understand if the league trends younger, older, or has a balanced age mix. ​​\n\n# Convert 'Birthday' column to datetime format\nfrom dateutil import parser\n# nba['Birthday'] = nba['Birthday'].apply(lambda x: parser.parse(x))\n\n# Now, let's calculate the age of each player\n# nba['Age'] = (datetime.now() - nba['Birthday']).dt.days // 365\n\n# Plot the age distribution of NBA players\nplt.figure(figsize=(10, 6))\nsns.histplot(nba['Age'],\n             bins = 15,\n             kde = True,\n             color = 'skyblue')\nplt.title('Age Distribution of NBA Players')\nplt.xlabel('Age')\nplt.ylabel('Count')\nplt.show()\n\n\n/Users/bchoe/anaconda3/lib/python3.11/site-packages/seaborn/_oldcore.py:1119: FutureWarning: use_inf_as_na option is deprecated and will be removed in a future version. Convert inf values to NaN before operating instead.\n  with pd.option_context('mode.use_inf_as_na', True):\n\n\n\n\n\nThe histogram above shows the age distribution of NBA players, with a kernel density estimate (KDE) overlay to indicate the distribution shape. The plot helps identify the common ages for NBA players and whether there are significant numbers of very young or older players.\nNotice that the majority of players fall within an age range from 24 to 34. There are few players whose age is above 40."
+  },
+  {
+    "objectID": "danl_proj_nba.html#position-wise-salary-insights",
+    "href": "danl_proj_nba.html#position-wise-salary-insights",
+    "title": "Data Analysis Project",
+    "section": "Position-wise Salary Insights",
+    "text": "Position-wise Salary Insights\nMoving on to Position-wise Salary Insights, we’ll examine how average salaries differ across player positions. This analysis could reveal which positions are typically higher-paid, potentially reflecting their value on the basketball court. Let’s create a box plot to visualize the salary distribution for each position. ​​\n\n# Plot salary distribution by player position\nplt.figure(figsize=(10, 6))\nsns.boxplot(data = nba,\n            x = 'Position', y = 'Salary',\n            palette = 'Set2')\nplt.title('Salary Distribution by Position')\nplt.xlabel('Position')\nplt.ylabel('Salary')\nplt.show()\n\n\n\n\nThe box plot above illustrates the salary distribution by player position, showcasing the variation in salaries among different positions within the NBA. PG-SG has the highest median salary."
+  },
+  {
+    "objectID": "danl_proj_nba.html#top-10-highest-paid-players",
+    "href": "danl_proj_nba.html#top-10-highest-paid-players",
+    "title": "Data Analysis Project",
+    "section": "Top 10 Highest Paid Players",
+    "text": "Top 10 Highest Paid Players\nLastly, we’ll identify the Top 10 Highest Paid Players in the NBA. Let’s visualize this information.\n\n# Identify the top 10 highest paid players\ntop_10_salaries = nba.sort_values(by='Salary', ascending=False).head(10)\n\n# Plot the top 10 highest paid players\nplt.figure(figsize=(12, 8))\nsns.barplot(data = top_10_salaries,\n            x = 'Salary', y = 'PlayerName',\n            palette = 'viridis')\nplt.title('Top 10 Highest Paid NBA Players')\nplt.xlabel('Salary')\nplt.ylabel('Player')\nplt.show()\n\n\n\n\nThe bar plot above reveals the top 10 highest-paid NBA players, showcasing those who stand at the pinnacle of the league in terms of salary. This visualization not only highlights the star players who command the highest salaries but also may reflect their marketability, performance, and contribution to their respective teams."
+  },
+  {
+    "objectID": "danl-210-quarto-reticulate.html",
+    "href": "danl-210-quarto-reticulate.html",
+    "title": "Using Python and R Together!",
+    "section": "",
+    "text": "In Python, variables can store data of different types without explicitly declaring the type.\nFor example:\n\nprint('Hello, world!')\n\nHello, world!\n\na = 1\na\n\n1\n\n\n\ninteger_variable = 10\nstring_variable = 'Hello'\nfloat_variable = 10.5\n\nfloat_variable\n\n10.5"
+  },
+  {
+    "objectID": "danl-210-quarto-reticulate.html#variables-and-data-types",
+    "href": "danl-210-quarto-reticulate.html#variables-and-data-types",
+    "title": "Using Python and R Together!",
+    "section": "",
+    "text": "In Python, variables can store data of different types without explicitly declaring the type.\nFor example:\n\nprint('Hello, world!')\n\nHello, world!\n\na = 1\na\n\n1\n\n\n\ninteger_variable = 10\nstring_variable = 'Hello'\nfloat_variable = 10.5\n\nfloat_variable\n\n10.5"
+  },
+  {
+    "objectID": "danl-210-quarto-reticulate.html#control-structures",
+    "href": "danl-210-quarto-reticulate.html#control-structures",
+    "title": "Using Python and R Together!",
+    "section": "0.2 Control Structures",
+    "text": "0.2 Control Structures\nPython supports the usual logical conditions from mathematics:\n\n# Equals: a == b\n# Not Equals: a != b\n# Less than: a &lt; b\n# Less than or equal to: a &lt;= b\n# Greater than: a &gt; b\n# Greater than or equal to: a &gt;= b\n\nThese conditions can be used in several ways, most commonly in ‘if statements’ and loops.\n\n# if statement:\nif 5 &gt; 2:\n    print('Five is greater than two!')\n\nFive is greater than two!"
+  },
+  {
+    "objectID": "danl-210-quarto-reticulate.html#functions",
+    "href": "danl-210-quarto-reticulate.html#functions",
+    "title": "Using Python and R Together!",
+    "section": "0.3 Functions",
+    "text": "0.3 Functions\nA function is a block of code which only runs when it is called.\nYou can pass data, known as parameters, into a function.\nA function can return data as a result.\n\n# Defining a function:\ndef my_function():\n    print('Hello from a function')\n\n# Calling a function:\nmy_function()\n\nHello from a function"
+  },
+  {
+    "objectID": "danl-210-quarto-reticulate.html#lists-and-dictionaries",
+    "href": "danl-210-quarto-reticulate.html#lists-and-dictionaries",
+    "title": "Using Python and R Together!",
+    "section": "0.4 Lists and Dictionaries",
+    "text": "0.4 Lists and Dictionaries\nA list is a collection which is ordered and changeable.\nA dictionary is a collection which is unordered, changeable and indexed.\n\n# List example:\nmy_list = ['apple', 'banana', 'cherry']\n\n# Dictionary example:\nmy_dict = {'name': 'John', 'age': 36}"
+  },
+  {
+    "objectID": "danl-210-quarto-reticulate.html#import-python-libraries",
+    "href": "danl-210-quarto-reticulate.html#import-python-libraries",
+    "title": "Using Python and R Together!",
+    "section": "1.1 Import Python libraries",
+    "text": "1.1 Import Python libraries\n\nimport pandas as pd\n\n\noj = pd.read_csv('https://bcdanl.github.io/data/dominick_oj.csv')\n\n\n\nCode!\noj\n\n\n         sales  price      brand  ad\n0       8256.0   3.87  tropicana   0\n1       6144.0   3.87  tropicana   0\n2       3840.0   3.87  tropicana   0\n3       8000.0   3.87  tropicana   0\n4       8896.0   3.87  tropicana   0\n...        ...    ...        ...  ..\n28942   2944.0   2.00  dominicks   0\n28943   4928.0   1.94  dominicks   0\n28944  13440.0   1.59  dominicks   0\n28945  55680.0   1.49  dominicks   0\n28946   7040.0   1.75  dominicks   0\n\n[28947 rows x 4 columns]\n\n\n\noj.describe()\n\n               sales         price            ad\ncount   28947.000000  28947.000000  28947.000000\nmean    17312.213356      2.282488      0.237261\nstd     27477.660437      0.648001      0.425411\nmin        64.000000      0.520000      0.000000\n25%      4864.000000      1.790000      0.000000\n50%      8384.000000      2.170000      0.000000\n75%     17408.000000      2.730000      0.000000\nmax    716416.000100      3.870000      1.000000"
+  },
+  {
+    "objectID": "danl-210-quarto-reticulate.html#python-r-interaction",
+    "href": "danl-210-quarto-reticulate.html#python-r-interaction",
+    "title": "Using Python and R Together!",
+    "section": "1.2 Python-R Interaction",
+    "text": "1.2 Python-R Interaction\nBelow is using Python’s DataFrame oj to visualize using R’s ggplot\n\nlibrary(tidyverse)\n\n# Access the Python pandas DataFrame\noj &lt;- py$oj\n\n# Plot using ggplot2\nggplot(oj, aes(x = log(sales), y = log(price), \n               color = brand)) +\n  geom_point(alpha = .25) +\n  geom_smooth(method = lm) +\n  theme_minimal()\n\n\n\n\n\n1.2.1 Interactive DataFrame with R’s DT Package\n\n\n\n\n\n\n\nIn *.ipynb on Google Colab, we can use itables or just Google Colab’s default to print DataFrame.\n\n# !pip install itables\nfrom itables import init_notebook_mode, show\ninit_notebook_mode(all_interactive=False)\n\noj = pd.read_csv('https://bcdanl.github.io/data/dominick_oj.csv')\nshow(oj)"
+  },
+  {
+    "objectID": "classwork.2.html#heading-2",
+    "href": "classwork.2.html#heading-2",
+    "title": "Untitled",
+    "section": "Heading 2",
+    "text": "Heading 2\n\nHeading 3"
+  },
+  {
+    "objectID": "classwork.2.html#emphasis",
+    "href": "classwork.2.html#emphasis",
+    "title": "Untitled",
+    "section": "Emphasis",
+    "text": "Emphasis\nitalic\nitalic\nbold\nbold"
+  },
+  {
+    "objectID": "classwork.2.html#lists",
+    "href": "classwork.2.html#lists",
+    "title": "Untitled",
+    "section": "Lists",
+    "text": "Lists\n\nItem 1\nItem 2\n\nSub item 2.1\nSub item 2.2\n\n\n\nFirst Item\nSecond Item"
+  },
+  {
+    "objectID": "classwork.2.html#links-and-images",
+    "href": "classwork.2.html#links-and-images",
+    "title": "Untitled",
+    "section": "Links and Images",
+    "text": "Links and Images\nDANL 210"
+  },
+  {
+    "objectID": "classwork.2.html#blockquote",
+    "href": "classwork.2.html#blockquote",
+    "title": "Untitled",
+    "section": "Blockquote",
+    "text": "Blockquote\n\nBe yourself. Everyone else is already taken. - Oscar Wilde."
+  },
+  {
+    "objectID": "classwork.2.html#emojis",
+    "href": "classwork.2.html#emojis",
+    "title": "Untitled",
+    "section": "Emojis",
+    "text": "Emojis\n😄\n😸"
+  },
+  {
+    "objectID": "classwork.2.html#code-blocks",
+    "href": "classwork.2.html#code-blocks",
+    "title": "Untitled",
+    "section": "Code Blocks",
+    "text": "Code Blocks\n\"string\"\nimport numpy as np"
+  },
+  {
+    "objectID": "blog-listing.html",
+    "href": "blog-listing.html",
+    "title": "A. Brennan Analytics",
+    "section": "",
+    "text": "Order By\n       Default\n         \n          Title\n        \n         \n          Date - Oldest\n        \n         \n          Date - Newest\n        \n         \n          Author\n        \n     \n  \n    \n      \n      \n    \n\n\n\n\n  \n\n\n\n\nSpotify Data Frame\n\n\n\n\n\n\n\n\n\n1 min\n\n\n\n\n\n\n  \n\n\n\n\nPython Basics\n\n\n\n\n\n\n\n\n\n2 min\n\n\n\n\n\n\n  \n\n\n\n\nPySpark Basics\n\n\n\n\n\n\n\n\n\nFeb 14, 2025\n\n\nAnn Brennan\n\n\n2 min\n\n\n\n\n\n\n  \n\n\n\n\nHomework 5 - NFL\n\n\n\n\n\n\n\n\n\nDec 11, 2023\n\n\nAnn Brennan\n\n\n6 min\n\n\n\n\n\n\n  \n\n\n\n\nBeer Markets\n\n\n\n\n\n\n\n\n\nDec 11, 2023\n\n\nAnn Brennan\n\n\n7 min\n\n\n\n\n\n\n  \n\n\n\n\nWelcome To My Blog\n\n\n\n\n\n\n\n\n\nOct 27, 2023\n\n\nAnn Brennan\n\n\n1 min\n\n\n\n\n\n\nNo matching items"
+  },
+  {
+    "objectID": "12.1.html",
+    "href": "12.1.html",
+    "title": "Untitled",
+    "section": "",
+    "text": "library(tidyverse)\n\n── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──\n✔ dplyr     1.1.2     ✔ readr     2.1.4\n✔ forcats   1.0.0     ✔ stringr   1.5.0\n✔ ggplot2   3.4.3     ✔ tibble    3.2.1\n✔ lubridate 1.9.2     ✔ tidyr     1.3.0\n✔ purrr     1.0.2     \n── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──\n✖ dplyr::filter() masks stats::filter()\n✖ dplyr::lag()    masks stats::lag()\nℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors\n\ntable1\n\n# A tibble: 6 × 4\n  country      year  cases population\n  &lt;chr&gt;       &lt;dbl&gt;  &lt;dbl&gt;      &lt;dbl&gt;\n1 Afghanistan  1999    745   19987071\n2 Afghanistan  2000   2666   20595360\n3 Brazil       1999  37737  172006362\n4 Brazil       2000  80488  174504898\n5 China        1999 212258 1272915272\n6 China        2000 213766 1280428583\n\ntable2\n\n# A tibble: 12 × 4\n   country      year type            count\n   &lt;chr&gt;       &lt;dbl&gt; &lt;chr&gt;           &lt;dbl&gt;\n 1 Afghanistan  1999 cases             745\n 2 Afghanistan  1999 population   19987071\n 3 Afghanistan  2000 cases            2666\n 4 Afghanistan  2000 population   20595360\n 5 Brazil       1999 cases           37737\n 6 Brazil       1999 population  172006362\n 7 Brazil       2000 cases           80488\n 8 Brazil       2000 population  174504898\n 9 China        1999 cases          212258\n10 China        1999 population 1272915272\n11 China        2000 cases          213766\n12 China        2000 population 1280428583\n\ntable3\n\n# A tibble: 6 × 3\n  country      year rate             \n  &lt;chr&gt;       &lt;dbl&gt; &lt;chr&gt;            \n1 Afghanistan  1999 745/19987071     \n2 Afghanistan  2000 2666/20595360    \n3 Brazil       1999 37737/172006362  \n4 Brazil       2000 80488/174504898  \n5 China        1999 212258/1272915272\n6 China        2000 213766/1280428583\n\n# Spread across two tibbles\ntable4a  # cases\n\n# A tibble: 3 × 3\n  country     `1999` `2000`\n  &lt;chr&gt;        &lt;dbl&gt;  &lt;dbl&gt;\n1 Afghanistan    745   2666\n2 Brazil       37737  80488\n3 China       212258 213766\n\ntable4b\n\n# A tibble: 3 × 3\n  country         `1999`     `2000`\n  &lt;chr&gt;            &lt;dbl&gt;      &lt;dbl&gt;\n1 Afghanistan   19987071   20595360\n2 Brazil       172006362  174504898\n3 China       1272915272 1280428583\n\ntable4a %&gt;% \n  pivot_longer(cols = c(`1999`, `2000`), \n               names_to = \"year\", \n               values_to = \"cases\")\n\n# A tibble: 6 × 3\n  country     year   cases\n  &lt;chr&gt;       &lt;chr&gt;  &lt;dbl&gt;\n1 Afghanistan 1999     745\n2 Afghanistan 2000    2666\n3 Brazil      1999   37737\n4 Brazil      2000   80488\n5 China       1999  212258\n6 China       2000  213766"
+  },
+  {
+    "objectID": "11.29.html",
+    "href": "11.29.html",
+    "title": "Untitled",
+    "section": "",
+    "text": "Section"
+  },
+  {
+    "objectID": "basic-python-intro.html",
+    "href": "basic-python-intro.html",
+    "title": "Introduction to Python",
+    "section": "",
+    "text": "Python is a high-level, interpreted programming language. This is a simple Python code:\n\nprint('Hello, World!')"
+  },
+  {
+    "objectID": "basic-python-intro.html#what-is-python",
+    "href": "basic-python-intro.html#what-is-python",
+    "title": "Introduction to Python",
+    "section": "",
+    "text": "Python is a high-level, interpreted programming language. This is a simple Python code:\n\nprint('Hello, World!')"
+  },
+  {
+    "objectID": "basic-python-intro.html#variables-and-data-types",
+    "href": "basic-python-intro.html#variables-and-data-types",
+    "title": "Introduction to Python",
+    "section": "Variables and Data Types",
+    "text": "Variables and Data Types\nIn Python, variables can store data of different types without explicitly declaring the type.\nFor example:\n\ninteger_variable = 10\nstring_variable = 'Hello'\nfloat_variable = 10.5\n\nfloat_variable\n\n10.5"
+  },
+  {
+    "objectID": "basic-python-intro.html#control-structures",
+    "href": "basic-python-intro.html#control-structures",
+    "title": "Introduction to Python",
+    "section": "Control Structures",
+    "text": "Control Structures\nPython supports the usual logical conditions from mathematics:\n\n# Equals: a == b\n# Not Equals: a != b\n# Less than: a &lt; b\n# Less than or equal to: a &lt;= b\n# Greater than: a &gt; b\n# Greater than or equal to: a &gt;= b\n\nThese conditions can be used in several ways, most commonly in ‘if statements’ and loops.\n\n# if statement:\nif 5 &gt; 2:\n    print('Five is greater than two!')"
+  },
+  {
+    "objectID": "basic-python-intro.html#functions",
+    "href": "basic-python-intro.html#functions",
+    "title": "Introduction to Python",
+    "section": "Functions",
+    "text": "Functions\nA function is a block of code which only runs when it is called.\nYou can pass data, known as parameters, into a function.\nA function can return data as a result.\n\n# Defining a function:\ndef my_function():\n    print('Hello from a function')\n\n# Calling a function:\nmy_function()"
+  },
+  {
+    "objectID": "basic-python-intro.html#lists-and-dictionaries",
+    "href": "basic-python-intro.html#lists-and-dictionaries",
+    "title": "Introduction to Python",
+    "section": "Lists and Dictionaries",
+    "text": "Lists and Dictionaries\nA list is a collection which is ordered and changeable.\nA dictionary is a collection which is unordered, changeable and indexed.\n\n# List example:\nmy_list = ['apple', 'banana', 'cherry']\n\n# Dictionary example:\nmy_dict = {'name': 'John', 'age': 36}"
+  },
+  {
+    "objectID": "blog-post-title.html",
+    "href": "blog-post-title.html",
+    "title": "A. Brennan",
+    "section": "",
+    "text": "Beer Markets\n\n\n\n\n\n\n\n\n\n\n\n\nDec 11, 2023\n\n\nAnn Brennan\n\n\n\n\n\n\n  \n\n\n\n\nHomework 5 - NFL\n\n\n\n\n\n\n\n\n\n\n\n\nDec 11, 2023\n\n\nAnn Brennan\n\n\n\n\n\n\n  \n\n\n\n\nPySpark Basics\n\n\n\n\n\n\n\n\n\n\n\n\nFeb 14, 2025\n\n\nAnn Brennan\n\n\n\n\n\n\n  \n\n\n\n\nPython Basics\n\n\n\n\n\n\n\n\n\n\n \n\n\n\n\n  \n\n\n\n\nSpotify Data Frame\n\n\n\n\n\n\n\n\n\n\n \n\n\n\n\n  \n\n\n\n\nWelcome To My Blog\n\n\n\n\n\n\n\n\n\n\n\n\nOct 27, 2023\n\n\nAnn Brennan\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "danl-200-cw-10.html",
@@ -231,193 +462,88 @@
     "text": "9 Q3b\n\nUse the wide-form data.frame of covid to find the top 10 countries in terms of the correlation between their cases and the USA case.\n\nUse cor(data.frame), which returns a matrix.\nThen convert it to data.frame using as.data.frame(matrix)"
   },
   {
-    "objectID": "blog-post-title.html",
-    "href": "blog-post-title.html",
-    "title": "A. Brennan",
+    "objectID": "danl-320-python-basic.html",
+    "href": "danl-320-python-basic.html",
+    "title": "Python Basics",
     "section": "",
-    "text": "Beer Markets\n\n\n\n\n\n\n\n\n\n\n\n\nDec 11, 2023\n\n\nAnn Brennan\n\n\n\n\n\n\n  \n\n\n\n\nHomework 5 - NFL\n\n\n\n\n\n\n\n\n\n\n\n\nDec 11, 2023\n\n\nAnn Brennan\n\n\n\n\n\n\n  \n\n\n\n\nPython Basics\n\n\n\n\n\n\n\n\n\n\n \n\n\n\n\n  \n\n\n\n\nSpotify Data Frame\n\n\n\n\n\n\n\n\n\n\n \n\n\n\n\n  \n\n\n\n\nWelcome To My Blog\n\n\n\n\n\n\n\n\n\n\n\n\nOct 27, 2023\n\n\nAnn Brennan\n\n\n\n\n\n\nNo matching items"
+    "text": "Python is a high-level, interpreted programming language. This is a simple Python code:\n\nprint('Hello, World!')\n\n\n\n\nIn Python, variables can store data of different types without explicitly declaring the type.\nFor example:\n\ninteger_variable = 10\nstring_variable = 'Hello'\nfloat_variable = 10.5\n\nfloat_variable\n\n10.5\n\n\n\n\n\nPython supports the usual logical conditions from mathematics:\n\n# Equals: a == b\n# Not Equals: a != b\n# Less than: a &lt; b\n# Less than or equal to: a &lt;= b\n# Greater than: a &gt; b\n# Greater than or equal to: a &gt;= b\n\nThese conditions can be used in several ways, most commonly in ‘if statements’ and loops.\n\n# if statement:\nif 5 &gt; 2:\n    print('Five is greater than two!')\n\n\n\n\nA function is a block of code which only runs when it is called.\nYou can pass data, known as parameters, into a function.\nA function can return data as a result.\n\n# Defining a function:\ndef my_function():\n    print('Hello from a function')\n\n# Calling a function:\nmy_function()\n\n\n\n\nA list is a collection which is ordered and changeable.\nA dictionary is a collection which is unordered, changeable and indexed.\n\n# List example:\nmy_list = ['apple', 'banana', 'cherry']\n\n# Dictionary example:\nmy_dict = {'name': 'John', 'age': 36}"
   },
   {
-    "objectID": "basic-python-intro.html",
-    "href": "basic-python-intro.html",
-    "title": "Introduction to Python",
-    "section": "",
-    "text": "Python is a high-level, interpreted programming language. This is a simple Python code:\n\nprint('Hello, World!')"
-  },
-  {
-    "objectID": "basic-python-intro.html#what-is-python",
-    "href": "basic-python-intro.html#what-is-python",
-    "title": "Introduction to Python",
+    "objectID": "danl-320-python-basic.html#what-is-python",
+    "href": "danl-320-python-basic.html#what-is-python",
+    "title": "Python Basics",
     "section": "",
     "text": "Python is a high-level, interpreted programming language. This is a simple Python code:\n\nprint('Hello, World!')"
   },
   {
-    "objectID": "basic-python-intro.html#variables-and-data-types",
-    "href": "basic-python-intro.html#variables-and-data-types",
-    "title": "Introduction to Python",
-    "section": "Variables and Data Types",
-    "text": "Variables and Data Types\nIn Python, variables can store data of different types without explicitly declaring the type.\nFor example:\n\ninteger_variable = 10\nstring_variable = 'Hello'\nfloat_variable = 10.5\n\nfloat_variable\n\n10.5"
-  },
-  {
-    "objectID": "basic-python-intro.html#control-structures",
-    "href": "basic-python-intro.html#control-structures",
-    "title": "Introduction to Python",
-    "section": "Control Structures",
-    "text": "Control Structures\nPython supports the usual logical conditions from mathematics:\n\n# Equals: a == b\n# Not Equals: a != b\n# Less than: a &lt; b\n# Less than or equal to: a &lt;= b\n# Greater than: a &gt; b\n# Greater than or equal to: a &gt;= b\n\nThese conditions can be used in several ways, most commonly in ‘if statements’ and loops.\n\n# if statement:\nif 5 &gt; 2:\n    print('Five is greater than two!')"
-  },
-  {
-    "objectID": "basic-python-intro.html#functions",
-    "href": "basic-python-intro.html#functions",
-    "title": "Introduction to Python",
-    "section": "Functions",
-    "text": "Functions\nA function is a block of code which only runs when it is called.\nYou can pass data, known as parameters, into a function.\nA function can return data as a result.\n\n# Defining a function:\ndef my_function():\n    print('Hello from a function')\n\n# Calling a function:\nmy_function()"
-  },
-  {
-    "objectID": "basic-python-intro.html#lists-and-dictionaries",
-    "href": "basic-python-intro.html#lists-and-dictionaries",
-    "title": "Introduction to Python",
-    "section": "Lists and Dictionaries",
-    "text": "Lists and Dictionaries\nA list is a collection which is ordered and changeable.\nA dictionary is a collection which is unordered, changeable and indexed.\n\n# List example:\nmy_list = ['apple', 'banana', 'cherry']\n\n# Dictionary example:\nmy_dict = {'name': 'John', 'age': 36}"
-  },
-  {
-    "objectID": "11.29.html",
-    "href": "11.29.html",
-    "title": "Untitled",
+    "objectID": "danl-320-python-basic.html#variables-and-data-types",
+    "href": "danl-320-python-basic.html#variables-and-data-types",
+    "title": "Python Basics",
     "section": "",
-    "text": "Section"
+    "text": "In Python, variables can store data of different types without explicitly declaring the type.\nFor example:\n\ninteger_variable = 10\nstring_variable = 'Hello'\nfloat_variable = 10.5\n\nfloat_variable\n\n10.5"
   },
   {
-    "objectID": "12.1.html",
-    "href": "12.1.html",
-    "title": "Untitled",
+    "objectID": "danl-320-python-basic.html#control-structures",
+    "href": "danl-320-python-basic.html#control-structures",
+    "title": "Python Basics",
     "section": "",
-    "text": "library(tidyverse)\n\n── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──\n✔ dplyr     1.1.2     ✔ readr     2.1.4\n✔ forcats   1.0.0     ✔ stringr   1.5.0\n✔ ggplot2   3.4.3     ✔ tibble    3.2.1\n✔ lubridate 1.9.2     ✔ tidyr     1.3.0\n✔ purrr     1.0.2     \n── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──\n✖ dplyr::filter() masks stats::filter()\n✖ dplyr::lag()    masks stats::lag()\nℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors\n\ntable1\n\n# A tibble: 6 × 4\n  country      year  cases population\n  &lt;chr&gt;       &lt;dbl&gt;  &lt;dbl&gt;      &lt;dbl&gt;\n1 Afghanistan  1999    745   19987071\n2 Afghanistan  2000   2666   20595360\n3 Brazil       1999  37737  172006362\n4 Brazil       2000  80488  174504898\n5 China        1999 212258 1272915272\n6 China        2000 213766 1280428583\n\ntable2\n\n# A tibble: 12 × 4\n   country      year type            count\n   &lt;chr&gt;       &lt;dbl&gt; &lt;chr&gt;           &lt;dbl&gt;\n 1 Afghanistan  1999 cases             745\n 2 Afghanistan  1999 population   19987071\n 3 Afghanistan  2000 cases            2666\n 4 Afghanistan  2000 population   20595360\n 5 Brazil       1999 cases           37737\n 6 Brazil       1999 population  172006362\n 7 Brazil       2000 cases           80488\n 8 Brazil       2000 population  174504898\n 9 China        1999 cases          212258\n10 China        1999 population 1272915272\n11 China        2000 cases          213766\n12 China        2000 population 1280428583\n\ntable3\n\n# A tibble: 6 × 3\n  country      year rate             \n  &lt;chr&gt;       &lt;dbl&gt; &lt;chr&gt;            \n1 Afghanistan  1999 745/19987071     \n2 Afghanistan  2000 2666/20595360    \n3 Brazil       1999 37737/172006362  \n4 Brazil       2000 80488/174504898  \n5 China        1999 212258/1272915272\n6 China        2000 213766/1280428583\n\n# Spread across two tibbles\ntable4a  # cases\n\n# A tibble: 3 × 3\n  country     `1999` `2000`\n  &lt;chr&gt;        &lt;dbl&gt;  &lt;dbl&gt;\n1 Afghanistan    745   2666\n2 Brazil       37737  80488\n3 China       212258 213766\n\ntable4b\n\n# A tibble: 3 × 3\n  country         `1999`     `2000`\n  &lt;chr&gt;            &lt;dbl&gt;      &lt;dbl&gt;\n1 Afghanistan   19987071   20595360\n2 Brazil       172006362  174504898\n3 China       1272915272 1280428583\n\ntable4a %&gt;% \n  pivot_longer(cols = c(`1999`, `2000`), \n               names_to = \"year\", \n               values_to = \"cases\")\n\n# A tibble: 6 × 3\n  country     year   cases\n  &lt;chr&gt;       &lt;chr&gt;  &lt;dbl&gt;\n1 Afghanistan 1999     745\n2 Afghanistan 2000    2666\n3 Brazil      1999   37737\n4 Brazil      2000   80488\n5 China       1999  212258\n6 China       2000  213766"
+    "text": "Python supports the usual logical conditions from mathematics:\n\n# Equals: a == b\n# Not Equals: a != b\n# Less than: a &lt; b\n# Less than or equal to: a &lt;= b\n# Greater than: a &gt; b\n# Greater than or equal to: a &gt;= b\n\nThese conditions can be used in several ways, most commonly in ‘if statements’ and loops.\n\n# if statement:\nif 5 &gt; 2:\n    print('Five is greater than two!')"
   },
   {
-    "objectID": "blog-listing.html",
-    "href": "blog-listing.html",
-    "title": "A. Brennan Analytics",
+    "objectID": "danl-320-python-basic.html#functions",
+    "href": "danl-320-python-basic.html#functions",
+    "title": "Python Basics",
     "section": "",
-    "text": "Order By\n       Default\n         \n          Title\n        \n         \n          Date - Oldest\n        \n         \n          Date - Newest\n        \n         \n          Author\n        \n     \n  \n    \n      \n      \n    \n\n\n\n\n  \n\n\n\n\nSpotify Data Frame\n\n\n\n\n\n\n\n\n\n1 min\n\n\n\n\n\n\n  \n\n\n\n\nPython Basics\n\n\n\n\n\n\n\n\n\n2 min\n\n\n\n\n\n\n  \n\n\n\n\nHomework 5 - NFL\n\n\n\n\n\n\n\n\n\nDec 11, 2023\n\n\nAnn Brennan\n\n\n6 min\n\n\n\n\n\n\n  \n\n\n\n\nBeer Markets\n\n\n\n\n\n\n\n\n\nDec 11, 2023\n\n\nAnn Brennan\n\n\n7 min\n\n\n\n\n\n\n  \n\n\n\n\nWelcome To My Blog\n\n\n\n\n\n\n\n\n\nOct 27, 2023\n\n\nAnn Brennan\n\n\n1 min\n\n\n\n\n\n\nNo matching items"
+    "text": "A function is a block of code which only runs when it is called.\nYou can pass data, known as parameters, into a function.\nA function can return data as a result.\n\n# Defining a function:\ndef my_function():\n    print('Hello from a function')\n\n# Calling a function:\nmy_function()"
   },
   {
-    "objectID": "classwork.2.html#heading-2",
-    "href": "classwork.2.html#heading-2",
-    "title": "Untitled",
-    "section": "Heading 2",
-    "text": "Heading 2\n\nHeading 3"
-  },
-  {
-    "objectID": "classwork.2.html#emphasis",
-    "href": "classwork.2.html#emphasis",
-    "title": "Untitled",
-    "section": "Emphasis",
-    "text": "Emphasis\nitalic\nitalic\nbold\nbold"
-  },
-  {
-    "objectID": "classwork.2.html#lists",
-    "href": "classwork.2.html#lists",
-    "title": "Untitled",
-    "section": "Lists",
-    "text": "Lists\n\nItem 1\nItem 2\n\nSub item 2.1\nSub item 2.2\n\n\n\nFirst Item\nSecond Item"
-  },
-  {
-    "objectID": "classwork.2.html#links-and-images",
-    "href": "classwork.2.html#links-and-images",
-    "title": "Untitled",
-    "section": "Links and Images",
-    "text": "Links and Images\nDANL 210"
-  },
-  {
-    "objectID": "classwork.2.html#blockquote",
-    "href": "classwork.2.html#blockquote",
-    "title": "Untitled",
-    "section": "Blockquote",
-    "text": "Blockquote\n\nBe yourself. Everyone else is already taken. - Oscar Wilde."
-  },
-  {
-    "objectID": "classwork.2.html#emojis",
-    "href": "classwork.2.html#emojis",
-    "title": "Untitled",
-    "section": "Emojis",
-    "text": "Emojis\n😄\n😸"
-  },
-  {
-    "objectID": "classwork.2.html#code-blocks",
-    "href": "classwork.2.html#code-blocks",
-    "title": "Untitled",
-    "section": "Code Blocks",
-    "text": "Code Blocks\n\"string\"\nimport numpy as np"
-  },
-  {
-    "objectID": "danl-210-quarto-reticulate.html",
-    "href": "danl-210-quarto-reticulate.html",
-    "title": "Using Python and R Together!",
+    "objectID": "danl-320-python-basic.html#lists-and-dictionaries",
+    "href": "danl-320-python-basic.html#lists-and-dictionaries",
+    "title": "Python Basics",
     "section": "",
-    "text": "In Python, variables can store data of different types without explicitly declaring the type.\nFor example:\n\nprint('Hello, world!')\n\nHello, world!\n\na = 1\na\n\n1\n\n\n\ninteger_variable = 10\nstring_variable = 'Hello'\nfloat_variable = 10.5\n\nfloat_variable\n\n10.5"
+    "text": "A list is a collection which is ordered and changeable.\nA dictionary is a collection which is unordered, changeable and indexed.\n\n# List example:\nmy_list = ['apple', 'banana', 'cherry']\n\n# Dictionary example:\nmy_dict = {'name': 'John', 'age': 36}"
   },
   {
-    "objectID": "danl-210-quarto-reticulate.html#variables-and-data-types",
-    "href": "danl-210-quarto-reticulate.html#variables-and-data-types",
-    "title": "Using Python and R Together!",
-    "section": "",
-    "text": "In Python, variables can store data of different types without explicitly declaring the type.\nFor example:\n\nprint('Hello, world!')\n\nHello, world!\n\na = 1\na\n\n1\n\n\n\ninteger_variable = 10\nstring_variable = 'Hello'\nfloat_variable = 10.5\n\nfloat_variable\n\n10.5"
+    "objectID": "pandas_basics.html#creating-a-series",
+    "href": "pandas_basics.html#creating-a-series",
+    "title": "Pandas Basics",
+    "section": "Creating a Series",
+    "text": "Creating a Series\n\n\n# Creating a Series from a list\ndata = [10, 20, 30, 40, 50]\nseries = pd.Series(data)\nseries\n\n\n\n\n\n\n\n\n0\n\n\n\n\n0\n10\n\n\n1\n20\n\n\n2\n30\n\n\n3\n40\n\n\n4\n50\n\n\n\n\ndtype: int64"
   },
   {
-    "objectID": "danl-210-quarto-reticulate.html#control-structures",
-    "href": "danl-210-quarto-reticulate.html#control-structures",
-    "title": "Using Python and R Together!",
-    "section": "0.2 Control Structures",
-    "text": "0.2 Control Structures\nPython supports the usual logical conditions from mathematics:\n\n# Equals: a == b\n# Not Equals: a != b\n# Less than: a &lt; b\n# Less than or equal to: a &lt;= b\n# Greater than: a &gt; b\n# Greater than or equal to: a &gt;= b\n\nThese conditions can be used in several ways, most commonly in ‘if statements’ and loops.\n\n# if statement:\nif 5 &gt; 2:\n    print('Five is greater than two!')\n\nFive is greater than two!"
+    "objectID": "pandas_basics.html#creating-a-dataframe",
+    "href": "pandas_basics.html#creating-a-dataframe",
+    "title": "Pandas Basics",
+    "section": "Creating a DataFrame",
+    "text": "Creating a DataFrame\n\n\n# Creating a DataFrame from a dictionary\ndata = {\n    \"Name\": [\"Alice\", \"Bob\", \"Charlie\"],\n    \"Age\": [25, 30, 35],\n    \"City\": [\"New York\", \"Los Angeles\", \"Chicago\"]\n}\ndf = pd.DataFrame(data)\ndf\n\n\n  \n    \n\n\n\n\n\n\nName\nAge\nCity\n\n\n\n\n0\nAlice\n25\nNew York\n\n\n1\nBob\n30\nLos Angeles\n\n\n2\nCharlie\n35\nChicago"
   },
   {
-    "objectID": "danl-210-quarto-reticulate.html#functions",
-    "href": "danl-210-quarto-reticulate.html#functions",
-    "title": "Using Python and R Together!",
-    "section": "0.3 Functions",
-    "text": "0.3 Functions\nA function is a block of code which only runs when it is called.\nYou can pass data, known as parameters, into a function.\nA function can return data as a result.\n\n# Defining a function:\ndef my_function():\n    print('Hello from a function')\n\n# Calling a function:\nmy_function()\n\nHello from a function"
+    "objectID": "pandas_basics.html#exploring-data",
+    "href": "pandas_basics.html#exploring-data",
+    "title": "Pandas Basics",
+    "section": "Exploring Data",
+    "text": "Exploring Data\n\n\n# Display the first few rows\ndf.head()\n\n# Display the shape of the DataFrame\nprint(\"Shape:\", df.shape)\n\n# Display summary statistics\ndf.describe()\n\nShape: (3, 3)\n\n\n\n  \n    \n\n\n\n\n\n\nAge\n\n\n\n\ncount\n3.0\n\n\nmean\n30.0\n\n\nstd\n5.0\n\n\nmin\n25.0\n\n\n25%\n27.5\n\n\n50%\n30.0\n\n\n75%\n32.5\n\n\nmax\n35.0"
   },
   {
-    "objectID": "danl-210-quarto-reticulate.html#lists-and-dictionaries",
-    "href": "danl-210-quarto-reticulate.html#lists-and-dictionaries",
-    "title": "Using Python and R Together!",
-    "section": "0.4 Lists and Dictionaries",
-    "text": "0.4 Lists and Dictionaries\nA list is a collection which is ordered and changeable.\nA dictionary is a collection which is unordered, changeable and indexed.\n\n# List example:\nmy_list = ['apple', 'banana', 'cherry']\n\n# Dictionary example:\nmy_dict = {'name': 'John', 'age': 36}"
+    "objectID": "pandas_basics.html#selecting-data",
+    "href": "pandas_basics.html#selecting-data",
+    "title": "Pandas Basics",
+    "section": "Selecting Data",
+    "text": "Selecting Data\n\n# Selecting a single column\ndf[\"Name\"]\n\n\n\n\n\n\n\n\nName\n\n\n\n\n0\nAlice\n\n\n1\nBob\n\n\n2\nCharlie\n\n\n\n\ndtype: object\n\n\n\n# Selecting multiple columns\ndf[[\"Name\", \"City\"]]\n\n\n  \n    \n\n\n\n\n\n\nName\nCity\n\n\n\n\n0\nAlice\nNew York\n\n\n1\nBob\nLos Angeles\n\n\n2\nCharlie\nChicago\n\n\n\n\n\n\n    \n\n  \n    \n\n  \n    \n  \n    \n\n  \n\n    \n  \n\n\n\n  \n\n\n    \n        \n    \n\n  \n\n\n\n  \n\n\n    \n  \n\n\n\n# Selecting rows by index\ndf.iloc[0]\n\n\n\n\n\n\n\n\n0\n\n\n\n\nName\nAlice\n\n\nAge\n25\n\n\nCity\nNew York\n\n\n\n\ndtype: object"
   },
   {
-    "objectID": "danl-210-quarto-reticulate.html#import-python-libraries",
-    "href": "danl-210-quarto-reticulate.html#import-python-libraries",
-    "title": "Using Python and R Together!",
-    "section": "1.1 Import Python libraries",
-    "text": "1.1 Import Python libraries\n\nimport pandas as pd\n\n\noj = pd.read_csv('https://bcdanl.github.io/data/dominick_oj.csv')\n\n\n\nCode!\noj\n\n\n         sales  price      brand  ad\n0       8256.0   3.87  tropicana   0\n1       6144.0   3.87  tropicana   0\n2       3840.0   3.87  tropicana   0\n3       8000.0   3.87  tropicana   0\n4       8896.0   3.87  tropicana   0\n...        ...    ...        ...  ..\n28942   2944.0   2.00  dominicks   0\n28943   4928.0   1.94  dominicks   0\n28944  13440.0   1.59  dominicks   0\n28945  55680.0   1.49  dominicks   0\n28946   7040.0   1.75  dominicks   0\n\n[28947 rows x 4 columns]\n\n\n\noj.describe()\n\n               sales         price            ad\ncount   28947.000000  28947.000000  28947.000000\nmean    17312.213356      2.282488      0.237261\nstd     27477.660437      0.648001      0.425411\nmin        64.000000      0.520000      0.000000\n25%      4864.000000      1.790000      0.000000\n50%      8384.000000      2.170000      0.000000\n75%     17408.000000      2.730000      0.000000\nmax    716416.000100      3.870000      1.000000"
+    "objectID": "pandas_basics.html#filtering-data",
+    "href": "pandas_basics.html#filtering-data",
+    "title": "Pandas Basics",
+    "section": "Filtering Data",
+    "text": "Filtering Data\n\n# Filtering rows where Age is greater than 25\nfiltered_df = df[df[\"Age\"] &gt; 25]\nfiltered_df\n\n\n  \n    \n\n\n\n\n\n\nName\nAge\nCity\n\n\n\n\n1\nBob\n30\nLos Angeles\n\n\n2\nCharlie\n35\nChicago"
   },
   {
-    "objectID": "danl-210-quarto-reticulate.html#python-r-interaction",
-    "href": "danl-210-quarto-reticulate.html#python-r-interaction",
-    "title": "Using Python and R Together!",
-    "section": "1.2 Python-R Interaction",
-    "text": "1.2 Python-R Interaction\nBelow is using Python’s DataFrame oj to visualize using R’s ggplot\n\nlibrary(tidyverse)\n\n# Access the Python pandas DataFrame\noj &lt;- py$oj\n\n# Plot using ggplot2\nggplot(oj, aes(x = log(sales), y = log(price), \n               color = brand)) +\n  geom_point(alpha = .25) +\n  geom_smooth(method = lm) +\n  theme_minimal()\n\n\n\n\n\n1.2.1 Interactive DataFrame with R’s DT Package\n\n\n\n\n\n\n\nIn *.ipynb on Google Colab, we can use itables or just Google Colab’s default to print DataFrame.\n\n# !pip install itables\nfrom itables import init_notebook_mode, show\ninit_notebook_mode(all_interactive=False)\n\noj = pd.read_csv('https://bcdanl.github.io/data/dominick_oj.csv')\nshow(oj)"
-  },
-  {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "Ann Brennan",
-    "section": "",
-    "text": "Ann Brennan is pursuing a major in Data Analytics and minor in Mathematics at SUNY Geneseo. Ann also competes for the SUNY Geneseo cross country and track and field teams."
-  },
-  {
-    "objectID": "index.html#education",
-    "href": "index.html#education",
-    "title": "Ann Brennan",
-    "section": "Education",
-    "text": "Education\nState University of New York at Geneseo | Geneseo, NY  B.S. in Data Analytics | Aug 2022 - May 2026  Minor in Mathematics"
-  },
-  {
-    "objectID": "index.html#experience",
-    "href": "index.html#experience",
-    "title": "Ann Brennan",
-    "section": "Experience",
-    "text": "Experience\nHF-L Technology | Technology Intern | June 2023 - Aug 2023"
+    "objectID": "pandas_basics.html#adding-a-new-column",
+    "href": "pandas_basics.html#adding-a-new-column",
+    "title": "Pandas Basics",
+    "section": "Adding a New Column",
+    "text": "Adding a New Column\n\n\n# Adding a new column\ndf[\"Salary\"] = [50000, 60000, 70000]\ndf\n\n\n  \n    \n\n\n\n\n\n\nName\nAge\nCity\nSalary\n\n\n\n\n0\nAlice\n25\nNew York\n50000\n\n\n1\nBob\n30\nLos Angeles\n60000\n\n\n2\nCharlie\n35\nChicago\n70000\n\n\n\n\n\n\n    \n\n  \n    \n\n  \n    \n  \n    \n\n  \n\n    \n  \n\n\n\n  \n\n\n    \n        \n    \n\n  \n\n\n\n  \n\n\n  \n    \n    \n\n  \n    \n  \n    \n    \n  \n\n    \n  \n\n\n    ## Conclusion\n\n    This notebook covers the basic operations of pandas. You can explore more advanced features like merging,\n    joining, and working with time series data in pandas documentation: https://pandas.pydata.org/docs/"
   },
   {
     "objectID": "posts/homework/danl200-hw5-brennan-ann.html",
@@ -483,102 +609,123 @@
     "text": "Q2g\nSummarize the resulting data.frame in Q2d, with the following four variables:\n\nposteam: String abbreviation for the team with possession.\npasser: Name of the player who passed a ball to a receiver by initially taking a three-step drop, and backpedaling into the pocket to make a pass. (Mostly, they are quarterbacks.)\nmean_epa: Mean value of epa in 2022 for each passer\nn_pass: Number of observations for each passer\n\nThen find the top 10 NFL passers in 2022 in terms of the mean value of epa, conditioning that n_pass must be greater than or equal to the third quantile level of n_pass.\n\nsummary &lt;- NFL2022_stuffs_EPA %&gt;%\n  group_by(posteam, passer) %&gt;%\n  summarise(mean_epa = mean(epa, na.rm = TRUE),\n            n_pass = n())\n\nthird_quantile &lt;- quantile(summary$n_pass, 0.75)\n\nq2f &lt;- summary %&gt;%\n  filter(n_pass &gt;= third_quantile) %&gt;%\n  arrange(desc(mean_epa)) %&gt;%\n  slice_head(n = 10)"
   },
   {
-    "objectID": "posts/spotify/spotify_willie_nelson.html",
-    "href": "posts/spotify/spotify_willie_nelson.html",
-    "title": "Spotify Data Frame",
+    "objectID": "posts/python basics/python_basics_blog.html",
+    "href": "posts/python basics/python_basics_blog.html",
+    "title": "Python Basics",
     "section": "",
-    "text": "Below is the Spotify Data Frame that reads the file spotify_all.csv containing data of Spotify users’ playlist information (Source: Spotify Million Playlist Dataset Challenge).\nimport pandas as pd\nfrom google.colab import data_table\ndata_table.enable_dataframe_formatter()\n\nspotify = pd.read_csv('https://bcdanl.github.io/data/spotify_all.csv')\nspotify\n\nWarning: total number of rows (198005) exceeds max_rows (20000). Falling back to pandas display.\n\n\n\n  \n    \n\n\n\n\n\n\npid\nplaylist_name\npos\nartist_name\ntrack_name\nduration_ms\nalbum_name\n\n\n\n\n0\n0\nThrowbacks\n0\nMissy Elliott\nLose Control (feat. Ciara & Fat Man Scoop)\n226863\nThe Cookbook\n\n\n1\n0\nThrowbacks\n1\nBritney Spears\nToxic\n198800\nIn The Zone\n\n\n2\n0\nThrowbacks\n2\nBeyoncé\nCrazy In Love\n235933\nDangerously In Love (Alben für die Ewigkeit)\n\n\n3\n0\nThrowbacks\n3\nJustin Timberlake\nRock Your Body\n267266\nJustified\n\n\n4\n0\nThrowbacks\n4\nShaggy\nIt Wasn't Me\n227600\nHot Shot\n\n\n...\n...\n...\n...\n...\n...\n...\n...\n\n\n198000\n999998\n✝️\n6\nChris Tomlin\nWaterfall\n209573\nLove Ran Red\n\n\n198001\n999998\n✝️\n7\nChris Tomlin\nThe Roar\n220106\nLove Ran Red\n\n\n198002\n999998\n✝️\n8\nCrowder\nLift Your Head Weary Sinner (Chains)\n224666\nNeon Steeple\n\n\n198003\n999998\n✝️\n9\nChris Tomlin\nWe Fall Down\n280960\nHow Great Is Our God: The Essential Collection\n\n\n198004\n999998\n✝️\n10\nCaleb and Kelsey\n10,000 Reasons / What a Beautiful Name\n178189\n10,000 Reasons / What a Beautiful Name\n\n\n\n\n\n198005 rows × 7 columns"
+    "text": "A variable is a name that refers to a value.\n\na = 10\nprint(a)\n\n10\n\n\nThe most basic built-in data types that we’ll need to know about are integers, floats, strings, and booleans.\n\nlist_example = [10, 1.23, \"like this\", True, None]\nprint(list_example)\ntype(list_example)\n\n[10, 1.23, 'like this', True, None]\n\n\nlist"
   },
   {
-    "objectID": "posts/spotify/spotify_willie_nelson.html#variable-description",
-    "href": "posts/spotify/spotify_willie_nelson.html#variable-description",
-    "title": "Spotify Data Frame",
-    "section": "Variable Description",
-    "text": "Variable Description\n\npid: playlist ID; unique ID for playlist\nplaylist_name: a name of playlist\npos: a position of the track within a playlist (starting from 0)\nartist_name: name of the track’s primary artist\ntrack_name: name of the track\nduration_ms: duration of the track in milliseconds\nalbum_name: name of the track’s album"
-  },
-  {
-    "objectID": "posts/spotify/spotify_willie_nelson.html#favorite-artist",
-    "href": "posts/spotify/spotify_willie_nelson.html#favorite-artist",
-    "title": "Spotify Data Frame",
-    "section": "Favorite Artist",
-    "text": "Favorite Artist\nMy favorite artist in the Spotify data frame is Willie Nelson.\nAll of Willie Nelson’s songs in the Spotify data frame and their details are displayed below:\n\n(\n    spotify\n    .set_index('artist_name')\n    .loc['Willie Nelson']\n)\n\n\n  \n    \n\n\n\n\n\n\npid\nplaylist_name\npos\ntrack_name\nduration_ms\nalbum_name\n\n\nartist_name\n\n\n\n\n\n\n\n\n\n\nWillie Nelson\n9\nold country\n0\nHighwayman\n182973\nNashville Rebel\n\n\nWillie Nelson\n9\nold country\n1\nHighwayman\n182973\nNashville Rebel\n\n\nWillie Nelson\n83\nFlorida\n66\nAlways On My Mind\n212666\nAlways On My Mind\n\n\nWillie Nelson\n83\nFlorida\n67\nLuckenback Texas\n94520\nCountry Outlaws\n\n\nWillie Nelson\n90\nFor the Road\n67\nHighwayman\n182973\nNashville Rebel\n\n\n...\n...\n...\n...\n...\n...\n...\n\n\nWillie Nelson\n999873\ndads\n2\nI Gotta Get Drunk\n129759\nWalking the Line\n\n\nWillie Nelson\n999873\ndads\n6\nPancho and Lefty\n286066\nWalking the Line\n\n\nWillie Nelson\n999873\ndads\n45\nSeven Spanish Angels (With Ray Charles)\n229533\nHalf Nelson\n\n\nWillie Nelson\n999897\nKings\n153\nOn the Road Again\n153106\nGreatest Hits (& Some That Will Be)\n\n\nWillie Nelson\n999936\nRoad Trip\n67\nOn the Road Again\n153106\nGreatest Hits (& Some That Will Be)\n\n\n\n\n\n62 rows × 6 columns"
-  },
-  {
-    "objectID": "posts/spotify/spotify_willie_nelson.html#number-of-songs",
-    "href": "posts/spotify/spotify_willie_nelson.html#number-of-songs",
-    "title": "Spotify Data Frame",
-    "section": "Number of Songs",
-    "text": "Number of Songs\n\nwillie_nelson = (\n    spotify\n    .set_index('artist_name')\n    .loc['Willie Nelson']\n)\nlen(willie_nelson)\n\n62\n\n\nThere are 62 Willie Nelson songs in this data frame."
-  },
-  {
-    "objectID": "posts/spotify/spotify_willie_nelson.html#longest-song",
-    "href": "posts/spotify/spotify_willie_nelson.html#longest-song",
-    "title": "Spotify Data Frame",
-    "section": "Longest Song",
-    "text": "Longest Song\n\n(\n    willie_nelson\n    .sort_values(['duration_ms'], ascending = False)\n    .head(1)\n)\n\n\n  \n    \n\n\n\n\n\n\npid\nplaylist_name\npos\ntrack_name\nduration_ms\nalbum_name\n\n\nartist_name\n\n\n\n\n\n\n\n\n\n\nWillie Nelson\n114\nWillie\n13\nSunday Mornin' Comin' Down\n422173\nWillie Nelson Sings Kristofferson\n\n\n\n\n\n\n    \n\n  \n    \n\n  \n    \n  \n    \n\n  \n\n    \n  \n\n\n    \n  \n\n\nThe longest Willie Nelson song in this data set is “Sunday Mornin’ Comin’ Down” at 422173 milliseconds."
-  },
-  {
-    "objectID": "posts/spotify/spotify_willie_nelson.html#shortest-song",
-    "href": "posts/spotify/spotify_willie_nelson.html#shortest-song",
-    "title": "Spotify Data Frame",
-    "section": "Shortest Song",
-    "text": "Shortest Song\n\n(\n    willie_nelson\n    .sort_values(['duration_ms'], ascending = True)\n    .head(1)\n)\n\n\n  \n    \n\n\n\n\n\n\npid\nplaylist_name\npos\ntrack_name\nduration_ms\nalbum_name\n\n\nartist_name\n\n\n\n\n\n\n\n\n\n\nWillie Nelson\n83\nFlorida\n67\nLuckenback Texas\n94520\nCountry Outlaws\n\n\n\n\n\n\n    \n\n  \n    \n\n  \n    \n  \n    \n\n  \n\n    \n  \n\n\n    \n  \n\n\nThe shortest Willie Nelson song is “Luckenback Texas” at 94520 milliseconds."
-  },
-  {
-    "objectID": "posts/spotify/spotify_willie_nelson.html#songs-between-150000-and-200000-ms-in-the-willie-playlist",
-    "href": "posts/spotify/spotify_willie_nelson.html#songs-between-150000-and-200000-ms-in-the-willie-playlist",
-    "title": "Spotify Data Frame",
-    "section": "Songs between 150000 and 200000 ms in the “Willie” playlist",
-    "text": "Songs between 150000 and 200000 ms in the “Willie” playlist\nBelow are all songs in the “Willie” playlist that are greater than 150000 ms but less than 200000 ms:\n\ngreater_than_15 = willie_nelson['duration_ms'] &gt; 150000\nless_than_20 = willie_nelson['duration_ms'] &lt; 200000\nwillie_playlist = willie_nelson['playlist_name'] == 'Willie'\nwillie_nelson[greater_than_15 & less_than_20 & willie_playlist]\n\n\n  \n    \n\n\n\n\n\n\npid\nplaylist_name\npos\ntrack_name\nduration_ms\nalbum_name\n\n\nartist_name\n\n\n\n\n\n\n\n\n\n\nWillie Nelson\n114\nWillie\n1\nLittle House on the Hill\n182080\nGod's Problem Child\n\n\nWillie Nelson\n114\nWillie\n3\nNothing I Can Do About It Now\n199160\nA Horse Called Music\n\n\nWillie Nelson\n114\nWillie\n8\nNight Life\n197813\nFor the Good Times: A Tribute to Ray Price\n\n\nWillie Nelson\n114\nWillie\n10\nIf You Can Touch Her At All\n183866\nFunny How Time Slips Away - The Best Of\n\n\nWillie Nelson\n114\nWillie\n11\nStay All Night (Stay A Little Longer)\n154160\nShotgun Willie\n\n\nWillie Nelson\n114\nWillie\n12\nSad Songs And Waltzes\n185213\nShotgun Willie\n\n\nWillie Nelson\n114\nWillie\n19\nFly Me To The Moon\n169960\nAmerican Classic\n\n\nWillie Nelson\n114\nWillie\n21\nMona Lisa\n151826\nSomewhere over the Rainbow\n\n\nWillie Nelson\n114\nWillie\n22\nTexas On A Saturday Night (With Mel Tillis)\n159533\nHalf Nelson\n\n\n\n\n\n\n    \n\n  \n    \n\n  \n    \n  \n    \n\n  \n\n    \n  \n\n\n\n  \n\n\n    \n        \n    \n\n  \n\n\n\n  \n\n\n    \n  \n\n\n\nwillie_songs = willie_nelson[greater_than_15 & less_than_20 & willie_playlist]\nlen(willie_songs)\n\n9\n\n\nThere are 9 songs in the “Willie” playlist within this range."
-  },
-  {
-    "objectID": "project-210.html",
-    "href": "project-210.html",
-    "title": "DANL210 Project",
+    "objectID": "posts/python basics/python_basics_blog.html#variables",
+    "href": "posts/python basics/python_basics_blog.html#variables",
+    "title": "Python Basics",
     "section": "",
-    "text": "This project will address the relationship between Environmental, Governance, and Social (ESG) risk ratings and stock performance. ESG risk ratings evaluate a company’s ethical performance and how well they manage risks and opportunities in environmental, social, and governance areas. Given this, I will be able to analyze the relationship between stock performance and ethical performance. All data was collected from Yahoo Finance."
+    "text": "A variable is a name that refers to a value.\n\na = 10\nprint(a)\n\n10\n\n\nThe most basic built-in data types that we’ll need to know about are integers, floats, strings, and booleans.\n\nlist_example = [10, 1.23, \"like this\", True, None]\nprint(list_example)\ntype(list_example)\n\n[10, 1.23, 'like this', True, None]\n\n\nlist"
   },
   {
-    "objectID": "project-210.html#variable-description",
-    "href": "project-210.html#variable-description",
-    "title": "DANL210 Project",
+    "objectID": "posts/python basics/python_basics_blog.html#booleans-and-conditions",
+    "href": "posts/python basics/python_basics_blog.html#booleans-and-conditions",
+    "title": "Python Basics",
+    "section": "Booleans and Conditions",
+    "text": "Booleans and Conditions\nBoolean data have either True or False value.\nConditions are expressions that evaluate as booleans.\n\n20 == '20'\n\nFalse\n\n\nExisting booleans can be combined, which create a boolean when executed.\n\nx = 4.0\ny = .5\nz = 3*y - x\n\nx &lt; y or 3*y &lt; x\n\nTrue\n\n\n\nboolean_condition1 = 10 == 20\nprint(boolean_condition1)\n\nboolean_condition2 = 10 == '10'\nprint(boolean_condition2)\n\nFalse\nFalse\n\n\nThe real power of conditions comes when we start to use them in more complex examples, such as if statements.\n\nname = \"Geneseo\"\nscore = 99\n\nif name == \"Geneseo\" and score &gt; 90:\n    print(\"Geneseo, you achieved a high score.\")\n\nif name == \"Geneseo\" or score &gt; 90:\n    print(\"You could be called Geneseo or have a high score\")\n\nif name != \"Geneseo\" and score &gt; 90:\n    print(\"You are not called Geneseo and you have a high score\")\n\nGeneseo, you achieved a high score.\nYou could be called Geneseo or have a high score\n\n\nThe if-else chain:\n\nscore = 98\n\nif score == 100:\n    print(\"Top marks!\")\nelif score &gt; 90 and score &lt; 100:\n    print(\"High score!\")\nelif score &gt; 10 and score &lt;= 90:\n    pass\nelse:\n    print(\"Better luck next time.\")\n\nHigh score!"
+  },
+  {
+    "objectID": "posts/python basics/python_basics_blog.html#for-loops",
+    "href": "posts/python basics/python_basics_blog.html#for-loops",
+    "title": "Python Basics",
+    "section": "For Loops",
+    "text": "For Loops\nA loop is a way of executing a similar piece of code over and over in a similar way. The most useful type is for loops.\n\nname_list = [\"Ben\", \"Chris\", \"Kate\", \"Mary\"]\n\nfor name in name_list:\n    print(name)\n\nBen\nChris\nKate\nMary"
+  },
+  {
+    "objectID": "posts/python basics/python_basics_blog.html#dictionaries",
+    "href": "posts/python basics/python_basics_blog.html#dictionaries",
+    "title": "Python Basics",
+    "section": "Dictionaries",
+    "text": "Dictionaries\nA dictionary maps one set of variables to another (one-to-one or many-to-one).\n\ncities_to_temps = {\"Paris\": 28, \"London\": 22, \"Seville\": 36, \"Wellesley\": 29}\n\ncities_to_temps.keys()\ncities_to_temps.values()\ncities_to_temps.items()\n\ndict_items([('Paris', 28), ('London', 22), ('Seville', 36), ('Wellesley', 29)])"
+  },
+  {
+    "objectID": "posts/python basics/python_basics_blog.html#running-on-empty",
+    "href": "posts/python basics/python_basics_blog.html#running-on-empty",
+    "title": "Python Basics",
+    "section": "Running on Empty",
+    "text": "Running on Empty\nCreating empty containers is useful when creating loops. The commands to create empty lists, tuples, dictionaries, and sets are lst = [], tup=(), dic={}, and st = set() respectively."
+  },
+  {
+    "objectID": "posts/python basics/python_basics_blog.html#slicing-methods",
+    "href": "posts/python basics/python_basics_blog.html#slicing-methods",
+    "title": "Python Basics",
+    "section": "Slicing Methods",
+    "text": "Slicing Methods\nWe can extract a substring (a part of a string) from a string by using a slice.\n\nletters = 'abcdefghij'\nletters[:]\n\n'abcdefghij'\n\n\n\nletters = 'abcdefghij'\nletters[4:]\nletters[2:]\nletters[-3:]\nletters[-50:]\n\n'abcdefghij'\n\n\n\nletters = 'abcdefghij'\nletters[2:5]\nletters[-26:-24]\nletters[35:37]\n\n''\n\n\nWe can extract a single value from a list by specifying its index:\n\nsuny = ['Geneseo', 'Brockport', 'Oswego', 'Binghamton',\n        'Stony Brook', 'New Paltz']\n\n\nsuny[0]\nsuny[1]\nsuny[2]\n\n'Oswego'\n\n\nExample from Classwork 4.3:\n\nfare = \"$10.00\"\ntip = \"2.00$\"\ntax = \"$ 0.80\"\ntotal = fare[0:2] + tip[0] + tax[3:6]\nprint(\"The total trip cost is:\", total)\n\nThe total trip cost is: $12.80"
+  },
+  {
+    "objectID": "posts/python basics/python_basics_blog.html#functions-arguments-parameters",
+    "href": "posts/python basics/python_basics_blog.html#functions-arguments-parameters",
+    "title": "Python Basics",
+    "section": "Functions, Arguments, Parameters",
+    "text": "Functions, Arguments, Parameters\nA function can take any number and type of input parameters and return any number and type of output results.\n\nprint(\"Cherry\", \"Strawberry\", \"Key Lime\")\nprint(\"Cherry\", \"Strawberry\", \"Key Lime\", sep = \"!\")\nprint(\"Cherry\", \"Strawberry\", \"Key Lime\", sep=\" \")\n\nCherry Strawberry Key Lime\nCherry!Strawberry!Key Lime\nCherry Strawberry Key Lime\n\n\nA function can accept inputs called arguments.\nA parameter is an expected function argument.\nExample from Classwork 4.4:\n\nlist_variable = [100,144,169,1000,8]\nx =max(list_variable)\nprint('The largest value in the list is:',x)\n\nThe largest value in the list is: 1000"
+  },
+  {
+    "objectID": "posts/python basics/python_basics_blog.html#installing-modules-packages-and-libraries",
+    "href": "posts/python basics/python_basics_blog.html#installing-modules-packages-and-libraries",
+    "title": "Python Basics",
+    "section": "Installing Modules, Packages, and Libraries",
+    "text": "Installing Modules, Packages, and Libraries\nTo install a module module_name on your Google Colab, run:\n\n!pip install module_name\n\nFrom Classwork 4.5: Import the pandas library as pd. Install the itables package. From itables, import the functions init_notebook_mode and show.\n\nimport pandas as pd\n!pip install itables\nfrom itables import init_notebook_mode\nfrom itables import show\n\nCollecting itables\n  Downloading itables-1.7.0-py3-none-any.whl (200 kB)\n     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 0.0/200.9 kB ? eta -:--:--     ━━━━━━━━━━━━━━╺━━━━━━━━━━━━━━━━━━━━━━━━━ 71.7/200.9 kB 1.9 MB/s eta 0:00:01     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 200.9/200.9 kB 2.9 MB/s eta 0:00:00\nRequirement already satisfied: IPython in /usr/local/lib/python3.10/dist-packages (from itables) (7.34.0)\nRequirement already satisfied: pandas in /usr/local/lib/python3.10/dist-packages (from itables) (1.5.3)\nRequirement already satisfied: numpy in /usr/local/lib/python3.10/dist-packages (from itables) (1.25.2)\nRequirement already satisfied: setuptools&gt;=18.5 in /usr/local/lib/python3.10/dist-packages (from IPython-&gt;itables) (67.7.2)\nCollecting jedi&gt;=0.16 (from IPython-&gt;itables)\n  Downloading jedi-0.19.1-py2.py3-none-any.whl (1.6 MB)\n     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1.6/1.6 MB 7.3 MB/s eta 0:00:00\nRequirement already satisfied: decorator in /usr/local/lib/python3.10/dist-packages (from IPython-&gt;itables) (4.4.2)\nRequirement already satisfied: pickleshare in /usr/local/lib/python3.10/dist-packages (from IPython-&gt;itables) (0.7.5)\nRequirement already satisfied: traitlets&gt;=4.2 in /usr/local/lib/python3.10/dist-packages (from IPython-&gt;itables) (5.7.1)\nRequirement already satisfied: prompt-toolkit!=3.0.0,!=3.0.1,&lt;3.1.0,&gt;=2.0.0 in /usr/local/lib/python3.10/dist-packages (from IPython-&gt;itables) (3.0.43)\nRequirement already satisfied: pygments in /usr/local/lib/python3.10/dist-packages (from IPython-&gt;itables) (2.16.1)\nRequirement already satisfied: backcall in /usr/local/lib/python3.10/dist-packages (from IPython-&gt;itables) (0.2.0)\nRequirement already satisfied: matplotlib-inline in /usr/local/lib/python3.10/dist-packages (from IPython-&gt;itables) (0.1.6)\nRequirement already satisfied: pexpect&gt;4.3 in /usr/local/lib/python3.10/dist-packages (from IPython-&gt;itables) (4.9.0)\nRequirement already satisfied: python-dateutil&gt;=2.8.1 in /usr/local/lib/python3.10/dist-packages (from pandas-&gt;itables) (2.8.2)\nRequirement already satisfied: pytz&gt;=2020.1 in /usr/local/lib/python3.10/dist-packages (from pandas-&gt;itables) (2023.4)\nRequirement already satisfied: parso&lt;0.9.0,&gt;=0.8.3 in /usr/local/lib/python3.10/dist-packages (from jedi&gt;=0.16-&gt;IPython-&gt;itables) (0.8.3)\nRequirement already satisfied: ptyprocess&gt;=0.5 in /usr/local/lib/python3.10/dist-packages (from pexpect&gt;4.3-&gt;IPython-&gt;itables) (0.7.0)\nRequirement already satisfied: wcwidth in /usr/local/lib/python3.10/dist-packages (from prompt-toolkit!=3.0.0,!=3.0.1,&lt;3.1.0,&gt;=2.0.0-&gt;IPython-&gt;itables) (0.2.13)\nRequirement already satisfied: six&gt;=1.5 in /usr/local/lib/python3.10/dist-packages (from python-dateutil&gt;=2.8.1-&gt;pandas-&gt;itables) (1.16.0)\nInstalling collected packages: jedi, itables\nSuccessfully installed itables-1.7.0 jedi-0.19.1"
+  },
+  {
+    "objectID": "posts/welcome/index.html",
+    "href": "posts/welcome/index.html",
+    "title": "Welcome To My Blog",
+    "section": "",
+    "text": "This is the first post in a Quarto blog. Welcome!\n\nSince this post doesn’t specify an explicit image, the first image in the post will be used in the listing page of posts."
+  },
+  {
+    "objectID": "project.html",
+    "href": "project.html",
+    "title": "DANL Project",
+    "section": "",
+    "text": "About this project 👏\nThis project will address the various financial actions taken by various parties to address climate change."
+  },
+  {
+    "objectID": "project.html#variable-description",
+    "href": "project.html#variable-description",
+    "title": "DANL Project",
     "section": "2.1 Variable Description",
-    "text": "2.1 Variable Description\n\n2.1.1 esg_data\n\ntotal_esg: Total ESG rating. Environmental, social, and government risk ratings combined.\nenviro_risk: Environmental risk rating.\nsocial_risk: Social risk rating.\ngov_risk: Governmental risk rating.\ncontroversy: Controversy level."
+    "text": "2.1 Variable Description\n\nParty: a party (country) that provides a funding contribution to recipient country/region for their cliamte change project.\nRecipient country/region: Recipient country or region\nProject/programme/activity: Details in the climate change project\nType of support:\n\nadaptation if the climate change project is related to adaptation project.\nmitigation if the climate change project is related to mitigation project.\n\nYear: Year that funding contribution is committed or provided.\nContribution: An amount of funding contribution for the climate change project (in USD).\nStatus:\n\ncommitted if a party commits to providing the funding contribution for the climate change project, but the funding contribution is NOT actually provided.\nprovided if the funding contribution was provided for the climate change project.\n\nEnergy:\n\nTRUE if the project is energy-related;\nFALSE otherwise."
   },
   {
-    "objectID": "project-210.html#summary-statistics",
-    "href": "project-210.html#summary-statistics",
-    "title": "DANL210 Project",
-    "section": "3.1 Summary Statistics",
-    "text": "3.1 Summary Statistics\n\nesg_data['enviro_risk'].describe()\n\ncount    537.000000\nmean       5.827188\nstd        5.301806\nmin        0.000000\n25%        1.800000\n50%        4.000000\n75%        9.000000\nmax       27.300000\nName: enviro_risk, dtype: float64\n\nesg_data['social_risk'].describe()\n\ncount    537.000000\nmean       9.042644\nstd        3.612652\nmin        0.800000\n25%        6.700000\n50%        8.900000\n75%       11.100000\nmax       22.500000\nName: social_risk, dtype: float64\n\nesg_data['gov_risk'].describe()\n\ncount    537.000000\nmean       6.811173\nstd        2.378037\nmin        2.400000\n25%        5.200000\n50%        6.300000\n75%        7.900000\nmax       19.400000\nName: gov_risk, dtype: float64\n\n\n\ntickers_history['Close'].describe()\n\ncount    357202.000000\nmean        142.152567\nstd         297.241789\nmin           0.980000\n25%          40.449798\n50%          81.209999\n75%         152.080002\nmax        8099.959961\nName: Close, dtype: float64\n\ntickers_history['High'].describe()\n\ncount    357202.000000\nmean        143.808907\nstd         300.607248\nmin           1.060000\n25%          40.966236\n50%          82.190002\n75%         153.830002\nmax        8158.990234\nName: High, dtype: float64\n\ntickers_history['Low'].describe()\n\ncount    357202.000000\nmean        140.424490\nstd         293.761505\nmin           0.780000\n25%          39.901238\n50%          80.220911\n75%         150.270004\nmax        8010.000000\nName: Low, dtype: float64\n\n\nMerge the data frames esg_data and tickers_history in order to compare:\n\nmerged_df = pd.merge(esg_data, tickers_history, left_index = True, right_index = True, how = 'inner')\n\nDistribution of Close:\n\nsns.histplot(merged_df['Close'])\n\n\n\n\nDistribution of Environmental Risk Rating:\n\nsns.histplot(merged_df['enviro_risk'])"
+    "objectID": "project.html#summary-statistics",
+    "href": "project.html#summary-statistics",
+    "title": "DANL Project",
+    "section": "2.2 Summary Statistics",
+    "text": "2.2 Summary Statistics\n\n\n\n  \n\n\n\nskim(climate_finance) %&gt;% \n  select(-n_missing)\n\n\nData summary\n\n\nName\nclimate_finance\n\n\nNumber of rows\n16853\n\n\nNumber of columns\n8\n\n\n_______________________\n\n\n\nColumn type frequency:\n\n\n\ncharacter\n5\n\n\nlogical\n1\n\n\nnumeric\n2\n\n\n________________________\n\n\n\nGroup variables\nNone\n\n\n\nVariable type: character\n\n\n\n\n\n\n\n\n\n\n\n\nskim_variable\ncomplete_rate\nmin\nmax\nempty\nn_unique\nwhitespace\n\n\n\n\nParty\n1.00\n5\n24\n0\n34\n0\n\n\nRecipient country/region\n1.00\n3\n293\n0\n1310\n0\n\n\nProject/programme/activity\n0.68\n3\n1473\n0\n7908\n0\n\n\nType of support\n1.00\n10\n10\n0\n2\n0\n\n\nStatus\n1.00\n8\n9\n0\n2\n0\n\n\n\nVariable type: logical\n\n\n\nskim_variable\ncomplete_rate\nmean\ncount\n\n\n\n\nEnergy\n1\n0.19\nFAL: 13710, TRU: 3143\n\n\n\nVariable type: numeric\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nskim_variable\ncomplete_rate\nmean\nsd\np0\np25\np50\np75\np100\nhist\n\n\n\n\nYear\n1\n2015.72\n1.82\n2011\n2015\n2016\n2017\n2018\n▁▂▆▅▇\n\n\nContribution\n1\n3311433.39\n9714907.28\n3000\n100000\n420000\n2200000\n100000000\n▇▁▁▁▁"
   },
   {
-    "objectID": "project-210.html#correlation-heat-map-of-esg-data",
-    "href": "project-210.html#correlation-heat-map-of-esg-data",
-    "title": "DANL210 Project",
-    "section": "4.1 Correlation Heat Map of ESG Data:",
-    "text": "4.1 Correlation Heat Map of ESG Data:\n\nimport matplotlib.pyplot as plt\ncorr = esg_data.corr()\nplt.figure(figsize=(8,6))\nsns.heatmap(corr, annot=True, cmap='coolwarm', fmt='.2f', linewidths = .5)\nplt.title('Correlation Heatmap of ESG Data')\nplt.show()"
+    "objectID": "project.html#financial-contributions-to-other-countries",
+    "href": "project.html#financial-contributions-to-other-countries",
+    "title": "DANL Project",
+    "section": "3.1 Financial Contributions to Other Countries",
+    "text": "3.1 Financial Contributions to Other Countries\nVarious parties in the climate_finance data frame have made positive financial contributions to other countries for adaptation projects. Here, we will find the number of parties that made a positive contribution to another country for every year between 2011 and 2018.\n\npositive_contributions &lt;- climate_finance %&gt;% \n  filter(Status == \"provided\",                       \n         `Type of support` == \"adaptation\") %&gt;%      \n  group_by(Party, Year) %&gt;%                          \n  summarise(Contribution = sum(Contribution, na.rm = T)) %&gt;%  \n  filter(Contribution &gt; 0) %&gt;%                       \n  group_by(Party) %&gt;%                                \n  count() %&gt;%                                        \n  filter(n == 2018 - 2011 + 1)  %&gt;%                  \n  select(Party) %&gt;% \n  distinct()    \n\n\nnrow(positive_contributions)\n\n[1] 8"
   },
   {
-    "objectID": "project-210.html#relationship-between-close-price-and-environmental-risk-score",
-    "href": "project-210.html#relationship-between-close-price-and-environmental-risk-score",
-    "title": "DANL210 Project",
-    "section": "4.2 Relationship between Close Price and Environmental Risk Score:",
-    "text": "4.2 Relationship between Close Price and Environmental Risk Score:\n\nsns.lmplot(merged_df, x = 'enviro_risk', y = 'Close')\n\n\n\n\n\n\n\nThere is not much correlation between Close Price and Environmental Risk Score. Our scatter plot and best fit line are relatively flat. If anything, there is a slight positive relationship. Higher risk might mean a higher close price, however, we cannot make a conclusion from this."
+    "objectID": "project.html#types-of-contributions",
+    "href": "project.html#types-of-contributions",
+    "title": "DANL Project",
+    "section": "3.2 Types of Contributions",
+    "text": "3.2 Types of Contributions\nThere are two different types of contributions that a party can make: adaptation and mitigation. The type of contribution is decided based on the type of project it supports. Adaptation contributions go to an adaptation climate change project. A mitigation contribution goes to a mitigation climate change project.\nFirst, we will calculate the ratio between adaptation contribution and mitigation contribution for each type of Status for each Party each year.\n\nratio &lt;- climate_finance %&gt;% \n  group_by(Party, Year, Status, `Type of support`) %&gt;% \n  summarise(Contribution = sum(Contribution, na.rm = T)) %&gt;% \n  filter(Contribution != 0) %&gt;% \n  group_by(Party, Year, Status) %&gt;% \n  mutate(lag_Contribution = lag(Contribution), \n         am_ratio = lag_Contribution / Contribution ) %&gt;% \n  filter(!is.na(am_ratio)) %&gt;% \n  rename(mitigation = Contribution, \n         adaptation = lag_Contribution) %&gt;% \n  select(-`Type of support`) \n\nHere, we will visualize the distribution of the ratio between adaption contribution and mitigation contribution based on our calculation.\n\nggplot(ratio, aes(x = log(am_ratio))) +\n  geom_histogram(bins = 75) + labs(x = \"log(ratio)\", y = \"count\", title = \"Distribution of the Ratio of Contributions\") +\n  geom_vline(xintercept = 0, color = 'red', lty = 2)\n\n\n\n\nThis histogram depicts a generally normal distribution of the ratio between adaptation contribution and mitigation contribution."
   },
   {
-    "objectID": "project-210.html#next-relationship-between-close-price-and-social-risk-score",
-    "href": "project-210.html#next-relationship-between-close-price-and-social-risk-score",
-    "title": "DANL210 Project",
-    "section": "4.3 Next, relationship between Close Price and Social Risk Score:",
-    "text": "4.3 Next, relationship between Close Price and Social Risk Score:\n\nsns.lmplot(merged_df, x = 'social_risk', y = 'Close')\n\n\n\n\n\n\n\nAgain, there is not much correlation between Close Price and Social Risk Score. Based on the graph, there could be a slight negative relationship, if any. Higher risk could mean lower close price. However, we cannot conclude this."
+    "objectID": "project.html#yearly-trend-of-total-funding-contributions-varies-by-energy-and-status",
+    "href": "project.html#yearly-trend-of-total-funding-contributions-varies-by-energy-and-status",
+    "title": "DANL Project",
+    "section": "3.3 Yearly trend of total funding contributions varies by Energy and Status",
+    "text": "3.3 Yearly trend of total funding contributions varies by Energy and Status\nWith these graphs we can see the amount of committed funding has been increasing at a significant rate while provided funding seems to stay constant. The gap we see in provided funding size between the energy and non energy sectors is likely due to these projects requiring a significant amount of funds upfront.\n\nclimate_finance %&gt;% \n  group_by(Energy, Status, Year) %&gt;% \n  summarise(funding_tot = sum(Contribution, na.rm = T)) %&gt;% \n  ggplot(aes(x = Year, y = funding_tot)) +\n  geom_line(aes(color = Status)) +\n  geom_point() +\n  facet_wrap(Energy ~.) +\n  scale_y_comma()"
   },
   {
-    "objectID": "project-210.html#finally-relationship-between-close-price-and-government-risk-score",
-    "href": "project-210.html#finally-relationship-between-close-price-and-government-risk-score",
-    "title": "DANL210 Project",
-    "section": "4.4 Finally, relationship between Close Price and Government Risk Score:",
-    "text": "4.4 Finally, relationship between Close Price and Government Risk Score:\n\nsns.lmplot(merged_df, x = 'gov_risk', y = 'Close')\n\n\n\n\n\n\n\nOnce again, there is not much correlation between the two. Like environmental risk, there could be a slight positive relationship. As risk increases, so does close price. However, we cannot conclude this."
+    "objectID": "project.html#yearly-contribution-varying-by-energy-and-status",
+    "href": "project.html#yearly-contribution-varying-by-energy-and-status",
+    "title": "DANL Project",
+    "section": "3.4 Yearly Contribution varying by Energy and Status",
+    "text": "3.4 Yearly Contribution varying by Energy and Status\nFor both sectors (energy and non-energy), the amount of the committed funding has been increasing yearly, while the amount of provided funding has stayed relatively constant. Energy related projects usually require a much greater upfront cost than non-energy related projects, hence why there is a gap for the provided amounts.\n\nggplot(climate_finance,\n       aes(color = `Type of support`, x = log(Contribution))) +\n  geom_freqpoly() +\n  facet_wrap(.~ Status) +\n  theme(legend.position = 'top')"
   },
   {
     "objectID": "spotify_willie_nelson.html",

@@ -6,8 +6,10 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="author" content="Ann Brennan">
+<meta name="dcterms.date" content="2025-02-14">
 
-<title>Ann Brennan - A. Brennan</title>
+<title>Ann Brennan - PySpark Basics</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,28 +22,60 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<script src="site_libs/quarto-listing/list.min.js"></script>
-<script src="site_libs/quarto-listing/quarto-listing.js"></script>
-<script src="site_libs/quarto-html/quarto.js"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -62,50 +96,19 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
-<script>
 
-  window.document.addEventListener("DOMContentLoaded", function (_event) {
-    const listingTargetEl = window.document.querySelector('#listing-listing .list');
-    if (!listingTargetEl) {
-      // No listing discovered, do not attach.
-      return; 
-    }
 
-    const options = {
-      valueNames: ['listing-date','listing-title','listing-author','listing-image','listing-description',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
-      
-      searchColumns: ["listing-date","listing-title","listing-author","listing-image","listing-description"],
-    };
-
-    window['quarto-listings'] = window['quarto-listings'] || {};
-    window['quarto-listings']['listing-listing'] = new List('listing-listing', options);
-
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  });
-
-  window.addEventListener('hashchange',() => {
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  })
-  </script>
-
-  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
-
-<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="../../styles.css">
 </head>
 
-<body class="nav-fixed fullcontent">
+<body class="nav-fixed">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
     <nav class="navbar navbar-expand-lg navbar-dark ">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container">
-    <a class="navbar-brand" href="./index.html">
+    <a class="navbar-brand" href="../../index.html">
     <span class="navbar-title">Ann Brennan</span>
     </a>
   </div>
@@ -121,21 +124,21 @@ ul.task-list li input[type="checkbox"] {
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-final-projects">    
         <li>
-    <a class="dropdown-item" href="./project.html" rel="" target="">
+    <a class="dropdown-item" href="../../project.html" rel="" target="">
  <span class="dropdown-text">DANL200</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./project-210.html" rel="" target="">
+    <a class="dropdown-item" href="../../project-210.html" rel="" target="">
  <span class="dropdown-text">DANL210</span></a>
   </li>  
     </ul>
   </li>
   <li class="nav-item">
-    <a class="nav-link" href="./blog-listing.html" rel="" target="">
+    <a class="nav-link" href="../../blog-listing.html" rel="" target="">
  <span class="menu-text">Blog</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./danl_proj_nba.html" rel="" target="">
+    <a class="nav-link" href="../../danl_proj_nba.html" rel="" target="">
  <span class="menu-text">Project</span></a>
   </li>  
   <li class="nav-item dropdown ">
@@ -144,11 +147,11 @@ ul.task-list li input[type="checkbox"] {
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-python-data-analysis">    
         <li>
-    <a class="dropdown-item" href="./pandas_basics.html" rel="" target="">
+    <a class="dropdown-item" href="../../pandas_basics.html" rel="" target="">
  <span class="dropdown-text">Pandas Basics</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./seaborn_basics.html" rel="" target="">
+    <a class="dropdown-item" href="../../seaborn_basics.html" rel="" target="">
  <span class="dropdown-text">Seaborn Basics</span></a>
   </li>  
     </ul>
@@ -162,195 +165,168 @@ ul.task-list li input[type="checkbox"] {
     </nav>
 </header>
 <!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-body">
+      <h1 class="title">PySpark Basics</h1>
+                                <div class="quarto-categories">
+                <div class="quarto-category">pyspark</div>
+                <div class="quarto-category">spark</div>
+                <div class="quarto-category">python</div>
+              </div>
+                  </div>
+  </div>
+    
+  
+  <div class="quarto-title-meta">
+
+      <div>
+      <div class="quarto-title-meta-heading">Author</div>
+      <div class="quarto-title-meta-contents">
+               <p>Ann Brennan </p>
+            </div>
+    </div>
+      
+      <div>
+      <div class="quarto-title-meta-heading">Published</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">February 14, 2025</p>
+      </div>
+    </div>
+    
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#apache-hadoop" id="toc-apache-hadoop" class="nav-link active" data-scroll-target="#apache-hadoop">Apache Hadoop</a></li>
+  <li><a href="#apache-spark" id="toc-apache-spark" class="nav-link" data-scroll-target="#apache-spark">Apache Spark</a></li>
+  <li><a href="#pyspark-dataframe" id="toc-pyspark-dataframe" class="nav-link" data-scroll-target="#pyspark-dataframe">PySpark DataFrame</a>
+  <ul class="collapse">
+  <li><a href="#sparksession-entry-point" id="toc-sparksession-entry-point" class="nav-link" data-scroll-target="#sparksession-entry-point">SparkSession Entry Point</a></li>
+  <li><a href="#reading-a-web-csv-file-into-the-spark-framework" id="toc-reading-a-web-csv-file-into-the-spark-framework" class="nav-link" data-scroll-target="#reading-a-web-csv-file-into-the-spark-framework">Reading a Web CSV File into the Spark Framework</a></li>
+  <li><a href="#pyspark-basics" id="toc-pyspark-basics" class="nav-link" data-scroll-target="#pyspark-basics">PySpark Basics</a>
+  <ul class="collapse">
+  <li><a href="#getting-a-summary" id="toc-getting-a-summary" class="nav-link" data-scroll-target="#getting-a-summary">Getting a Summary</a></li>
+  <li><a href="#selecting-and-reordering" id="toc-selecting-and-reordering" class="nav-link" data-scroll-target="#selecting-and-reordering">Selecting and Reordering</a></li>
+  <li><a href="#counting-values" id="toc-counting-values" class="nav-link" data-scroll-target="#counting-values">Counting Values</a></li>
+  <li><a href="#sorting" id="toc-sorting" class="nav-link" data-scroll-target="#sorting">Sorting</a></li>
+  <li><a href="#adding-a-new-variable" id="toc-adding-a-new-variable" class="nav-link" data-scroll-target="#adding-a-new-variable">Adding a New Variable</a></li>
+  <li><a href="#renaming-a-variable" id="toc-renaming-a-variable" class="nav-link" data-scroll-target="#renaming-a-variable">Renaming a Variable</a></li>
+  <li><a href="#converting-data-types" id="toc-converting-data-types" class="nav-link" data-scroll-target="#converting-data-types">Converting Data Types</a></li>
+  <li><a href="#filtering-observations" id="toc-filtering-observations" class="nav-link" data-scroll-target="#filtering-observations">Filtering Observations</a></li>
+  <li><a href="#dealing-with-missing-values-and-duplicates" id="toc-dealing-with-missing-values-and-duplicates" class="nav-link" data-scroll-target="#dealing-with-missing-values-and-duplicates">Dealing with Missing Values and Duplicates</a></li>
+  </ul></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
 <!-- main -->
-<main class="content" id="quarto-document-content">
-
-<header id="title-block-header" class="quarto-title-block default">
-<div class="quarto-title">
-<h1 class="title">A. Brennan<br><br></h1>
-</div>
-
-
-
-<div class="quarto-title-meta">
-
-    
-  
-    
-  </div>
-  
-
-</header>
+<main class="content quarto-banner-title-block" id="quarto-document-content">
 
 
 
 
+<section id="apache-hadoop" class="level1">
+<h1>Apache Hadoop</h1>
+<p>Apache Hadoop is an open source software framework. It is used for storing and processing large data sets. It has two components: Hadoop Distributed File System (HDFS) and MapReduce. HDFS is used for distributed data storage and MapReduce is used as the data processing model. Hadoop allows distributed processing of large data sets across computer clusters. First, large data sets are split into smaller blocks and are stored across multiple servers in the cluster. Then, they are processed with MapReduce.</p>
+</section>
+<section id="apache-spark" class="level1">
+<h1>Apache Spark</h1>
+<p>Apache Spark is a distributed processing system for big data workloads. It has a unified computing engine and computer clusters. Spark contains a set of libraries used for parallel processing in data analysis, machine learning, graph analysis, and streaming live data. To process data, the driver program communicates with the cluster manager to acquire worker nodes. The driver program can also break the application into smaller tasks. Once the cluster manager decides if Spark can use cluster resources and allocates the necessary nodes to Spark applications, the worker nodes can execute the tasks given by the driver program. They can communicate with each other if needed and send the results back to the driver after execution.</p>
+</section>
+<section id="pyspark-dataframe" class="level1">
+<h1>PySpark DataFrame</h1>
+<p>PySpark is a Python Application Programming Interface (API) to Apache Spark. In a PySpark DataFrame, data is distributed across a cluster of machines and operations are executed in parallel on multiple nodes. They are designed for big data and can process datasets that require more memory than a single machine.</p>
+<section id="sparksession-entry-point" class="level2">
+<h2 class="anchored" data-anchor-id="sparksession-entry-point">SparkSession Entry Point</h2>
+<p>The entry point provides the functionality for data transformation.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pyspark.sql <span class="im">import</span> SparkSession</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>spark <span class="op">=</span> SparkSession.builder.master(<span class="st">"local[*]"</span>).getOrCreate()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="reading-a-web-csv-file-into-the-spark-framework" class="level2">
+<h2 class="anchored" data-anchor-id="reading-a-web-csv-file-into-the-spark-framework">Reading a Web CSV File into the Spark Framework</h2>
+<p>We can convert the Pandas DataFrame to a Spark DataFrame.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pyspark.sql <span class="im">import</span> SparkSession</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>spark <span class="op">=</span> SparkSession.builder.master(<span class="st">"local[*]"</span>).getOrCreate()</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>df_pd <span class="op">=</span> pd.read_csv(<span class="st">'https://bcdanl.github.io/data/nba.csv'</span>)</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> spark.createDataFrame(df_pd)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="pyspark-basics" class="level2">
+<h2 class="anchored" data-anchor-id="pyspark-basics">PySpark Basics</h2>
+<section id="getting-a-summary" class="level3">
+<h3 class="anchored" data-anchor-id="getting-a-summary">Getting a Summary</h3>
+<ul>
+<li><p>printSchema()</p></li>
+<li><p>describe()</p></li>
+</ul>
+</section>
+<section id="selecting-and-reordering" class="level3">
+<h3 class="anchored" data-anchor-id="selecting-and-reordering">Selecting and Reordering</h3>
+<ul>
+<li>select()</li>
+</ul>
+</section>
+<section id="counting-values" class="level3">
+<h3 class="anchored" data-anchor-id="counting-values">Counting Values</h3>
+<ul>
+<li><p>groupBy().count()</p></li>
+<li><p>countDistinct()</p></li>
+<li><p>count()</p></li>
+</ul>
+</section>
+<section id="sorting" class="level3">
+<h3 class="anchored" data-anchor-id="sorting">Sorting</h3>
+<ul>
+<li>orderBy()</li>
+</ul>
+</section>
+<section id="adding-a-new-variable" class="level3">
+<h3 class="anchored" data-anchor-id="adding-a-new-variable">Adding a New Variable</h3>
+<ul>
+<li>withColumn()</li>
+</ul>
+</section>
+<section id="renaming-a-variable" class="level3">
+<h3 class="anchored" data-anchor-id="renaming-a-variable">Renaming a Variable</h3>
+<ul>
+<li>withColumnRenamed()</li>
+</ul>
+</section>
+<section id="converting-data-types" class="level3">
+<h3 class="anchored" data-anchor-id="converting-data-types">Converting Data Types</h3>
+<ul>
+<li>cast()</li>
+</ul>
+</section>
+<section id="filtering-observations" class="level3">
+<h3 class="anchored" data-anchor-id="filtering-observations">Filtering Observations</h3>
+<ul>
+<li>filter()</li>
+</ul>
+</section>
+<section id="dealing-with-missing-values-and-duplicates" class="level3">
+<h3 class="anchored" data-anchor-id="dealing-with-missing-values-and-duplicates">Dealing with Missing Values and Duplicates</h3>
+<ul>
+<li><p>na.drop()</p></li>
+<li><p>na.fill()</p></li>
+<li><p>dropDuplicates()</p></li>
+</ul>
 
-<div class="quarto-listing quarto-listing-container-default" id="listing-listing">
-<div class="list quarto-listing-default">
-<div class="quarto-post image-right" data-index="0" data-categories="beer,code,data-analysis" data-listing-date-sort="1702270800000" data-listing-file-modified-sort="1702320931106" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="7">
-<div class="thumbnail">
-<p><a href="./posts/beer-markets/beer-markets.html"> <img src="./posts/beer-markets/image.png" class="thumbnail-image"> </a></p>
-</div>
-<div class="body">
-<a href="./posts/beer-markets/beer-markets.html">
-<h3 class="no-anchor listing-title">
-Beer Markets
-</h3>
-<div class="listing-subtitle">
 
-</div>
-<div class="listing-description">
-Let’s analyze the <code>beer_mkts</code> data:
-</div>
-</a>
-</div>
-<div class="metadata">
-<a href="./posts/beer-markets/beer-markets.html">
-<div class="listing-date">
-Dec 11, 2023
-</div>
-<div class="listing-author">
-Ann Brennan
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="1" data-categories="nfl,code,analysis,homework" data-listing-date-sort="1702270800000" data-listing-file-modified-sort="1702406722151" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="6">
-<div class="thumbnail">
-<p><a href="./posts/homework/danl200-hw5-brennan-ann.html"> <img src="./posts/homework/nfl.png" class="thumbnail-image"> </a></p>
-</div>
-<div class="body">
-<a href="./posts/homework/danl200-hw5-brennan-ann.html">
-<h3 class="no-anchor listing-title">
-Homework 5 - NFL
-</h3>
-<div class="listing-subtitle">
+</section>
+</section>
+</section>
 
-</div>
-<div class="listing-description">
-My Github repository: https://github.com/annbrennan/annbrennan.github.io
-</div>
-</a>
-</div>
-<div class="metadata">
-<a href="./posts/homework/danl200-hw5-brennan-ann.html">
-<div class="listing-date">
-Dec 11, 2023
-</div>
-<div class="listing-author">
-Ann Brennan
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="2" data-categories="pyspark,spark,python" data-listing-date-sort="1739509200000" data-listing-file-modified-sort="1739808886800" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2">
-<div class="thumbnail">
-<p><a href="./posts/PySpark Basics/pyspark-basics.html"> <img src="./posts/PySpark Basics/pyspark-lang.png" class="thumbnail-image"> </a></p>
-</div>
-<div class="body">
-<a href="./posts/PySpark Basics/pyspark-basics.html">
-<h3 class="no-anchor listing-title">
-PySpark Basics
-</h3>
-<div class="listing-subtitle">
-
-</div>
-<div class="listing-description">
-Apache Hadoop is an open source software framework. It is used for storing and processing large data sets. It has two components: Hadoop Distributed File System (HDFS) and…
-</div>
-</a>
-</div>
-<div class="metadata">
-<a href="./posts/PySpark Basics/pyspark-basics.html">
-<div class="listing-date">
-Feb 14, 2025
-</div>
-<div class="listing-author">
-Ann Brennan
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="3" data-listing-file-modified-sort="1708377047247" data-listing-reading-time-sort="2">
-<div class="thumbnail">
-<p><a href="./posts/python basics/python_basics_blog.html"> <div class="listing-item-img-placeholder card-img-top" >&nbsp;</div> </a></p>
-</div>
-<div class="body">
-<a href="./posts/python basics/python_basics_blog.html">
-<h3 class="no-anchor listing-title">
-Python Basics
-</h3>
-<div class="listing-subtitle">
-
-</div>
-<div class="listing-description">
-A variable is a name that refers to a value.
-</div>
-</a>
-</div>
-<div class="metadata">
-<a href="./posts/python basics/python_basics_blog.html"> </a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="4" data-listing-file-modified-sort="1709840526083" data-listing-reading-time-sort="1">
-<div class="thumbnail">
-<p><a href="./posts/spotify/spotify_willie_nelson.html"> <p class="card-img-top"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"  class="thumbnail-image card-img"/></p> </a></p>
-</div>
-<div class="body">
-<a href="./posts/spotify/spotify_willie_nelson.html">
-<h3 class="no-anchor listing-title">
-Spotify Data Frame
-</h3>
-<div class="listing-subtitle">
-
-</div>
-<div class="listing-description">
-Below is the <strong>Spotify Data Frame</strong>…
-</div>
-</a>
-</div>
-<div class="metadata">
-<a href="./posts/spotify/spotify_willie_nelson.html"> </a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="5" data-categories="news" data-listing-date-sort="1698379200000" data-listing-file-modified-sort="1702043701260" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1">
-<div class="thumbnail">
-<p><a href="./posts/welcome/index.html"> <p class="card-img-top"><img src="posts\welcome\thumbnail.jpg"  class="thumbnail-image card-img"/></p> </a></p>
-</div>
-<div class="body">
-<a href="./posts/welcome/index.html">
-<h3 class="no-anchor listing-title">
-Welcome To My Blog
-</h3>
-<div class="listing-subtitle">
-
-</div>
-<div class="listing-description">
-This is the first post in a Quarto blog. Welcome!
-</div>
-</a>
-</div>
-<div class="metadata">
-<a href="./posts/welcome/index.html">
-<div class="listing-date">
-Oct 27, 2023
-</div>
-<div class="listing-author">
-Ann Brennan
-</div>
-</a>
-</div>
-</div>
-</div>
-<div class="listing-no-matching d-none">
-No matching items
-</div>
-</div></main> <!-- /main -->
+</main> <!-- /main -->
 <script type="text/javascript" src="links.js"></script>
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {

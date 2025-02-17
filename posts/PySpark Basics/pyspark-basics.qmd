@@ -1,0 +1,90 @@
+---
+title: PySpark Basics
+author: Ann Brennan
+date: 2025-02-14
+categories: [pyspark, spark, python]
+image: "pyspark-lang.png"
+
+toc: true
+---
+
+# Apache Hadoop
+
+Apache Hadoop is an open source software framework. It is used for storing and processing large data sets. It has two components: Hadoop Distributed File System (HDFS) and MapReduce. HDFS is used for distributed data storage and MapReduce is used as the data processing model. Hadoop allows distributed processing of large data sets across computer clusters. First, large data sets are split into smaller blocks and are stored across multiple servers in the cluster. Then, they are processed with MapReduce.
+
+# Apache Spark
+
+Apache Spark is a distributed processing system for big data workloads. It has a unified computing engine and computer clusters. Spark contains a set of libraries used for parallel processing in data analysis, machine learning, graph analysis, and streaming live data. To process data, the driver program communicates with the cluster manager to acquire worker nodes. The driver program can also break the application into smaller tasks. Once the cluster manager decides if Spark can use cluster resources and allocates the necessary nodes to Spark applications, the worker nodes can execute the tasks given by the driver program. They can communicate with each other if needed and send the results back to the driver after execution.
+
+# PySpark DataFrame
+
+PySpark is a Python Application Programming Interface (API) to Apache Spark. In a PySpark DataFrame, data is distributed across a cluster of machines and operations are executed in parallel on multiple nodes. They are designed for big data and can process datasets that require more memory than a single machine.
+
+## SparkSession Entry Point
+
+The entry point provides the functionality for data transformation.
+
+``` python
+from pyspark.sql import SparkSession
+spark = SparkSession.builder.master("local[*]").getOrCreate()
+```
+
+## Reading a Web CSV File into the Spark Framework
+
+We can convert the Pandas DataFrame to a Spark DataFrame.
+
+``` python
+import pandas as pd
+from pyspark.sql import SparkSession
+spark = SparkSession.builder.master("local[*]").getOrCreate()
+df_pd = pd.read_csv('https://bcdanl.github.io/data/nba.csv')
+df = spark.createDataFrame(df_pd)
+```
+
+## PySpark Basics
+
+### Getting a Summary
+
+-   printSchema()
+
+-   describe()
+
+### Selecting and Reordering
+
+-   select()
+
+### Counting Values
+
+-   groupBy().count()
+
+-   countDistinct()
+
+-   count()
+
+### Sorting
+
+-   orderBy()
+
+### Adding a New Variable
+
+-   withColumn()
+
+### Renaming a Variable
+
+-   withColumnRenamed()
+
+### Converting Data Types
+
+-   cast()
+
+### Filtering Observations
+
+-   filter()
+
+### Dealing with Missing Values and Duplicates
+
+-   na.drop()
+
+-   na.fill()
+
+-   dropDuplicates()
