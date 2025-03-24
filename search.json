@@ -154,242 +154,151 @@
     "text": "PySpark Basics\n\nGetting a Summary\n\nprintSchema()\ndescribe()\n\n\n\nSelecting and Reordering\n\nselect()\n\n\n\nCounting Values\n\ngroupBy().count()\ncountDistinct()\ncount()\n\n\n\nSorting\n\norderBy()\n\n\n\nAdding a New Variable\n\nwithColumn()\n\n\n\nRenaming a Variable\n\nwithColumnRenamed()\n\n\n\nConverting Data Types\n\ncast()\n\n\n\nFiltering Observations\n\nfilter()\n\n\n\nDealing with Missing Values and Duplicates\n\nna.drop()\nna.fill()\ndropDuplicates()"
   },
   {
-    "objectID": "posts/beer-markets/beer-markets.html",
-    "href": "posts/beer-markets/beer-markets.html",
-    "title": "Beer Markets",
+    "objectID": "posts/homework/danl200-hw5-brennan-ann.html",
+    "href": "posts/homework/danl200-hw5-brennan-ann.html",
+    "title": "Homework 5 - NFL",
     "section": "",
-    "text": "Let’s analyze the beer_mkts data:\nbeer_mkts &lt;- read_csv(\"https://bcdanl.github.io/data/beer_markets.csv\")"
+    "text": "My Github repository: https://github.com/annbrennan/annbrennan.github.io\nThe following is the data.frame for Question 2.\nNFL2022_stuffs &lt;- read_csv('https://bcdanl.github.io/data/NFL2022_stuffs.csv')"
   },
   {
-    "objectID": "posts/beer-markets/beer-markets.html#variable-description-for-beer_mkts-data.frame",
-    "href": "posts/beer-markets/beer-markets.html#variable-description-for-beer_mkts-data.frame",
-    "title": "Beer Markets",
-    "section": "Variable Description for beer_mkts data.frame",
-    "text": "Variable Description for beer_mkts data.frame\nThe following describes the variables in the beer_mkts data.frame.\n\nhh: Household identifier\n_purchase_desc: Description of the purchase\nquantity: The quantity of beer purchased\nbrand: The brand of beer\ndollar_spent: The amount spent\nbeer_floz: Fluid ounces of beer\nprice_per_floz: Price per fluid ounce\ncontainer: Type of container\npromo: Whether the purchase was on promotion\nmarket: The market where the purchase was made\nDemographics: age, employment status, degree, class of worker (cow), race, and household information like microwave, dishwasher, tvcable, singlefamilyhome, and npeople (number of people in the household)"
+    "objectID": "posts/homework/danl200-hw5-brennan-ann.html#variable-description",
+    "href": "posts/homework/danl200-hw5-brennan-ann.html#variable-description",
+    "title": "Homework 5 - NFL",
+    "section": "Variable Description",
+    "text": "Variable Description\nplay_id: Numeric play identifier that when used with game_id and drive provides the unique identifier for a single play game_id: Ten digit identifier for NFL game. drive: Numeric drive number in the game. week: Season week. posteam: String abbreviation for the team with possession. qtr: Quarter of the game (5 is overtime). half_seconds_remaining: Numeric seconds remaining in the half. down: The down for the given play. Basically you get four attempts (aka downs) to move the ball 10 yards (by either running with it or passing it). If you make 10 yards then you get another set of four downs. pass: Binary indicator if the play was a pass play. wp: Estimated winning probability for the posteam given the current situation at the start of the given play."
   },
   {
-    "objectID": "posts/beer-markets/beer-markets.html#purchase-patterns",
-    "href": "posts/beer-markets/beer-markets.html#purchase-patterns",
-    "title": "Beer Markets",
-    "section": "Purchase Patterns",
-    "text": "Purchase Patterns\nWe’ll explore the purchase patterns for beer purchases in the dataset. This will include finding the most popular brands and spending habits across different markets. Here are some specific analyses we can perform:\n\nFind top markets in terms of total quantity for each brand.\nCompare the proportion of loyal customers.\n\nI’ll begin with these analyses and create visualizations to help us understand the data better. I will start by finding the top 5 markets in terms of the total beer_floz.\n\ntop_5 &lt;- beer_mkts %&gt;% \n   group_by(market) %&gt;% \n   summarize(beer_floz_tot = sum(beer_floz, na.rm = T)) %&gt;% \n   arrange(-beer_floz_tot) %&gt;% \n   slice(1:5)\n\nLet’s visualize the top 5 markets in terms of the total beer_floz.\n\nggplot(top_5, aes(x = market, y = beer_floz_tot)) +\n  geom_bar(stat = \"identity\", fill = \"skyblue\") +\n  labs(title = \"Top 5 Beer Markets\",\n       x = \"Market\",\n       y = \"Total Beer (floz)\")\n\n\n\n\nNext, we can look at the top 5 markets in terms of the total beer_floz of a specific brand. For example, BUD LIGHT:\n\ntop_5_bud &lt;- beer_mkts %&gt;% \n  filter(brand == \"BUD LIGHT\") %&gt;% \n  group_by(market) %&gt;% \n  summarize(beer_floz_tot = sum(beer_floz, na.rm = T)) %&gt;% \n  arrange(-beer_floz_tot) %&gt;% \n  slice(1:5)\n\nJust like the top 5 beer markets, let’s visualize the top 5 markets for BUD LIGHT.\n\nggplot(top_5_bud, aes(x = market, y = beer_floz_tot)) +\n  geom_bar(stat = \"identity\") +\n  labs(title = \"Top 5 Beer Markets - Bud Light\",\n       x = \"Market\",\n       y = \"Total Beer (floz)\")\n\n\n\n\nI will do the same for BUSCH LIGHT, COORS LIGHT, MILLER LITE, and NATURAL LIGHT.\n\ntop_5_busch &lt;- beer_mkts %&gt;% \n  filter(brand == \"BUSCH LIGHT\") %&gt;% \n  group_by(market) %&gt;% \n  summarize(beer_floz_tot = sum(beer_floz, na.rm = T)) %&gt;% \n  arrange(-beer_floz_tot) %&gt;% \n  slice(1:5)\n\ntop_5_coors &lt;- beer_mkts %&gt;% \n  filter(brand == \"COORS LIGHT\") %&gt;% \n  group_by(market) %&gt;% \n  summarize(beer_floz_tot = sum(beer_floz, na.rm = T)) %&gt;% \n  arrange(-beer_floz_tot) %&gt;% \n  slice(1:5)\n\ntop_5_miller &lt;- beer_mkts %&gt;% \n  filter(brand == \"MILLER LITE\") %&gt;% \n  group_by(market) %&gt;% \n  summarize(beer_floz_tot = sum(beer_floz, na.rm = T)) %&gt;% \n  arrange(-beer_floz_tot) %&gt;% \n  slice(1:5)\n\ntop_5_natural &lt;- beer_mkts %&gt;% \n  filter(brand == \"NATURAL LIGHT\") %&gt;% \n  group_by(market) %&gt;% \n  summarize(beer_floz_tot = sum(beer_floz, na.rm = T)) %&gt;% \n  arrange(-beer_floz_tot) %&gt;% \n  slice(1:5)\n\nLet’s also look at a visualization for BUSCH LIGHT:\n\nggplot(top_5_busch, aes(x = market, y = beer_floz_tot)) +\n  geom_bar(stat = \"identity\") +\n  labs(title = \"Top 5 Beer Markets - Busch Light\",\n       x = \"Market\",\n       y = \"Total Beer (floz)\")\n\n\n\n\nNext, we will evaluate proportions of loyal customers for each brand. For example, for households that purchased BUD LIGHT at least once, I will find the fraction of households that purchased only BUD LIGHT. I will find the proportion of loyal customers for all 5 brands.\n\nloyal_customers &lt;- beer_mkts %&gt;% \n  mutate(bud = ifelse(brand==\"BUD LIGHT\", 1, 0), # 1 if brand==\"BUD LIGHT\"; 0 otherwise\n         busch = ifelse(brand==\"BUSCH LIGHT\", 1, 0),\n         coors = ifelse(brand==\"COORS LIGHT\", 1, 0),\n         miller = ifelse(brand==\"MILLER LITE\", 1, 0),\n         natural = ifelse(brand==\"NATURAL LIGHT\", 1, 0),\n         .after = hh) %&gt;% \n  select(hh:natural) %&gt;%  # select the variables we need\n  group_by(hh) %&gt;% \n  summarise(n_transactions = n(), # number of beer transactions for each hh\n            n_bud = sum(bud), # number of BUD LIGHT transactions for each hh\n            n_busch = sum(busch), \n            n_coors = sum(coors), \n            n_miller = sum(miller), \n            n_natural = sum(natural) \n  ) %&gt;% \n  summarise(loyal_bud = sum(n_transactions == n_bud) / sum(n_bud &gt; 0), \n              # sum(n_transactions == n_bud) : the number of households that purchased BUD LIGHT only\n              # sum(n_bud &gt; 0) : the number of households that purchased BUD LIGHT at least once.\n            loyal_busch = sum(n_transactions == n_busch) / sum(n_busch &gt; 0),\n            loyal_coors = sum(n_transactions == n_coors) / sum(n_coors &gt; 0),\n            loyal_miller = sum(n_transactions == n_miller) / sum(n_miller &gt; 0),\n            loyal_natural = sum(n_transactions == n_natural) / sum(n_natural &gt; 0)\n  )"
+    "objectID": "posts/homework/danl200-hw5-brennan-ann.html#q2a",
+    "href": "posts/homework/danl200-hw5-brennan-ann.html#q2a",
+    "title": "Homework 5 - NFL",
+    "section": "Q2a",
+    "text": "Q2a\nIn data.frame, NFL2022_stuffs, remove observations for which values of posteam is missing.\n\nNFL2022_stuffs &lt;- na.omit(NFL2022_stuffs)"
   },
   {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "Ann Brennan",
+    "objectID": "posts/homework/danl200-hw5-brennan-ann.html#q2b",
+    "href": "posts/homework/danl200-hw5-brennan-ann.html#q2b",
+    "title": "Homework 5 - NFL",
+    "section": "Q2b",
+    "text": "Q2b\nSummarize the mean value of pass for each posteam when all the following conditions hold: 1. wp is greater than 20% and less than 75%; 2. down is less than or equal to 2; and 3. half_seconds_remaining is greater than 120.\n\nq2b &lt;- NFL2022_stuffs %&gt;%\n  filter(wp &gt; 0.2 & wp &lt; 0.75 & down &lt;= 2 & half_seconds_remaining &gt; 120) %&gt;%\n  group_by(posteam) %&gt;%\n  summarise(mean_pass = mean(pass, na.rm = TRUE))"
+  },
+  {
+    "objectID": "posts/homework/danl200-hw5-brennan-ann.html#q2c",
+    "href": "posts/homework/danl200-hw5-brennan-ann.html#q2c",
+    "title": "Homework 5 - NFL",
+    "section": "Q2c",
+    "text": "Q2c\nProvide both (1) a ggplot code with geom_point() using the resulting data.frame in Q2b and (2) a simple comments to describe the mean value of pass for each posteam.\nIn the ggplot, reorder the posteam categories based on the mean value of pass in ascending or in descending order.\n\nggplot(q2b, aes(x = reorder(posteam, mean_pass), y = mean_pass)) +\n  geom_point() +\n  labs(x = \"team with possession\",\n       y = \"percentage of pass plays\") +\n  coord_flip()\n\n\n\n\nThe teams listed at the top of the graph have the largest mean value of pass, whereas the teams at the bottom have the smallest mean value of pass. The teams are in descending order based on mean value of pass. CIN and KC have the highest mean value of pass. WAS and ATL have the lowest mean value of pass."
+  },
+  {
+    "objectID": "posts/homework/danl200-hw5-brennan-ann.html#q2d",
+    "href": "posts/homework/danl200-hw5-brennan-ann.html#q2d",
+    "title": "Homework 5 - NFL",
+    "section": "Q2d",
+    "text": "Q2d\nConsider the following data.frame, NFL2022_epa:\n\nNFL2022_epa &lt;- read_csv('https://bcdanl.github.io/data/NFL2022_epa.csv')\n\nCreate the data.frame, NFL2022_stuffs_EPA, that includes: - All the variables in the data.frame, NFL2022_stuffs; - The variables, passer, receiver, and epa, from the data.frame, NFL2022_epa. by joining the two data.frames.\nIn the resulting data.frame, NFL2022_stuffs_EPA, remove observations with NA in passer.\n\nNFL2022_stuffs_EPA &lt;- left_join(NFL2022_stuffs, NFL2022_epa[, c(\"play_id\", \"passer\", \"receiver\", \"epa\")], by = \"play_id\")\n\nNFL2022_stuffs_EPA &lt;- NFL2022_stuffs_EPA %&gt;%\n  filter(!is.na(passer))"
+  },
+  {
+    "objectID": "posts/homework/danl200-hw5-brennan-ann.html#q2e",
+    "href": "posts/homework/danl200-hw5-brennan-ann.html#q2e",
+    "title": "Homework 5 - NFL",
+    "section": "Q2e",
+    "text": "Q2e\nProvide both (1) a single ggplot and (2) a simple comment to describe the NFL weekly trend of weekly mean value of epa for each of the following two passers, 1. “J.Allen” 2. “P.Mahomes”\n\nq2e &lt;- NFL2022_stuffs_EPA %&gt;%\n  filter(passer %in% c(\"J.Allen\", \"P.Mahomes\"))\n\nggplot(q2e, aes(x = week, y = epa, color = passer)) +\n  geom_line(stat = \"summary\", fun = \"mean\") +\n  labs(x = \"Week\",\n       y = \"Mean EPA\",\n       color = \"Passer\") + scale_color_manual(values = c(\"J.Allen\" = \"blue\", \"P.Mahomes\" = \"red\"))\n\n\n\n\nOverall, P. Mahomes generally had a higher mean EPA than J. Allen. However, in the most recent weeks, J. Allen’s mean EPA has risen significantly and is now much higher than P. Mahomes. Meanwhile, P. Mahomes’ mean EPA decreased slightly."
+  },
+  {
+    "objectID": "posts/homework/danl200-hw5-brennan-ann.html#q2f",
+    "href": "posts/homework/danl200-hw5-brennan-ann.html#q2f",
+    "title": "Homework 5 - NFL",
+    "section": "Q2f",
+    "text": "Q2f\nCalculate the difference between the mean value of epa for “J.Allen” the mean value of epa for “P.Mahomes” for each value of week.\n\nmean_epa_by_week &lt;- q2e %&gt;%\n  group_by(passer, week) %&gt;%\n  summarise(mean_epa = mean(epa, na.rm = TRUE)) %&gt;% \n  pivot_wider(names_from = passer, values_from = mean_epa)\n\nmean_epa_by_week$epa_difference &lt;- mean_epa_by_week$`J.Allen` - mean_epa_by_week$`P.Mahomes`"
+  },
+  {
+    "objectID": "posts/homework/danl200-hw5-brennan-ann.html#q2g",
+    "href": "posts/homework/danl200-hw5-brennan-ann.html#q2g",
+    "title": "Homework 5 - NFL",
+    "section": "Q2g",
+    "text": "Q2g\nSummarize the resulting data.frame in Q2d, with the following four variables:\n\nposteam: String abbreviation for the team with possession.\npasser: Name of the player who passed a ball to a receiver by initially taking a three-step drop, and backpedaling into the pocket to make a pass. (Mostly, they are quarterbacks.)\nmean_epa: Mean value of epa in 2022 for each passer\nn_pass: Number of observations for each passer\n\nThen find the top 10 NFL passers in 2022 in terms of the mean value of epa, conditioning that n_pass must be greater than or equal to the third quantile level of n_pass.\n\nsummary &lt;- NFL2022_stuffs_EPA %&gt;%\n  group_by(posteam, passer) %&gt;%\n  summarise(mean_epa = mean(epa, na.rm = TRUE),\n            n_pass = n())\n\nthird_quantile &lt;- quantile(summary$n_pass, 0.75)\n\nq2f &lt;- summary %&gt;%\n  filter(n_pass &gt;= third_quantile) %&gt;%\n  arrange(desc(mean_epa)) %&gt;%\n  slice_head(n = 10)"
+  },
+  {
+    "objectID": "pandas_basics.html#creating-a-series",
+    "href": "pandas_basics.html#creating-a-series",
+    "title": "Pandas Basics",
+    "section": "Creating a Series",
+    "text": "Creating a Series\n\n\n# Creating a Series from a list\ndata = [10, 20, 30, 40, 50]\nseries = pd.Series(data)\nseries\n\n\n\n\n\n\n\n\n0\n\n\n\n\n0\n10\n\n\n1\n20\n\n\n2\n30\n\n\n3\n40\n\n\n4\n50\n\n\n\n\ndtype: int64"
+  },
+  {
+    "objectID": "pandas_basics.html#creating-a-dataframe",
+    "href": "pandas_basics.html#creating-a-dataframe",
+    "title": "Pandas Basics",
+    "section": "Creating a DataFrame",
+    "text": "Creating a DataFrame\n\n\n# Creating a DataFrame from a dictionary\ndata = {\n    \"Name\": [\"Alice\", \"Bob\", \"Charlie\"],\n    \"Age\": [25, 30, 35],\n    \"City\": [\"New York\", \"Los Angeles\", \"Chicago\"]\n}\ndf = pd.DataFrame(data)\ndf\n\n\n  \n    \n\n\n\n\n\n\nName\nAge\nCity\n\n\n\n\n0\nAlice\n25\nNew York\n\n\n1\nBob\n30\nLos Angeles\n\n\n2\nCharlie\n35\nChicago"
+  },
+  {
+    "objectID": "pandas_basics.html#exploring-data",
+    "href": "pandas_basics.html#exploring-data",
+    "title": "Pandas Basics",
+    "section": "Exploring Data",
+    "text": "Exploring Data\n\n\n# Display the first few rows\ndf.head()\n\n# Display the shape of the DataFrame\nprint(\"Shape:\", df.shape)\n\n# Display summary statistics\ndf.describe()\n\nShape: (3, 3)\n\n\n\n  \n    \n\n\n\n\n\n\nAge\n\n\n\n\ncount\n3.0\n\n\nmean\n30.0\n\n\nstd\n5.0\n\n\nmin\n25.0\n\n\n25%\n27.5\n\n\n50%\n30.0\n\n\n75%\n32.5\n\n\nmax\n35.0"
+  },
+  {
+    "objectID": "pandas_basics.html#selecting-data",
+    "href": "pandas_basics.html#selecting-data",
+    "title": "Pandas Basics",
+    "section": "Selecting Data",
+    "text": "Selecting Data\n\n# Selecting a single column\ndf[\"Name\"]\n\n\n\n\n\n\n\n\nName\n\n\n\n\n0\nAlice\n\n\n1\nBob\n\n\n2\nCharlie\n\n\n\n\ndtype: object\n\n\n\n# Selecting multiple columns\ndf[[\"Name\", \"City\"]]\n\n\n  \n    \n\n\n\n\n\n\nName\nCity\n\n\n\n\n0\nAlice\nNew York\n\n\n1\nBob\nLos Angeles\n\n\n2\nCharlie\nChicago\n\n\n\n\n\n\n    \n\n  \n    \n\n  \n    \n  \n    \n\n  \n\n    \n  \n\n\n\n  \n\n\n    \n        \n    \n\n  \n\n\n\n  \n\n\n    \n  \n\n\n\n# Selecting rows by index\ndf.iloc[0]\n\n\n\n\n\n\n\n\n0\n\n\n\n\nName\nAlice\n\n\nAge\n25\n\n\nCity\nNew York\n\n\n\n\ndtype: object"
+  },
+  {
+    "objectID": "pandas_basics.html#filtering-data",
+    "href": "pandas_basics.html#filtering-data",
+    "title": "Pandas Basics",
+    "section": "Filtering Data",
+    "text": "Filtering Data\n\n# Filtering rows where Age is greater than 25\nfiltered_df = df[df[\"Age\"] &gt; 25]\nfiltered_df\n\n\n  \n    \n\n\n\n\n\n\nName\nAge\nCity\n\n\n\n\n1\nBob\n30\nLos Angeles\n\n\n2\nCharlie\n35\nChicago"
+  },
+  {
+    "objectID": "pandas_basics.html#adding-a-new-column",
+    "href": "pandas_basics.html#adding-a-new-column",
+    "title": "Pandas Basics",
+    "section": "Adding a New Column",
+    "text": "Adding a New Column\n\n\n# Adding a new column\ndf[\"Salary\"] = [50000, 60000, 70000]\ndf\n\n\n  \n    \n\n\n\n\n\n\nName\nAge\nCity\nSalary\n\n\n\n\n0\nAlice\n25\nNew York\n50000\n\n\n1\nBob\n30\nLos Angeles\n60000\n\n\n2\nCharlie\n35\nChicago\n70000\n\n\n\n\n\n\n    \n\n  \n    \n\n  \n    \n  \n    \n\n  \n\n    \n  \n\n\n\n  \n\n\n    \n        \n    \n\n  \n\n\n\n  \n\n\n  \n    \n    \n\n  \n    \n  \n    \n    \n  \n\n    \n  \n\n\n    ## Conclusion\n\n    This notebook covers the basic operations of pandas. You can explore more advanced features like merging,\n    joining, and working with time series data in pandas documentation: https://pandas.pydata.org/docs/"
+  },
+  {
+    "objectID": "danl-320-python-basic.html",
+    "href": "danl-320-python-basic.html",
+    "title": "Python Basics",
     "section": "",
-    "text": "Ann Brennan is pursuing a major in Data Analytics and minor in Mathematics at SUNY Geneseo. Ann also competes for the SUNY Geneseo cross country and track and field teams."
+    "text": "Python is a high-level, interpreted programming language. This is a simple Python code:\n\nprint('Hello, World!')\n\n\n\n\nIn Python, variables can store data of different types without explicitly declaring the type.\nFor example:\n\ninteger_variable = 10\nstring_variable = 'Hello'\nfloat_variable = 10.5\n\nfloat_variable\n\n10.5\n\n\n\n\n\nPython supports the usual logical conditions from mathematics:\n\n# Equals: a == b\n# Not Equals: a != b\n# Less than: a &lt; b\n# Less than or equal to: a &lt;= b\n# Greater than: a &gt; b\n# Greater than or equal to: a &gt;= b\n\nThese conditions can be used in several ways, most commonly in ‘if statements’ and loops.\n\n# if statement:\nif 5 &gt; 2:\n    print('Five is greater than two!')\n\n\n\n\nA function is a block of code which only runs when it is called.\nYou can pass data, known as parameters, into a function.\nA function can return data as a result.\n\n# Defining a function:\ndef my_function():\n    print('Hello from a function')\n\n# Calling a function:\nmy_function()\n\n\n\n\nA list is a collection which is ordered and changeable.\nA dictionary is a collection which is unordered, changeable and indexed.\n\n# List example:\nmy_list = ['apple', 'banana', 'cherry']\n\n# Dictionary example:\nmy_dict = {'name': 'John', 'age': 36}"
   },
   {
-    "objectID": "index.html#education",
-    "href": "index.html#education",
-    "title": "Ann Brennan",
-    "section": "Education",
-    "text": "Education\nState University of New York at Geneseo | Geneseo, NY  B.S. in Data Analytics | Aug 2022 - May 2026  Minor in Mathematics"
-  },
-  {
-    "objectID": "index.html#experience",
-    "href": "index.html#experience",
-    "title": "Ann Brennan",
-    "section": "Experience",
-    "text": "Experience\nGallagher | Financial & Actuarial Consulting Intern  June 2024 - August 2024"
-  },
-  {
-    "objectID": "danl_proj_nba.html#salary-distribution-among-teams",
-    "href": "danl_proj_nba.html#salary-distribution-among-teams",
-    "title": "Data Analysis Project",
-    "section": "Salary Distribution Among Teams",
-    "text": "Salary Distribution Among Teams\nLet’s start with the salary distribution among teams using seaborn for visualization. ​​\n\n\n# Handle missing values in 'Salary' by replacing them with the median salary\nmedian_salary = nba['Salary'].median()\nnba['Salary'].fillna(median_salary, inplace=True)\n\n/var/folders/_m/d6jf0jhd2zzdfd5kzdhl_24w0000gn/T/ipykernel_79892/1671011424.py:3: FutureWarning: A value is trying to be set on a copy of a DataFrame or Series through chained assignment using an inplace method.\nThe behavior will change in pandas 3.0. This inplace method will never work because the intermediate object on which we are setting values always behaves as a copy.\n\nFor example, when doing 'df[col].method(value, inplace=True)', try using 'df.method({col: value}, inplace=True)' or df[col] = df[col].method(value) instead, to perform the operation inplace on the original object.\n\n\n  nba['Salary'].fillna(median_salary, inplace=True)\n\n\n\n# Set the aesthetic style of the plots\nsns.set_style(\"whitegrid\")\n\n# Calculate total salary by team\nteam_salary = (\n    nba\n    .groupby('Team')['Salary']\n    .sum()\n    .reset_index()\n    .sort_values(by='Salary', ascending=False)\n)\n\n# Plot total salary by team\nplt.figure(figsize=(10, 16))\nsns.barplot(data = team_salary,\n            x = 'Salary', y = 'Team',\n            palette = 'coolwarm')\nplt.title('Total Salary Distribution Among NBA Teams')\nplt.xlabel('Total Salary')\nplt.ylabel('Team')\nplt.xticks(rotation=45)\nplt.show()\n\n\n\n\nThe visualization above displays the total salary distribution among NBA teams, with teams sorted by their total salary expenditure. This bar plot reveals which teams are the biggest spenders on player salaries and which are more conservative. The color gradient provides a visual cue to easily distinguish between the higher and lower spending teams.\nNotice that Portland Trail Blazers has the highest total salary followed by Golden State Warriors and Philadelphia 76ers, and Memphis Grizzlies has the lowest total salary."
-  },
-  {
-    "objectID": "danl_proj_nba.html#player-age-distribution",
-    "href": "danl_proj_nba.html#player-age-distribution",
-    "title": "Data Analysis Project",
-    "section": "Player Age Distribution",
-    "text": "Player Age Distribution\nNext, let’s explore the Player Age Distribution across the NBA. We’ll create a histogram to visualize how player ages are distributed, which will help us understand if the league trends younger, older, or has a balanced age mix. ​​\n\n# Convert 'Birthday' column to datetime format\nfrom dateutil import parser\n# nba['Birthday'] = nba['Birthday'].apply(lambda x: parser.parse(x))\n\n# Now, let's calculate the age of each player\n# nba['Age'] = (datetime.now() - nba['Birthday']).dt.days // 365\n\n# Plot the age distribution of NBA players\nplt.figure(figsize=(10, 6))\nsns.histplot(nba['Age'],\n             bins = 15,\n             kde = True,\n             color = 'skyblue')\nplt.title('Age Distribution of NBA Players')\nplt.xlabel('Age')\nplt.ylabel('Count')\nplt.show()\n\n\n/Users/bchoe/anaconda3/lib/python3.11/site-packages/seaborn/_oldcore.py:1119: FutureWarning: use_inf_as_na option is deprecated and will be removed in a future version. Convert inf values to NaN before operating instead.\n  with pd.option_context('mode.use_inf_as_na', True):\n\n\n\n\n\nThe histogram above shows the age distribution of NBA players, with a kernel density estimate (KDE) overlay to indicate the distribution shape. The plot helps identify the common ages for NBA players and whether there are significant numbers of very young or older players.\nNotice that the majority of players fall within an age range from 24 to 34. There are few players whose age is above 40."
-  },
-  {
-    "objectID": "danl_proj_nba.html#position-wise-salary-insights",
-    "href": "danl_proj_nba.html#position-wise-salary-insights",
-    "title": "Data Analysis Project",
-    "section": "Position-wise Salary Insights",
-    "text": "Position-wise Salary Insights\nMoving on to Position-wise Salary Insights, we’ll examine how average salaries differ across player positions. This analysis could reveal which positions are typically higher-paid, potentially reflecting their value on the basketball court. Let’s create a box plot to visualize the salary distribution for each position. ​​\n\n# Plot salary distribution by player position\nplt.figure(figsize=(10, 6))\nsns.boxplot(data = nba,\n            x = 'Position', y = 'Salary',\n            palette = 'Set2')\nplt.title('Salary Distribution by Position')\nplt.xlabel('Position')\nplt.ylabel('Salary')\nplt.show()\n\n\n\n\nThe box plot above illustrates the salary distribution by player position, showcasing the variation in salaries among different positions within the NBA. PG-SG has the highest median salary."
-  },
-  {
-    "objectID": "danl_proj_nba.html#top-10-highest-paid-players",
-    "href": "danl_proj_nba.html#top-10-highest-paid-players",
-    "title": "Data Analysis Project",
-    "section": "Top 10 Highest Paid Players",
-    "text": "Top 10 Highest Paid Players\nLastly, we’ll identify the Top 10 Highest Paid Players in the NBA. Let’s visualize this information.\n\n# Identify the top 10 highest paid players\ntop_10_salaries = nba.sort_values(by='Salary', ascending=False).head(10)\n\n# Plot the top 10 highest paid players\nplt.figure(figsize=(12, 8))\nsns.barplot(data = top_10_salaries,\n            x = 'Salary', y = 'PlayerName',\n            palette = 'viridis')\nplt.title('Top 10 Highest Paid NBA Players')\nplt.xlabel('Salary')\nplt.ylabel('Player')\nplt.show()\n\n\n\n\nThe bar plot above reveals the top 10 highest-paid NBA players, showcasing those who stand at the pinnacle of the league in terms of salary. This visualization not only highlights the star players who command the highest salaries but also may reflect their marketability, performance, and contribution to their respective teams."
-  },
-  {
-    "objectID": "danl-210-quarto-reticulate.html",
-    "href": "danl-210-quarto-reticulate.html",
-    "title": "Using Python and R Together!",
-    "section": "",
-    "text": "In Python, variables can store data of different types without explicitly declaring the type.\nFor example:\n\nprint('Hello, world!')\n\nHello, world!\n\na = 1\na\n\n1\n\n\n\ninteger_variable = 10\nstring_variable = 'Hello'\nfloat_variable = 10.5\n\nfloat_variable\n\n10.5"
-  },
-  {
-    "objectID": "danl-210-quarto-reticulate.html#variables-and-data-types",
-    "href": "danl-210-quarto-reticulate.html#variables-and-data-types",
-    "title": "Using Python and R Together!",
-    "section": "",
-    "text": "In Python, variables can store data of different types without explicitly declaring the type.\nFor example:\n\nprint('Hello, world!')\n\nHello, world!\n\na = 1\na\n\n1\n\n\n\ninteger_variable = 10\nstring_variable = 'Hello'\nfloat_variable = 10.5\n\nfloat_variable\n\n10.5"
-  },
-  {
-    "objectID": "danl-210-quarto-reticulate.html#control-structures",
-    "href": "danl-210-quarto-reticulate.html#control-structures",
-    "title": "Using Python and R Together!",
-    "section": "0.2 Control Structures",
-    "text": "0.2 Control Structures\nPython supports the usual logical conditions from mathematics:\n\n# Equals: a == b\n# Not Equals: a != b\n# Less than: a &lt; b\n# Less than or equal to: a &lt;= b\n# Greater than: a &gt; b\n# Greater than or equal to: a &gt;= b\n\nThese conditions can be used in several ways, most commonly in ‘if statements’ and loops.\n\n# if statement:\nif 5 &gt; 2:\n    print('Five is greater than two!')\n\nFive is greater than two!"
-  },
-  {
-    "objectID": "danl-210-quarto-reticulate.html#functions",
-    "href": "danl-210-quarto-reticulate.html#functions",
-    "title": "Using Python and R Together!",
-    "section": "0.3 Functions",
-    "text": "0.3 Functions\nA function is a block of code which only runs when it is called.\nYou can pass data, known as parameters, into a function.\nA function can return data as a result.\n\n# Defining a function:\ndef my_function():\n    print('Hello from a function')\n\n# Calling a function:\nmy_function()\n\nHello from a function"
-  },
-  {
-    "objectID": "danl-210-quarto-reticulate.html#lists-and-dictionaries",
-    "href": "danl-210-quarto-reticulate.html#lists-and-dictionaries",
-    "title": "Using Python and R Together!",
-    "section": "0.4 Lists and Dictionaries",
-    "text": "0.4 Lists and Dictionaries\nA list is a collection which is ordered and changeable.\nA dictionary is a collection which is unordered, changeable and indexed.\n\n# List example:\nmy_list = ['apple', 'banana', 'cherry']\n\n# Dictionary example:\nmy_dict = {'name': 'John', 'age': 36}"
-  },
-  {
-    "objectID": "danl-210-quarto-reticulate.html#import-python-libraries",
-    "href": "danl-210-quarto-reticulate.html#import-python-libraries",
-    "title": "Using Python and R Together!",
-    "section": "1.1 Import Python libraries",
-    "text": "1.1 Import Python libraries\n\nimport pandas as pd\n\n\noj = pd.read_csv('https://bcdanl.github.io/data/dominick_oj.csv')\n\n\n\nCode!\noj\n\n\n         sales  price      brand  ad\n0       8256.0   3.87  tropicana   0\n1       6144.0   3.87  tropicana   0\n2       3840.0   3.87  tropicana   0\n3       8000.0   3.87  tropicana   0\n4       8896.0   3.87  tropicana   0\n...        ...    ...        ...  ..\n28942   2944.0   2.00  dominicks   0\n28943   4928.0   1.94  dominicks   0\n28944  13440.0   1.59  dominicks   0\n28945  55680.0   1.49  dominicks   0\n28946   7040.0   1.75  dominicks   0\n\n[28947 rows x 4 columns]\n\n\n\noj.describe()\n\n               sales         price            ad\ncount   28947.000000  28947.000000  28947.000000\nmean    17312.213356      2.282488      0.237261\nstd     27477.660437      0.648001      0.425411\nmin        64.000000      0.520000      0.000000\n25%      4864.000000      1.790000      0.000000\n50%      8384.000000      2.170000      0.000000\n75%     17408.000000      2.730000      0.000000\nmax    716416.000100      3.870000      1.000000"
-  },
-  {
-    "objectID": "danl-210-quarto-reticulate.html#python-r-interaction",
-    "href": "danl-210-quarto-reticulate.html#python-r-interaction",
-    "title": "Using Python and R Together!",
-    "section": "1.2 Python-R Interaction",
-    "text": "1.2 Python-R Interaction\nBelow is using Python’s DataFrame oj to visualize using R’s ggplot\n\nlibrary(tidyverse)\n\n# Access the Python pandas DataFrame\noj &lt;- py$oj\n\n# Plot using ggplot2\nggplot(oj, aes(x = log(sales), y = log(price), \n               color = brand)) +\n  geom_point(alpha = .25) +\n  geom_smooth(method = lm) +\n  theme_minimal()\n\n\n\n\n\n1.2.1 Interactive DataFrame with R’s DT Package\n\n\n\n\n\n\n\nIn *.ipynb on Google Colab, we can use itables or just Google Colab’s default to print DataFrame.\n\n# !pip install itables\nfrom itables import init_notebook_mode, show\ninit_notebook_mode(all_interactive=False)\n\noj = pd.read_csv('https://bcdanl.github.io/data/dominick_oj.csv')\nshow(oj)"
-  },
-  {
-    "objectID": "classwork.2.html#heading-2",
-    "href": "classwork.2.html#heading-2",
-    "title": "Untitled",
-    "section": "Heading 2",
-    "text": "Heading 2\n\nHeading 3"
-  },
-  {
-    "objectID": "classwork.2.html#emphasis",
-    "href": "classwork.2.html#emphasis",
-    "title": "Untitled",
-    "section": "Emphasis",
-    "text": "Emphasis\nitalic\nitalic\nbold\nbold"
-  },
-  {
-    "objectID": "classwork.2.html#lists",
-    "href": "classwork.2.html#lists",
-    "title": "Untitled",
-    "section": "Lists",
-    "text": "Lists\n\nItem 1\nItem 2\n\nSub item 2.1\nSub item 2.2\n\n\n\nFirst Item\nSecond Item"
-  },
-  {
-    "objectID": "classwork.2.html#links-and-images",
-    "href": "classwork.2.html#links-and-images",
-    "title": "Untitled",
-    "section": "Links and Images",
-    "text": "Links and Images\nDANL 210"
-  },
-  {
-    "objectID": "classwork.2.html#blockquote",
-    "href": "classwork.2.html#blockquote",
-    "title": "Untitled",
-    "section": "Blockquote",
-    "text": "Blockquote\n\nBe yourself. Everyone else is already taken. - Oscar Wilde."
-  },
-  {
-    "objectID": "classwork.2.html#emojis",
-    "href": "classwork.2.html#emojis",
-    "title": "Untitled",
-    "section": "Emojis",
-    "text": "Emojis\n😄\n😸"
-  },
-  {
-    "objectID": "classwork.2.html#code-blocks",
-    "href": "classwork.2.html#code-blocks",
-    "title": "Untitled",
-    "section": "Code Blocks",
-    "text": "Code Blocks\n\"string\"\nimport numpy as np"
-  },
-  {
-    "objectID": "blog-listing.html",
-    "href": "blog-listing.html",
-    "title": "A. Brennan Analytics",
-    "section": "",
-    "text": "Order By\n       Default\n         \n          Title\n        \n         \n          Date - Oldest\n        \n         \n          Date - Newest\n        \n         \n          Author\n        \n     \n  \n    \n      \n      \n    \n\n\n\n\n  \n\n\n\n\nSpotify Data Frame\n\n\n\n\n\n\n\n\n\n1 min\n\n\n\n\n\n\n  \n\n\n\n\nPython Basics\n\n\n\n\n\n\n\n\n\n2 min\n\n\n\n\n\n\n  \n\n\n\n\nPySpark Basics\n\n\n\n\n\n\n\n\n\nFeb 14, 2025\n\n\nAnn Brennan\n\n\n2 min\n\n\n\n\n\n\n  \n\n\n\n\nHomework 5 - NFL\n\n\n\n\n\n\n\n\n\nDec 11, 2023\n\n\nAnn Brennan\n\n\n6 min\n\n\n\n\n\n\n  \n\n\n\n\nBeer Markets\n\n\n\n\n\n\n\n\n\nDec 11, 2023\n\n\nAnn Brennan\n\n\n7 min\n\n\n\n\n\n\n  \n\n\n\n\nWelcome To My Blog\n\n\n\n\n\n\n\n\n\nOct 27, 2023\n\n\nAnn Brennan\n\n\n1 min\n\n\n\n\n\n\nNo matching items"
-  },
-  {
-    "objectID": "12.1.html",
-    "href": "12.1.html",
-    "title": "Untitled",
-    "section": "",
-    "text": "library(tidyverse)\n\n── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──\n✔ dplyr     1.1.2     ✔ readr     2.1.4\n✔ forcats   1.0.0     ✔ stringr   1.5.0\n✔ ggplot2   3.4.3     ✔ tibble    3.2.1\n✔ lubridate 1.9.2     ✔ tidyr     1.3.0\n✔ purrr     1.0.2     \n── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──\n✖ dplyr::filter() masks stats::filter()\n✖ dplyr::lag()    masks stats::lag()\nℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors\n\ntable1\n\n# A tibble: 6 × 4\n  country      year  cases population\n  &lt;chr&gt;       &lt;dbl&gt;  &lt;dbl&gt;      &lt;dbl&gt;\n1 Afghanistan  1999    745   19987071\n2 Afghanistan  2000   2666   20595360\n3 Brazil       1999  37737  172006362\n4 Brazil       2000  80488  174504898\n5 China        1999 212258 1272915272\n6 China        2000 213766 1280428583\n\ntable2\n\n# A tibble: 12 × 4\n   country      year type            count\n   &lt;chr&gt;       &lt;dbl&gt; &lt;chr&gt;           &lt;dbl&gt;\n 1 Afghanistan  1999 cases             745\n 2 Afghanistan  1999 population   19987071\n 3 Afghanistan  2000 cases            2666\n 4 Afghanistan  2000 population   20595360\n 5 Brazil       1999 cases           37737\n 6 Brazil       1999 population  172006362\n 7 Brazil       2000 cases           80488\n 8 Brazil       2000 population  174504898\n 9 China        1999 cases          212258\n10 China        1999 population 1272915272\n11 China        2000 cases          213766\n12 China        2000 population 1280428583\n\ntable3\n\n# A tibble: 6 × 3\n  country      year rate             \n  &lt;chr&gt;       &lt;dbl&gt; &lt;chr&gt;            \n1 Afghanistan  1999 745/19987071     \n2 Afghanistan  2000 2666/20595360    \n3 Brazil       1999 37737/172006362  \n4 Brazil       2000 80488/174504898  \n5 China        1999 212258/1272915272\n6 China        2000 213766/1280428583\n\n# Spread across two tibbles\ntable4a  # cases\n\n# A tibble: 3 × 3\n  country     `1999` `2000`\n  &lt;chr&gt;        &lt;dbl&gt;  &lt;dbl&gt;\n1 Afghanistan    745   2666\n2 Brazil       37737  80488\n3 China       212258 213766\n\ntable4b\n\n# A tibble: 3 × 3\n  country         `1999`     `2000`\n  &lt;chr&gt;            &lt;dbl&gt;      &lt;dbl&gt;\n1 Afghanistan   19987071   20595360\n2 Brazil       172006362  174504898\n3 China       1272915272 1280428583\n\ntable4a %&gt;% \n  pivot_longer(cols = c(`1999`, `2000`), \n               names_to = \"year\", \n               values_to = \"cases\")\n\n# A tibble: 6 × 3\n  country     year   cases\n  &lt;chr&gt;       &lt;chr&gt;  &lt;dbl&gt;\n1 Afghanistan 1999     745\n2 Afghanistan 2000    2666\n3 Brazil      1999   37737\n4 Brazil      2000   80488\n5 China       1999  212258\n6 China       2000  213766"
-  },
-  {
-    "objectID": "11.29.html",
-    "href": "11.29.html",
-    "title": "Untitled",
-    "section": "",
-    "text": "Section"
-  },
-  {
-    "objectID": "basic-python-intro.html",
-    "href": "basic-python-intro.html",
-    "title": "Introduction to Python",
+    "objectID": "danl-320-python-basic.html#what-is-python",
+    "href": "danl-320-python-basic.html#what-is-python",
+    "title": "Python Basics",
     "section": "",
     "text": "Python is a high-level, interpreted programming language. This is a simple Python code:\n\nprint('Hello, World!')"
   },
   {
-    "objectID": "basic-python-intro.html#what-is-python",
-    "href": "basic-python-intro.html#what-is-python",
-    "title": "Introduction to Python",
+    "objectID": "danl-320-python-basic.html#variables-and-data-types",
+    "href": "danl-320-python-basic.html#variables-and-data-types",
+    "title": "Python Basics",
     "section": "",
-    "text": "Python is a high-level, interpreted programming language. This is a simple Python code:\n\nprint('Hello, World!')"
+    "text": "In Python, variables can store data of different types without explicitly declaring the type.\nFor example:\n\ninteger_variable = 10\nstring_variable = 'Hello'\nfloat_variable = 10.5\n\nfloat_variable\n\n10.5"
   },
   {
-    "objectID": "basic-python-intro.html#variables-and-data-types",
-    "href": "basic-python-intro.html#variables-and-data-types",
-    "title": "Introduction to Python",
-    "section": "Variables and Data Types",
-    "text": "Variables and Data Types\nIn Python, variables can store data of different types without explicitly declaring the type.\nFor example:\n\ninteger_variable = 10\nstring_variable = 'Hello'\nfloat_variable = 10.5\n\nfloat_variable\n\n10.5"
-  },
-  {
-    "objectID": "basic-python-intro.html#control-structures",
-    "href": "basic-python-intro.html#control-structures",
-    "title": "Introduction to Python",
-    "section": "Control Structures",
-    "text": "Control Structures\nPython supports the usual logical conditions from mathematics:\n\n# Equals: a == b\n# Not Equals: a != b\n# Less than: a &lt; b\n# Less than or equal to: a &lt;= b\n# Greater than: a &gt; b\n# Greater than or equal to: a &gt;= b\n\nThese conditions can be used in several ways, most commonly in ‘if statements’ and loops.\n\n# if statement:\nif 5 &gt; 2:\n    print('Five is greater than two!')"
-  },
-  {
-    "objectID": "basic-python-intro.html#functions",
-    "href": "basic-python-intro.html#functions",
-    "title": "Introduction to Python",
-    "section": "Functions",
-    "text": "Functions\nA function is a block of code which only runs when it is called.\nYou can pass data, known as parameters, into a function.\nA function can return data as a result.\n\n# Defining a function:\ndef my_function():\n    print('Hello from a function')\n\n# Calling a function:\nmy_function()"
-  },
-  {
-    "objectID": "basic-python-intro.html#lists-and-dictionaries",
-    "href": "basic-python-intro.html#lists-and-dictionaries",
-    "title": "Introduction to Python",
-    "section": "Lists and Dictionaries",
-    "text": "Lists and Dictionaries\nA list is a collection which is ordered and changeable.\nA dictionary is a collection which is unordered, changeable and indexed.\n\n# List example:\nmy_list = ['apple', 'banana', 'cherry']\n\n# Dictionary example:\nmy_dict = {'name': 'John', 'age': 36}"
-  },
-  {
-    "objectID": "blog-post-title.html",
-    "href": "blog-post-title.html",
-    "title": "A. Brennan",
+    "objectID": "danl-320-python-basic.html#control-structures",
+    "href": "danl-320-python-basic.html#control-structures",
+    "title": "Python Basics",
     "section": "",
-    "text": "Beer Markets\n\n\n\n\n\n\n\n\n\n\n\n\nDec 11, 2023\n\n\nAnn Brennan\n\n\n\n\n\n\n  \n\n\n\n\nHomework 5 - NFL\n\n\n\n\n\n\n\n\n\n\n\n\nDec 11, 2023\n\n\nAnn Brennan\n\n\n\n\n\n\n  \n\n\n\n\nPySpark Basics\n\n\n\n\n\n\n\n\n\n\n\n\nFeb 14, 2025\n\n\nAnn Brennan\n\n\n\n\n\n\n  \n\n\n\n\nPython Basics\n\n\n\n\n\n\n\n\n\n\n \n\n\n\n\n  \n\n\n\n\nSpotify Data Frame\n\n\n\n\n\n\n\n\n\n\n \n\n\n\n\n  \n\n\n\n\nWelcome To My Blog\n\n\n\n\n\n\n\n\n\n\n\n\nOct 27, 2023\n\n\nAnn Brennan\n\n\n\n\n\n\nNo matching items"
+    "text": "Python supports the usual logical conditions from mathematics:\n\n# Equals: a == b\n# Not Equals: a != b\n# Less than: a &lt; b\n# Less than or equal to: a &lt;= b\n# Greater than: a &gt; b\n# Greater than or equal to: a &gt;= b\n\nThese conditions can be used in several ways, most commonly in ‘if statements’ and loops.\n\n# if statement:\nif 5 &gt; 2:\n    print('Five is greater than two!')"
+  },
+  {
+    "objectID": "danl-320-python-basic.html#functions",
+    "href": "danl-320-python-basic.html#functions",
+    "title": "Python Basics",
+    "section": "",
+    "text": "A function is a block of code which only runs when it is called.\nYou can pass data, known as parameters, into a function.\nA function can return data as a result.\n\n# Defining a function:\ndef my_function():\n    print('Hello from a function')\n\n# Calling a function:\nmy_function()"
+  },
+  {
+    "objectID": "danl-320-python-basic.html#lists-and-dictionaries",
+    "href": "danl-320-python-basic.html#lists-and-dictionaries",
+    "title": "Python Basics",
+    "section": "",
+    "text": "A list is a collection which is ordered and changeable.\nA dictionary is a collection which is unordered, changeable and indexed.\n\n# List example:\nmy_list = ['apple', 'banana', 'cherry']\n\n# Dictionary example:\nmy_dict = {'name': 'John', 'age': 36}"
   },
   {
     "objectID": "danl-200-cw-10.html",
@@ -462,151 +371,298 @@
     "text": "9 Q3b\n\nUse the wide-form data.frame of covid to find the top 10 countries in terms of the correlation between their cases and the USA case.\n\nUse cor(data.frame), which returns a matrix.\nThen convert it to data.frame using as.data.frame(matrix)"
   },
   {
-    "objectID": "danl-320-python-basic.html",
-    "href": "danl-320-python-basic.html",
-    "title": "Python Basics",
+    "objectID": "blog-post-title.html",
+    "href": "blog-post-title.html",
+    "title": "A. Brennan",
     "section": "",
-    "text": "Python is a high-level, interpreted programming language. This is a simple Python code:\n\nprint('Hello, World!')\n\n\n\n\nIn Python, variables can store data of different types without explicitly declaring the type.\nFor example:\n\ninteger_variable = 10\nstring_variable = 'Hello'\nfloat_variable = 10.5\n\nfloat_variable\n\n10.5\n\n\n\n\n\nPython supports the usual logical conditions from mathematics:\n\n# Equals: a == b\n# Not Equals: a != b\n# Less than: a &lt; b\n# Less than or equal to: a &lt;= b\n# Greater than: a &gt; b\n# Greater than or equal to: a &gt;= b\n\nThese conditions can be used in several ways, most commonly in ‘if statements’ and loops.\n\n# if statement:\nif 5 &gt; 2:\n    print('Five is greater than two!')\n\n\n\n\nA function is a block of code which only runs when it is called.\nYou can pass data, known as parameters, into a function.\nA function can return data as a result.\n\n# Defining a function:\ndef my_function():\n    print('Hello from a function')\n\n# Calling a function:\nmy_function()\n\n\n\n\nA list is a collection which is ordered and changeable.\nA dictionary is a collection which is unordered, changeable and indexed.\n\n# List example:\nmy_list = ['apple', 'banana', 'cherry']\n\n# Dictionary example:\nmy_dict = {'name': 'John', 'age': 36}"
+    "text": "Beer Markets\n\n\n\n\n\n\n\n\n\n\n\n\nDec 11, 2023\n\n\nAnn Brennan\n\n\n\n\n\n\n  \n\n\n\n\nBen & Jerry’s Ice Cream\n\n\n\n\n\n\n\n\n\n\n \n\n\n\n\n  \n\n\n\n\nHomework 5 - NFL\n\n\n\n\n\n\n\n\n\n\n\n\nDec 11, 2023\n\n\nAnn Brennan\n\n\n\n\n\n\n  \n\n\n\n\nPySpark Basics\n\n\n\n\n\n\n\n\n\n\n\n\nFeb 14, 2025\n\n\nAnn Brennan\n\n\n\n\n\n\n  \n\n\n\n\nPython Basics\n\n\n\n\n\n\n\n\n\n\n \n\n\n\n\n  \n\n\n\n\nSpotify Data Frame\n\n\n\n\n\n\n\n\n\n\n \n\n\n\n\n  \n\n\n\n\nWelcome To My Blog\n\n\n\n\n\n\n\n\n\n\n\n\nOct 27, 2023\n\n\nAnn Brennan\n\n\n\n\n\n\nNo matching items"
   },
   {
-    "objectID": "danl-320-python-basic.html#what-is-python",
-    "href": "danl-320-python-basic.html#what-is-python",
-    "title": "Python Basics",
+    "objectID": "basic-python-intro.html",
+    "href": "basic-python-intro.html",
+    "title": "Introduction to Python",
     "section": "",
     "text": "Python is a high-level, interpreted programming language. This is a simple Python code:\n\nprint('Hello, World!')"
   },
   {
-    "objectID": "danl-320-python-basic.html#variables-and-data-types",
-    "href": "danl-320-python-basic.html#variables-and-data-types",
-    "title": "Python Basics",
+    "objectID": "basic-python-intro.html#what-is-python",
+    "href": "basic-python-intro.html#what-is-python",
+    "title": "Introduction to Python",
     "section": "",
-    "text": "In Python, variables can store data of different types without explicitly declaring the type.\nFor example:\n\ninteger_variable = 10\nstring_variable = 'Hello'\nfloat_variable = 10.5\n\nfloat_variable\n\n10.5"
+    "text": "Python is a high-level, interpreted programming language. This is a simple Python code:\n\nprint('Hello, World!')"
   },
   {
-    "objectID": "danl-320-python-basic.html#control-structures",
-    "href": "danl-320-python-basic.html#control-structures",
-    "title": "Python Basics",
+    "objectID": "basic-python-intro.html#variables-and-data-types",
+    "href": "basic-python-intro.html#variables-and-data-types",
+    "title": "Introduction to Python",
+    "section": "Variables and Data Types",
+    "text": "Variables and Data Types\nIn Python, variables can store data of different types without explicitly declaring the type.\nFor example:\n\ninteger_variable = 10\nstring_variable = 'Hello'\nfloat_variable = 10.5\n\nfloat_variable\n\n10.5"
+  },
+  {
+    "objectID": "basic-python-intro.html#control-structures",
+    "href": "basic-python-intro.html#control-structures",
+    "title": "Introduction to Python",
+    "section": "Control Structures",
+    "text": "Control Structures\nPython supports the usual logical conditions from mathematics:\n\n# Equals: a == b\n# Not Equals: a != b\n# Less than: a &lt; b\n# Less than or equal to: a &lt;= b\n# Greater than: a &gt; b\n# Greater than or equal to: a &gt;= b\n\nThese conditions can be used in several ways, most commonly in ‘if statements’ and loops.\n\n# if statement:\nif 5 &gt; 2:\n    print('Five is greater than two!')"
+  },
+  {
+    "objectID": "basic-python-intro.html#functions",
+    "href": "basic-python-intro.html#functions",
+    "title": "Introduction to Python",
+    "section": "Functions",
+    "text": "Functions\nA function is a block of code which only runs when it is called.\nYou can pass data, known as parameters, into a function.\nA function can return data as a result.\n\n# Defining a function:\ndef my_function():\n    print('Hello from a function')\n\n# Calling a function:\nmy_function()"
+  },
+  {
+    "objectID": "basic-python-intro.html#lists-and-dictionaries",
+    "href": "basic-python-intro.html#lists-and-dictionaries",
+    "title": "Introduction to Python",
+    "section": "Lists and Dictionaries",
+    "text": "Lists and Dictionaries\nA list is a collection which is ordered and changeable.\nA dictionary is a collection which is unordered, changeable and indexed.\n\n# List example:\nmy_list = ['apple', 'banana', 'cherry']\n\n# Dictionary example:\nmy_dict = {'name': 'John', 'age': 36}"
+  },
+  {
+    "objectID": "11.29.html",
+    "href": "11.29.html",
+    "title": "Untitled",
     "section": "",
-    "text": "Python supports the usual logical conditions from mathematics:\n\n# Equals: a == b\n# Not Equals: a != b\n# Less than: a &lt; b\n# Less than or equal to: a &lt;= b\n# Greater than: a &gt; b\n# Greater than or equal to: a &gt;= b\n\nThese conditions can be used in several ways, most commonly in ‘if statements’ and loops.\n\n# if statement:\nif 5 &gt; 2:\n    print('Five is greater than two!')"
+    "text": "Section"
   },
   {
-    "objectID": "danl-320-python-basic.html#functions",
-    "href": "danl-320-python-basic.html#functions",
-    "title": "Python Basics",
+    "objectID": "12.1.html",
+    "href": "12.1.html",
+    "title": "Untitled",
     "section": "",
-    "text": "A function is a block of code which only runs when it is called.\nYou can pass data, known as parameters, into a function.\nA function can return data as a result.\n\n# Defining a function:\ndef my_function():\n    print('Hello from a function')\n\n# Calling a function:\nmy_function()"
+    "text": "library(tidyverse)\n\n── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──\n✔ dplyr     1.1.2     ✔ readr     2.1.4\n✔ forcats   1.0.0     ✔ stringr   1.5.0\n✔ ggplot2   3.4.3     ✔ tibble    3.2.1\n✔ lubridate 1.9.2     ✔ tidyr     1.3.0\n✔ purrr     1.0.2     \n── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──\n✖ dplyr::filter() masks stats::filter()\n✖ dplyr::lag()    masks stats::lag()\nℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors\n\ntable1\n\n# A tibble: 6 × 4\n  country      year  cases population\n  &lt;chr&gt;       &lt;dbl&gt;  &lt;dbl&gt;      &lt;dbl&gt;\n1 Afghanistan  1999    745   19987071\n2 Afghanistan  2000   2666   20595360\n3 Brazil       1999  37737  172006362\n4 Brazil       2000  80488  174504898\n5 China        1999 212258 1272915272\n6 China        2000 213766 1280428583\n\ntable2\n\n# A tibble: 12 × 4\n   country      year type            count\n   &lt;chr&gt;       &lt;dbl&gt; &lt;chr&gt;           &lt;dbl&gt;\n 1 Afghanistan  1999 cases             745\n 2 Afghanistan  1999 population   19987071\n 3 Afghanistan  2000 cases            2666\n 4 Afghanistan  2000 population   20595360\n 5 Brazil       1999 cases           37737\n 6 Brazil       1999 population  172006362\n 7 Brazil       2000 cases           80488\n 8 Brazil       2000 population  174504898\n 9 China        1999 cases          212258\n10 China        1999 population 1272915272\n11 China        2000 cases          213766\n12 China        2000 population 1280428583\n\ntable3\n\n# A tibble: 6 × 3\n  country      year rate             \n  &lt;chr&gt;       &lt;dbl&gt; &lt;chr&gt;            \n1 Afghanistan  1999 745/19987071     \n2 Afghanistan  2000 2666/20595360    \n3 Brazil       1999 37737/172006362  \n4 Brazil       2000 80488/174504898  \n5 China        1999 212258/1272915272\n6 China        2000 213766/1280428583\n\n# Spread across two tibbles\ntable4a  # cases\n\n# A tibble: 3 × 3\n  country     `1999` `2000`\n  &lt;chr&gt;        &lt;dbl&gt;  &lt;dbl&gt;\n1 Afghanistan    745   2666\n2 Brazil       37737  80488\n3 China       212258 213766\n\ntable4b\n\n# A tibble: 3 × 3\n  country         `1999`     `2000`\n  &lt;chr&gt;            &lt;dbl&gt;      &lt;dbl&gt;\n1 Afghanistan   19987071   20595360\n2 Brazil       172006362  174504898\n3 China       1272915272 1280428583\n\ntable4a %&gt;% \n  pivot_longer(cols = c(`1999`, `2000`), \n               names_to = \"year\", \n               values_to = \"cases\")\n\n# A tibble: 6 × 3\n  country     year   cases\n  &lt;chr&gt;       &lt;chr&gt;  &lt;dbl&gt;\n1 Afghanistan 1999     745\n2 Afghanistan 2000    2666\n3 Brazil      1999   37737\n4 Brazil      2000   80488\n5 China       1999  212258\n6 China       2000  213766"
   },
   {
-    "objectID": "danl-320-python-basic.html#lists-and-dictionaries",
-    "href": "danl-320-python-basic.html#lists-and-dictionaries",
-    "title": "Python Basics",
+    "objectID": "blog-listing.html",
+    "href": "blog-listing.html",
+    "title": "A. Brennan Analytics",
     "section": "",
-    "text": "A list is a collection which is ordered and changeable.\nA dictionary is a collection which is unordered, changeable and indexed.\n\n# List example:\nmy_list = ['apple', 'banana', 'cherry']\n\n# Dictionary example:\nmy_dict = {'name': 'John', 'age': 36}"
+    "text": "Order By\n       Default\n         \n          Title\n        \n         \n          Date - Oldest\n        \n         \n          Date - Newest\n        \n         \n          Author\n        \n     \n  \n    \n      \n      \n    \n\n\n\n\n  \n\n\n\n\nSpotify Data Frame\n\n\n\n\n\n\n\n\n\n1 min\n\n\n\n\n\n\n  \n\n\n\n\nPython Basics\n\n\n\n\n\n\n\n\n\n2 min\n\n\n\n\n\n\n  \n\n\n\n\nBen & Jerry’s Ice Cream\n\n\n\n\n\n\n\n\n\n4 min\n\n\n\n\n\n\n  \n\n\n\n\nPySpark Basics\n\n\n\n\n\n\n\n\n\nFeb 14, 2025\n\n\nAnn Brennan\n\n\n2 min\n\n\n\n\n\n\n  \n\n\n\n\nHomework 5 - NFL\n\n\n\n\n\n\n\n\n\nDec 11, 2023\n\n\nAnn Brennan\n\n\n6 min\n\n\n\n\n\n\n  \n\n\n\n\nBeer Markets\n\n\n\n\n\n\n\n\n\nDec 11, 2023\n\n\nAnn Brennan\n\n\n7 min\n\n\n\n\n\n\n  \n\n\n\n\nWelcome To My Blog\n\n\n\n\n\n\n\n\n\nOct 27, 2023\n\n\nAnn Brennan\n\n\n1 min\n\n\n\n\n\n\nNo matching items"
   },
   {
-    "objectID": "pandas_basics.html#creating-a-series",
-    "href": "pandas_basics.html#creating-a-series",
-    "title": "Pandas Basics",
-    "section": "Creating a Series",
-    "text": "Creating a Series\n\n\n# Creating a Series from a list\ndata = [10, 20, 30, 40, 50]\nseries = pd.Series(data)\nseries\n\n\n\n\n\n\n\n\n0\n\n\n\n\n0\n10\n\n\n1\n20\n\n\n2\n30\n\n\n3\n40\n\n\n4\n50\n\n\n\n\ndtype: int64"
+    "objectID": "classwork.2.html#heading-2",
+    "href": "classwork.2.html#heading-2",
+    "title": "Untitled",
+    "section": "Heading 2",
+    "text": "Heading 2\n\nHeading 3"
   },
   {
-    "objectID": "pandas_basics.html#creating-a-dataframe",
-    "href": "pandas_basics.html#creating-a-dataframe",
-    "title": "Pandas Basics",
-    "section": "Creating a DataFrame",
-    "text": "Creating a DataFrame\n\n\n# Creating a DataFrame from a dictionary\ndata = {\n    \"Name\": [\"Alice\", \"Bob\", \"Charlie\"],\n    \"Age\": [25, 30, 35],\n    \"City\": [\"New York\", \"Los Angeles\", \"Chicago\"]\n}\ndf = pd.DataFrame(data)\ndf\n\n\n  \n    \n\n\n\n\n\n\nName\nAge\nCity\n\n\n\n\n0\nAlice\n25\nNew York\n\n\n1\nBob\n30\nLos Angeles\n\n\n2\nCharlie\n35\nChicago"
+    "objectID": "classwork.2.html#emphasis",
+    "href": "classwork.2.html#emphasis",
+    "title": "Untitled",
+    "section": "Emphasis",
+    "text": "Emphasis\nitalic\nitalic\nbold\nbold"
   },
   {
-    "objectID": "pandas_basics.html#exploring-data",
-    "href": "pandas_basics.html#exploring-data",
-    "title": "Pandas Basics",
-    "section": "Exploring Data",
-    "text": "Exploring Data\n\n\n# Display the first few rows\ndf.head()\n\n# Display the shape of the DataFrame\nprint(\"Shape:\", df.shape)\n\n# Display summary statistics\ndf.describe()\n\nShape: (3, 3)\n\n\n\n  \n    \n\n\n\n\n\n\nAge\n\n\n\n\ncount\n3.0\n\n\nmean\n30.0\n\n\nstd\n5.0\n\n\nmin\n25.0\n\n\n25%\n27.5\n\n\n50%\n30.0\n\n\n75%\n32.5\n\n\nmax\n35.0"
+    "objectID": "classwork.2.html#lists",
+    "href": "classwork.2.html#lists",
+    "title": "Untitled",
+    "section": "Lists",
+    "text": "Lists\n\nItem 1\nItem 2\n\nSub item 2.1\nSub item 2.2\n\n\n\nFirst Item\nSecond Item"
   },
   {
-    "objectID": "pandas_basics.html#selecting-data",
-    "href": "pandas_basics.html#selecting-data",
-    "title": "Pandas Basics",
-    "section": "Selecting Data",
-    "text": "Selecting Data\n\n# Selecting a single column\ndf[\"Name\"]\n\n\n\n\n\n\n\n\nName\n\n\n\n\n0\nAlice\n\n\n1\nBob\n\n\n2\nCharlie\n\n\n\n\ndtype: object\n\n\n\n# Selecting multiple columns\ndf[[\"Name\", \"City\"]]\n\n\n  \n    \n\n\n\n\n\n\nName\nCity\n\n\n\n\n0\nAlice\nNew York\n\n\n1\nBob\nLos Angeles\n\n\n2\nCharlie\nChicago\n\n\n\n\n\n\n    \n\n  \n    \n\n  \n    \n  \n    \n\n  \n\n    \n  \n\n\n\n  \n\n\n    \n        \n    \n\n  \n\n\n\n  \n\n\n    \n  \n\n\n\n# Selecting rows by index\ndf.iloc[0]\n\n\n\n\n\n\n\n\n0\n\n\n\n\nName\nAlice\n\n\nAge\n25\n\n\nCity\nNew York\n\n\n\n\ndtype: object"
+    "objectID": "classwork.2.html#links-and-images",
+    "href": "classwork.2.html#links-and-images",
+    "title": "Untitled",
+    "section": "Links and Images",
+    "text": "Links and Images\nDANL 210"
   },
   {
-    "objectID": "pandas_basics.html#filtering-data",
-    "href": "pandas_basics.html#filtering-data",
-    "title": "Pandas Basics",
-    "section": "Filtering Data",
-    "text": "Filtering Data\n\n# Filtering rows where Age is greater than 25\nfiltered_df = df[df[\"Age\"] &gt; 25]\nfiltered_df\n\n\n  \n    \n\n\n\n\n\n\nName\nAge\nCity\n\n\n\n\n1\nBob\n30\nLos Angeles\n\n\n2\nCharlie\n35\nChicago"
+    "objectID": "classwork.2.html#blockquote",
+    "href": "classwork.2.html#blockquote",
+    "title": "Untitled",
+    "section": "Blockquote",
+    "text": "Blockquote\n\nBe yourself. Everyone else is already taken. - Oscar Wilde."
   },
   {
-    "objectID": "pandas_basics.html#adding-a-new-column",
-    "href": "pandas_basics.html#adding-a-new-column",
-    "title": "Pandas Basics",
-    "section": "Adding a New Column",
-    "text": "Adding a New Column\n\n\n# Adding a new column\ndf[\"Salary\"] = [50000, 60000, 70000]\ndf\n\n\n  \n    \n\n\n\n\n\n\nName\nAge\nCity\nSalary\n\n\n\n\n0\nAlice\n25\nNew York\n50000\n\n\n1\nBob\n30\nLos Angeles\n60000\n\n\n2\nCharlie\n35\nChicago\n70000\n\n\n\n\n\n\n    \n\n  \n    \n\n  \n    \n  \n    \n\n  \n\n    \n  \n\n\n\n  \n\n\n    \n        \n    \n\n  \n\n\n\n  \n\n\n  \n    \n    \n\n  \n    \n  \n    \n    \n  \n\n    \n  \n\n\n    ## Conclusion\n\n    This notebook covers the basic operations of pandas. You can explore more advanced features like merging,\n    joining, and working with time series data in pandas documentation: https://pandas.pydata.org/docs/"
+    "objectID": "classwork.2.html#emojis",
+    "href": "classwork.2.html#emojis",
+    "title": "Untitled",
+    "section": "Emojis",
+    "text": "Emojis\n😄\n😸"
   },
   {
-    "objectID": "posts/homework/danl200-hw5-brennan-ann.html",
-    "href": "posts/homework/danl200-hw5-brennan-ann.html",
-    "title": "Homework 5 - NFL",
+    "objectID": "classwork.2.html#code-blocks",
+    "href": "classwork.2.html#code-blocks",
+    "title": "Untitled",
+    "section": "Code Blocks",
+    "text": "Code Blocks\n\"string\"\nimport numpy as np"
+  },
+  {
+    "objectID": "danl-210-quarto-reticulate.html",
+    "href": "danl-210-quarto-reticulate.html",
+    "title": "Using Python and R Together!",
     "section": "",
-    "text": "My Github repository: https://github.com/annbrennan/annbrennan.github.io\nThe following is the data.frame for Question 2.\nNFL2022_stuffs &lt;- read_csv('https://bcdanl.github.io/data/NFL2022_stuffs.csv')"
+    "text": "In Python, variables can store data of different types without explicitly declaring the type.\nFor example:\n\nprint('Hello, world!')\n\nHello, world!\n\na = 1\na\n\n1\n\n\n\ninteger_variable = 10\nstring_variable = 'Hello'\nfloat_variable = 10.5\n\nfloat_variable\n\n10.5"
   },
   {
-    "objectID": "posts/homework/danl200-hw5-brennan-ann.html#variable-description",
-    "href": "posts/homework/danl200-hw5-brennan-ann.html#variable-description",
-    "title": "Homework 5 - NFL",
-    "section": "Variable Description",
-    "text": "Variable Description\nplay_id: Numeric play identifier that when used with game_id and drive provides the unique identifier for a single play game_id: Ten digit identifier for NFL game. drive: Numeric drive number in the game. week: Season week. posteam: String abbreviation for the team with possession. qtr: Quarter of the game (5 is overtime). half_seconds_remaining: Numeric seconds remaining in the half. down: The down for the given play. Basically you get four attempts (aka downs) to move the ball 10 yards (by either running with it or passing it). If you make 10 yards then you get another set of four downs. pass: Binary indicator if the play was a pass play. wp: Estimated winning probability for the posteam given the current situation at the start of the given play."
+    "objectID": "danl-210-quarto-reticulate.html#variables-and-data-types",
+    "href": "danl-210-quarto-reticulate.html#variables-and-data-types",
+    "title": "Using Python and R Together!",
+    "section": "",
+    "text": "In Python, variables can store data of different types without explicitly declaring the type.\nFor example:\n\nprint('Hello, world!')\n\nHello, world!\n\na = 1\na\n\n1\n\n\n\ninteger_variable = 10\nstring_variable = 'Hello'\nfloat_variable = 10.5\n\nfloat_variable\n\n10.5"
   },
   {
-    "objectID": "posts/homework/danl200-hw5-brennan-ann.html#q2a",
-    "href": "posts/homework/danl200-hw5-brennan-ann.html#q2a",
-    "title": "Homework 5 - NFL",
-    "section": "Q2a",
-    "text": "Q2a\nIn data.frame, NFL2022_stuffs, remove observations for which values of posteam is missing.\n\nNFL2022_stuffs &lt;- na.omit(NFL2022_stuffs)"
+    "objectID": "danl-210-quarto-reticulate.html#control-structures",
+    "href": "danl-210-quarto-reticulate.html#control-structures",
+    "title": "Using Python and R Together!",
+    "section": "0.2 Control Structures",
+    "text": "0.2 Control Structures\nPython supports the usual logical conditions from mathematics:\n\n# Equals: a == b\n# Not Equals: a != b\n# Less than: a &lt; b\n# Less than or equal to: a &lt;= b\n# Greater than: a &gt; b\n# Greater than or equal to: a &gt;= b\n\nThese conditions can be used in several ways, most commonly in ‘if statements’ and loops.\n\n# if statement:\nif 5 &gt; 2:\n    print('Five is greater than two!')\n\nFive is greater than two!"
   },
   {
-    "objectID": "posts/homework/danl200-hw5-brennan-ann.html#q2b",
-    "href": "posts/homework/danl200-hw5-brennan-ann.html#q2b",
-    "title": "Homework 5 - NFL",
-    "section": "Q2b",
-    "text": "Q2b\nSummarize the mean value of pass for each posteam when all the following conditions hold: 1. wp is greater than 20% and less than 75%; 2. down is less than or equal to 2; and 3. half_seconds_remaining is greater than 120.\n\nq2b &lt;- NFL2022_stuffs %&gt;%\n  filter(wp &gt; 0.2 & wp &lt; 0.75 & down &lt;= 2 & half_seconds_remaining &gt; 120) %&gt;%\n  group_by(posteam) %&gt;%\n  summarise(mean_pass = mean(pass, na.rm = TRUE))"
+    "objectID": "danl-210-quarto-reticulate.html#functions",
+    "href": "danl-210-quarto-reticulate.html#functions",
+    "title": "Using Python and R Together!",
+    "section": "0.3 Functions",
+    "text": "0.3 Functions\nA function is a block of code which only runs when it is called.\nYou can pass data, known as parameters, into a function.\nA function can return data as a result.\n\n# Defining a function:\ndef my_function():\n    print('Hello from a function')\n\n# Calling a function:\nmy_function()\n\nHello from a function"
   },
   {
-    "objectID": "posts/homework/danl200-hw5-brennan-ann.html#q2c",
-    "href": "posts/homework/danl200-hw5-brennan-ann.html#q2c",
-    "title": "Homework 5 - NFL",
-    "section": "Q2c",
-    "text": "Q2c\nProvide both (1) a ggplot code with geom_point() using the resulting data.frame in Q2b and (2) a simple comments to describe the mean value of pass for each posteam.\nIn the ggplot, reorder the posteam categories based on the mean value of pass in ascending or in descending order.\n\nggplot(q2b, aes(x = reorder(posteam, mean_pass), y = mean_pass)) +\n  geom_point() +\n  labs(x = \"team with possession\",\n       y = \"percentage of pass plays\") +\n  coord_flip()\n\n\n\n\nThe teams listed at the top of the graph have the largest mean value of pass, whereas the teams at the bottom have the smallest mean value of pass. The teams are in descending order based on mean value of pass. CIN and KC have the highest mean value of pass. WAS and ATL have the lowest mean value of pass."
+    "objectID": "danl-210-quarto-reticulate.html#lists-and-dictionaries",
+    "href": "danl-210-quarto-reticulate.html#lists-and-dictionaries",
+    "title": "Using Python and R Together!",
+    "section": "0.4 Lists and Dictionaries",
+    "text": "0.4 Lists and Dictionaries\nA list is a collection which is ordered and changeable.\nA dictionary is a collection which is unordered, changeable and indexed.\n\n# List example:\nmy_list = ['apple', 'banana', 'cherry']\n\n# Dictionary example:\nmy_dict = {'name': 'John', 'age': 36}"
   },
   {
-    "objectID": "posts/homework/danl200-hw5-brennan-ann.html#q2d",
-    "href": "posts/homework/danl200-hw5-brennan-ann.html#q2d",
-    "title": "Homework 5 - NFL",
-    "section": "Q2d",
-    "text": "Q2d\nConsider the following data.frame, NFL2022_epa:\n\nNFL2022_epa &lt;- read_csv('https://bcdanl.github.io/data/NFL2022_epa.csv')\n\nCreate the data.frame, NFL2022_stuffs_EPA, that includes: - All the variables in the data.frame, NFL2022_stuffs; - The variables, passer, receiver, and epa, from the data.frame, NFL2022_epa. by joining the two data.frames.\nIn the resulting data.frame, NFL2022_stuffs_EPA, remove observations with NA in passer.\n\nNFL2022_stuffs_EPA &lt;- left_join(NFL2022_stuffs, NFL2022_epa[, c(\"play_id\", \"passer\", \"receiver\", \"epa\")], by = \"play_id\")\n\nNFL2022_stuffs_EPA &lt;- NFL2022_stuffs_EPA %&gt;%\n  filter(!is.na(passer))"
+    "objectID": "danl-210-quarto-reticulate.html#import-python-libraries",
+    "href": "danl-210-quarto-reticulate.html#import-python-libraries",
+    "title": "Using Python and R Together!",
+    "section": "1.1 Import Python libraries",
+    "text": "1.1 Import Python libraries\n\nimport pandas as pd\n\n\noj = pd.read_csv('https://bcdanl.github.io/data/dominick_oj.csv')\n\n\n\nCode!\noj\n\n\n         sales  price      brand  ad\n0       8256.0   3.87  tropicana   0\n1       6144.0   3.87  tropicana   0\n2       3840.0   3.87  tropicana   0\n3       8000.0   3.87  tropicana   0\n4       8896.0   3.87  tropicana   0\n...        ...    ...        ...  ..\n28942   2944.0   2.00  dominicks   0\n28943   4928.0   1.94  dominicks   0\n28944  13440.0   1.59  dominicks   0\n28945  55680.0   1.49  dominicks   0\n28946   7040.0   1.75  dominicks   0\n\n[28947 rows x 4 columns]\n\n\n\noj.describe()\n\n               sales         price            ad\ncount   28947.000000  28947.000000  28947.000000\nmean    17312.213356      2.282488      0.237261\nstd     27477.660437      0.648001      0.425411\nmin        64.000000      0.520000      0.000000\n25%      4864.000000      1.790000      0.000000\n50%      8384.000000      2.170000      0.000000\n75%     17408.000000      2.730000      0.000000\nmax    716416.000100      3.870000      1.000000"
   },
   {
-    "objectID": "posts/homework/danl200-hw5-brennan-ann.html#q2e",
-    "href": "posts/homework/danl200-hw5-brennan-ann.html#q2e",
-    "title": "Homework 5 - NFL",
-    "section": "Q2e",
-    "text": "Q2e\nProvide both (1) a single ggplot and (2) a simple comment to describe the NFL weekly trend of weekly mean value of epa for each of the following two passers, 1. “J.Allen” 2. “P.Mahomes”\n\nq2e &lt;- NFL2022_stuffs_EPA %&gt;%\n  filter(passer %in% c(\"J.Allen\", \"P.Mahomes\"))\n\nggplot(q2e, aes(x = week, y = epa, color = passer)) +\n  geom_line(stat = \"summary\", fun = \"mean\") +\n  labs(x = \"Week\",\n       y = \"Mean EPA\",\n       color = \"Passer\") + scale_color_manual(values = c(\"J.Allen\" = \"blue\", \"P.Mahomes\" = \"red\"))\n\n\n\n\nOverall, P. Mahomes generally had a higher mean EPA than J. Allen. However, in the most recent weeks, J. Allen’s mean EPA has risen significantly and is now much higher than P. Mahomes. Meanwhile, P. Mahomes’ mean EPA decreased slightly."
+    "objectID": "danl-210-quarto-reticulate.html#python-r-interaction",
+    "href": "danl-210-quarto-reticulate.html#python-r-interaction",
+    "title": "Using Python and R Together!",
+    "section": "1.2 Python-R Interaction",
+    "text": "1.2 Python-R Interaction\nBelow is using Python’s DataFrame oj to visualize using R’s ggplot\n\nlibrary(tidyverse)\n\n# Access the Python pandas DataFrame\noj &lt;- py$oj\n\n# Plot using ggplot2\nggplot(oj, aes(x = log(sales), y = log(price), \n               color = brand)) +\n  geom_point(alpha = .25) +\n  geom_smooth(method = lm) +\n  theme_minimal()\n\n\n\n\n\n1.2.1 Interactive DataFrame with R’s DT Package\n\n\n\n\n\n\n\nIn *.ipynb on Google Colab, we can use itables or just Google Colab’s default to print DataFrame.\n\n# !pip install itables\nfrom itables import init_notebook_mode, show\ninit_notebook_mode(all_interactive=False)\n\noj = pd.read_csv('https://bcdanl.github.io/data/dominick_oj.csv')\nshow(oj)"
   },
   {
-    "objectID": "posts/homework/danl200-hw5-brennan-ann.html#q2f",
-    "href": "posts/homework/danl200-hw5-brennan-ann.html#q2f",
-    "title": "Homework 5 - NFL",
-    "section": "Q2f",
-    "text": "Q2f\nCalculate the difference between the mean value of epa for “J.Allen” the mean value of epa for “P.Mahomes” for each value of week.\n\nmean_epa_by_week &lt;- q2e %&gt;%\n  group_by(passer, week) %&gt;%\n  summarise(mean_epa = mean(epa, na.rm = TRUE)) %&gt;% \n  pivot_wider(names_from = passer, values_from = mean_epa)\n\nmean_epa_by_week$epa_difference &lt;- mean_epa_by_week$`J.Allen` - mean_epa_by_week$`P.Mahomes`"
+    "objectID": "danl_proj_nba.html#salary-distribution-among-teams",
+    "href": "danl_proj_nba.html#salary-distribution-among-teams",
+    "title": "Data Analysis Project",
+    "section": "Salary Distribution Among Teams",
+    "text": "Salary Distribution Among Teams\nLet’s start with the salary distribution among teams using seaborn for visualization. ​​\n\n\n# Handle missing values in 'Salary' by replacing them with the median salary\nmedian_salary = nba['Salary'].median()\nnba['Salary'].fillna(median_salary, inplace=True)\n\n/var/folders/_m/d6jf0jhd2zzdfd5kzdhl_24w0000gn/T/ipykernel_79892/1671011424.py:3: FutureWarning: A value is trying to be set on a copy of a DataFrame or Series through chained assignment using an inplace method.\nThe behavior will change in pandas 3.0. This inplace method will never work because the intermediate object on which we are setting values always behaves as a copy.\n\nFor example, when doing 'df[col].method(value, inplace=True)', try using 'df.method({col: value}, inplace=True)' or df[col] = df[col].method(value) instead, to perform the operation inplace on the original object.\n\n\n  nba['Salary'].fillna(median_salary, inplace=True)\n\n\n\n# Set the aesthetic style of the plots\nsns.set_style(\"whitegrid\")\n\n# Calculate total salary by team\nteam_salary = (\n    nba\n    .groupby('Team')['Salary']\n    .sum()\n    .reset_index()\n    .sort_values(by='Salary', ascending=False)\n)\n\n# Plot total salary by team\nplt.figure(figsize=(10, 16))\nsns.barplot(data = team_salary,\n            x = 'Salary', y = 'Team',\n            palette = 'coolwarm')\nplt.title('Total Salary Distribution Among NBA Teams')\nplt.xlabel('Total Salary')\nplt.ylabel('Team')\nplt.xticks(rotation=45)\nplt.show()\n\n\n\n\nThe visualization above displays the total salary distribution among NBA teams, with teams sorted by their total salary expenditure. This bar plot reveals which teams are the biggest spenders on player salaries and which are more conservative. The color gradient provides a visual cue to easily distinguish between the higher and lower spending teams.\nNotice that Portland Trail Blazers has the highest total salary followed by Golden State Warriors and Philadelphia 76ers, and Memphis Grizzlies has the lowest total salary."
   },
   {
-    "objectID": "posts/homework/danl200-hw5-brennan-ann.html#q2g",
-    "href": "posts/homework/danl200-hw5-brennan-ann.html#q2g",
-    "title": "Homework 5 - NFL",
-    "section": "Q2g",
-    "text": "Q2g\nSummarize the resulting data.frame in Q2d, with the following four variables:\n\nposteam: String abbreviation for the team with possession.\npasser: Name of the player who passed a ball to a receiver by initially taking a three-step drop, and backpedaling into the pocket to make a pass. (Mostly, they are quarterbacks.)\nmean_epa: Mean value of epa in 2022 for each passer\nn_pass: Number of observations for each passer\n\nThen find the top 10 NFL passers in 2022 in terms of the mean value of epa, conditioning that n_pass must be greater than or equal to the third quantile level of n_pass.\n\nsummary &lt;- NFL2022_stuffs_EPA %&gt;%\n  group_by(posteam, passer) %&gt;%\n  summarise(mean_epa = mean(epa, na.rm = TRUE),\n            n_pass = n())\n\nthird_quantile &lt;- quantile(summary$n_pass, 0.75)\n\nq2f &lt;- summary %&gt;%\n  filter(n_pass &gt;= third_quantile) %&gt;%\n  arrange(desc(mean_epa)) %&gt;%\n  slice_head(n = 10)"
+    "objectID": "danl_proj_nba.html#player-age-distribution",
+    "href": "danl_proj_nba.html#player-age-distribution",
+    "title": "Data Analysis Project",
+    "section": "Player Age Distribution",
+    "text": "Player Age Distribution\nNext, let’s explore the Player Age Distribution across the NBA. We’ll create a histogram to visualize how player ages are distributed, which will help us understand if the league trends younger, older, or has a balanced age mix. ​​\n\n# Convert 'Birthday' column to datetime format\nfrom dateutil import parser\n# nba['Birthday'] = nba['Birthday'].apply(lambda x: parser.parse(x))\n\n# Now, let's calculate the age of each player\n# nba['Age'] = (datetime.now() - nba['Birthday']).dt.days // 365\n\n# Plot the age distribution of NBA players\nplt.figure(figsize=(10, 6))\nsns.histplot(nba['Age'],\n             bins = 15,\n             kde = True,\n             color = 'skyblue')\nplt.title('Age Distribution of NBA Players')\nplt.xlabel('Age')\nplt.ylabel('Count')\nplt.show()\n\n\n/Users/bchoe/anaconda3/lib/python3.11/site-packages/seaborn/_oldcore.py:1119: FutureWarning: use_inf_as_na option is deprecated and will be removed in a future version. Convert inf values to NaN before operating instead.\n  with pd.option_context('mode.use_inf_as_na', True):\n\n\n\n\n\nThe histogram above shows the age distribution of NBA players, with a kernel density estimate (KDE) overlay to indicate the distribution shape. The plot helps identify the common ages for NBA players and whether there are significant numbers of very young or older players.\nNotice that the majority of players fall within an age range from 24 to 34. There are few players whose age is above 40."
+  },
+  {
+    "objectID": "danl_proj_nba.html#position-wise-salary-insights",
+    "href": "danl_proj_nba.html#position-wise-salary-insights",
+    "title": "Data Analysis Project",
+    "section": "Position-wise Salary Insights",
+    "text": "Position-wise Salary Insights\nMoving on to Position-wise Salary Insights, we’ll examine how average salaries differ across player positions. This analysis could reveal which positions are typically higher-paid, potentially reflecting their value on the basketball court. Let’s create a box plot to visualize the salary distribution for each position. ​​\n\n# Plot salary distribution by player position\nplt.figure(figsize=(10, 6))\nsns.boxplot(data = nba,\n            x = 'Position', y = 'Salary',\n            palette = 'Set2')\nplt.title('Salary Distribution by Position')\nplt.xlabel('Position')\nplt.ylabel('Salary')\nplt.show()\n\n\n\n\nThe box plot above illustrates the salary distribution by player position, showcasing the variation in salaries among different positions within the NBA. PG-SG has the highest median salary."
+  },
+  {
+    "objectID": "danl_proj_nba.html#top-10-highest-paid-players",
+    "href": "danl_proj_nba.html#top-10-highest-paid-players",
+    "title": "Data Analysis Project",
+    "section": "Top 10 Highest Paid Players",
+    "text": "Top 10 Highest Paid Players\nLastly, we’ll identify the Top 10 Highest Paid Players in the NBA. Let’s visualize this information.\n\n# Identify the top 10 highest paid players\ntop_10_salaries = nba.sort_values(by='Salary', ascending=False).head(10)\n\n# Plot the top 10 highest paid players\nplt.figure(figsize=(12, 8))\nsns.barplot(data = top_10_salaries,\n            x = 'Salary', y = 'PlayerName',\n            palette = 'viridis')\nplt.title('Top 10 Highest Paid NBA Players')\nplt.xlabel('Salary')\nplt.ylabel('Player')\nplt.show()\n\n\n\n\nThe bar plot above reveals the top 10 highest-paid NBA players, showcasing those who stand at the pinnacle of the league in terms of salary. This visualization not only highlights the star players who command the highest salaries but also may reflect their marketability, performance, and contribution to their respective teams."
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Ann Brennan",
+    "section": "",
+    "text": "Ann Brennan is pursuing a major in Data Analytics and minor in Mathematics at SUNY Geneseo. Ann also competes for the SUNY Geneseo cross country and track and field teams."
+  },
+  {
+    "objectID": "index.html#education",
+    "href": "index.html#education",
+    "title": "Ann Brennan",
+    "section": "Education",
+    "text": "Education\nState University of New York at Geneseo | Geneseo, NY  B.S. in Data Analytics | Aug 2022 - May 2026  Minor in Mathematics"
+  },
+  {
+    "objectID": "index.html#experience",
+    "href": "index.html#experience",
+    "title": "Ann Brennan",
+    "section": "Experience",
+    "text": "Experience\nGallagher | Financial & Actuarial Consulting Intern  June 2024 - August 2024"
+  },
+  {
+    "objectID": "posts/beer-markets/beer-markets.html",
+    "href": "posts/beer-markets/beer-markets.html",
+    "title": "Beer Markets",
+    "section": "",
+    "text": "Let’s analyze the beer_mkts data:\nbeer_mkts &lt;- read_csv(\"https://bcdanl.github.io/data/beer_markets.csv\")"
+  },
+  {
+    "objectID": "posts/beer-markets/beer-markets.html#variable-description-for-beer_mkts-data.frame",
+    "href": "posts/beer-markets/beer-markets.html#variable-description-for-beer_mkts-data.frame",
+    "title": "Beer Markets",
+    "section": "Variable Description for beer_mkts data.frame",
+    "text": "Variable Description for beer_mkts data.frame\nThe following describes the variables in the beer_mkts data.frame.\n\nhh: Household identifier\n_purchase_desc: Description of the purchase\nquantity: The quantity of beer purchased\nbrand: The brand of beer\ndollar_spent: The amount spent\nbeer_floz: Fluid ounces of beer\nprice_per_floz: Price per fluid ounce\ncontainer: Type of container\npromo: Whether the purchase was on promotion\nmarket: The market where the purchase was made\nDemographics: age, employment status, degree, class of worker (cow), race, and household information like microwave, dishwasher, tvcable, singlefamilyhome, and npeople (number of people in the household)"
+  },
+  {
+    "objectID": "posts/beer-markets/beer-markets.html#purchase-patterns",
+    "href": "posts/beer-markets/beer-markets.html#purchase-patterns",
+    "title": "Beer Markets",
+    "section": "Purchase Patterns",
+    "text": "Purchase Patterns\nWe’ll explore the purchase patterns for beer purchases in the dataset. This will include finding the most popular brands and spending habits across different markets. Here are some specific analyses we can perform:\n\nFind top markets in terms of total quantity for each brand.\nCompare the proportion of loyal customers.\n\nI’ll begin with these analyses and create visualizations to help us understand the data better. I will start by finding the top 5 markets in terms of the total beer_floz.\n\ntop_5 &lt;- beer_mkts %&gt;% \n   group_by(market) %&gt;% \n   summarize(beer_floz_tot = sum(beer_floz, na.rm = T)) %&gt;% \n   arrange(-beer_floz_tot) %&gt;% \n   slice(1:5)\n\nLet’s visualize the top 5 markets in terms of the total beer_floz.\n\nggplot(top_5, aes(x = market, y = beer_floz_tot)) +\n  geom_bar(stat = \"identity\", fill = \"skyblue\") +\n  labs(title = \"Top 5 Beer Markets\",\n       x = \"Market\",\n       y = \"Total Beer (floz)\")\n\n\n\n\nNext, we can look at the top 5 markets in terms of the total beer_floz of a specific brand. For example, BUD LIGHT:\n\ntop_5_bud &lt;- beer_mkts %&gt;% \n  filter(brand == \"BUD LIGHT\") %&gt;% \n  group_by(market) %&gt;% \n  summarize(beer_floz_tot = sum(beer_floz, na.rm = T)) %&gt;% \n  arrange(-beer_floz_tot) %&gt;% \n  slice(1:5)\n\nJust like the top 5 beer markets, let’s visualize the top 5 markets for BUD LIGHT.\n\nggplot(top_5_bud, aes(x = market, y = beer_floz_tot)) +\n  geom_bar(stat = \"identity\") +\n  labs(title = \"Top 5 Beer Markets - Bud Light\",\n       x = \"Market\",\n       y = \"Total Beer (floz)\")\n\n\n\n\nI will do the same for BUSCH LIGHT, COORS LIGHT, MILLER LITE, and NATURAL LIGHT.\n\ntop_5_busch &lt;- beer_mkts %&gt;% \n  filter(brand == \"BUSCH LIGHT\") %&gt;% \n  group_by(market) %&gt;% \n  summarize(beer_floz_tot = sum(beer_floz, na.rm = T)) %&gt;% \n  arrange(-beer_floz_tot) %&gt;% \n  slice(1:5)\n\ntop_5_coors &lt;- beer_mkts %&gt;% \n  filter(brand == \"COORS LIGHT\") %&gt;% \n  group_by(market) %&gt;% \n  summarize(beer_floz_tot = sum(beer_floz, na.rm = T)) %&gt;% \n  arrange(-beer_floz_tot) %&gt;% \n  slice(1:5)\n\ntop_5_miller &lt;- beer_mkts %&gt;% \n  filter(brand == \"MILLER LITE\") %&gt;% \n  group_by(market) %&gt;% \n  summarize(beer_floz_tot = sum(beer_floz, na.rm = T)) %&gt;% \n  arrange(-beer_floz_tot) %&gt;% \n  slice(1:5)\n\ntop_5_natural &lt;- beer_mkts %&gt;% \n  filter(brand == \"NATURAL LIGHT\") %&gt;% \n  group_by(market) %&gt;% \n  summarize(beer_floz_tot = sum(beer_floz, na.rm = T)) %&gt;% \n  arrange(-beer_floz_tot) %&gt;% \n  slice(1:5)\n\nLet’s also look at a visualization for BUSCH LIGHT:\n\nggplot(top_5_busch, aes(x = market, y = beer_floz_tot)) +\n  geom_bar(stat = \"identity\") +\n  labs(title = \"Top 5 Beer Markets - Busch Light\",\n       x = \"Market\",\n       y = \"Total Beer (floz)\")\n\n\n\n\nNext, we will evaluate proportions of loyal customers for each brand. For example, for households that purchased BUD LIGHT at least once, I will find the fraction of households that purchased only BUD LIGHT. I will find the proportion of loyal customers for all 5 brands.\n\nloyal_customers &lt;- beer_mkts %&gt;% \n  mutate(bud = ifelse(brand==\"BUD LIGHT\", 1, 0), # 1 if brand==\"BUD LIGHT\"; 0 otherwise\n         busch = ifelse(brand==\"BUSCH LIGHT\", 1, 0),\n         coors = ifelse(brand==\"COORS LIGHT\", 1, 0),\n         miller = ifelse(brand==\"MILLER LITE\", 1, 0),\n         natural = ifelse(brand==\"NATURAL LIGHT\", 1, 0),\n         .after = hh) %&gt;% \n  select(hh:natural) %&gt;%  # select the variables we need\n  group_by(hh) %&gt;% \n  summarise(n_transactions = n(), # number of beer transactions for each hh\n            n_bud = sum(bud), # number of BUD LIGHT transactions for each hh\n            n_busch = sum(busch), \n            n_coors = sum(coors), \n            n_miller = sum(miller), \n            n_natural = sum(natural) \n  ) %&gt;% \n  summarise(loyal_bud = sum(n_transactions == n_bud) / sum(n_bud &gt; 0), \n              # sum(n_transactions == n_bud) : the number of households that purchased BUD LIGHT only\n              # sum(n_bud &gt; 0) : the number of households that purchased BUD LIGHT at least once.\n            loyal_busch = sum(n_transactions == n_busch) / sum(n_busch &gt; 0),\n            loyal_coors = sum(n_transactions == n_coors) / sum(n_coors &gt; 0),\n            loyal_miller = sum(n_transactions == n_miller) / sum(n_miller &gt; 0),\n            loyal_natural = sum(n_transactions == n_natural) / sum(n_natural &gt; 0)\n  )"
+  },
+  {
+    "objectID": "posts/hw2-icecream/hw2_part2.html",
+    "href": "posts/hw2-icecream/hw2_part2.html",
+    "title": "Ben & Jerry’s Ice Cream",
+    "section": "",
+    "text": "In this post, we’ll take a look at a dataset containing information about household Ben & Jerry’s ice cream purchases. First, we’ll analyze the data using descriptive statistics, filtering, and group operations. After that, we’ll be able to build a simple linear regression model to predict the price per serving of Ben & Jerry’s ice cream based on different household characteristics."
+  },
+  {
+    "objectID": "posts/hw2-icecream/hw2_part2.html#introduction",
+    "href": "posts/hw2-icecream/hw2_part2.html#introduction",
+    "title": "Ben & Jerry’s Ice Cream",
+    "section": "",
+    "text": "In this post, we’ll take a look at a dataset containing information about household Ben & Jerry’s ice cream purchases. First, we’ll analyze the data using descriptive statistics, filtering, and group operations. After that, we’ll be able to build a simple linear regression model to predict the price per serving of Ben & Jerry’s ice cream based on different household characteristics."
+  },
+  {
+    "objectID": "posts/hw2-icecream/hw2_part2.html#loading-packages-udfs-anddataframe",
+    "href": "posts/hw2-icecream/hw2_part2.html#loading-packages-udfs-anddataframe",
+    "title": "Ben & Jerry’s Ice Cream",
+    "section": "Loading Packages, UDFS, andDataFrame",
+    "text": "Loading Packages, UDFS, andDataFrame\nBefore we get started, we must load the packages and UDFs necessary for our analysis and Linear Regression.\n\nimport pandas as pd\nimport numpy as np\nfrom tabulate import tabulate  # for table summary\nimport scipy.stats as stats\nfrom scipy.stats import norm\nimport matplotlib.pyplot as plt\nimport seaborn as sns\nimport statsmodels.api as sm  # for lowess smoothing\n\nfrom pyspark.sql import SparkSession\nfrom pyspark.sql.functions import rand, col, pow, mean, avg, when, log, sqrt, exp\nfrom pyspark.ml.feature import VectorAssembler\nfrom pyspark.ml.regression import LinearRegression, GeneralizedLinearRegression\nfrom pyspark.ml.evaluation import BinaryClassificationEvaluator\n\nspark = SparkSession.builder.master(\"local[*]\").getOrCreate()\n\n\ndef add_dummy_variables(var_name, reference_level, category_order=None):\n    \"\"\"\n    Creates dummy variables for the specified column in the global DataFrames dtrain and dtest.\n    Allows manual setting of category order.\n\n    Parameters:\n        var_name (str): The name of the categorical column (e.g., \"borough_name\").\n        reference_level (int): Index of the category to be used as the reference (dummy omitted).\n        category_order (list, optional): List of categories in the desired order. If None, categories are sorted.\n\n    Returns:\n        dummy_cols (list): List of dummy column names excluding the reference category.\n        ref_category (str): The category chosen as the reference.\n    \"\"\"\n    global dtrain, dtest\n\n    # Get distinct categories from the training set.\n    categories = dtrain.select(var_name).distinct().rdd.flatMap(lambda x: x).collect()\n\n    # Convert booleans to strings if present.\n    categories = [str(c) if isinstance(c, bool) else c for c in categories]\n\n    # Use manual category order if provided; otherwise, sort categories.\n    if category_order:\n        # Ensure all categories are present in the user-defined order\n        missing = set(categories) - set(category_order)\n        if missing:\n            raise ValueError(f\"These categories are missing from your custom order: {missing}\")\n        categories = category_order\n    else:\n        categories = sorted(categories)\n\n    # Validate reference_level\n    if reference_level &lt; 0 or reference_level &gt;= len(categories):\n        raise ValueError(f\"reference_level must be between 0 and {len(categories) - 1}\")\n\n    # Define the reference category\n    ref_category = categories[reference_level]\n    print(\"Reference category (dummy omitted):\", ref_category)\n\n    # Create dummy variables for all categories\n    for cat in categories:\n        dummy_col_name = var_name + \"_\" + str(cat).replace(\" \", \"_\")\n        dtrain = dtrain.withColumn(dummy_col_name, when(col(var_name) == cat, 1).otherwise(0))\n        dtest = dtest.withColumn(dummy_col_name, when(col(var_name) == cat, 1).otherwise(0))\n\n    # List of dummy columns, excluding the reference category\n    dummy_cols = [var_name + \"_\" + str(cat).replace(\" \", \"_\") for cat in categories if cat != ref_category]\n\n    return dummy_cols, ref_category\n\n\n# Example usage without category_order:\n# dummy_cols_year, ref_category_year = add_dummy_variables('year', 0)\n\n# Example usage with category_order:\n# custom_order_wkday = ['sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday']\n# dummy_cols_wkday, ref_category_wkday = add_dummy_variables('wkday', reference_level=0, category_order = custom_order_wkday)\n\n\ndef regression_table(model, assembler):\n    \"\"\"\n    Creates a formatted regression table from a fitted LinearRegression model and its VectorAssembler,\n    and inserts a dashed horizontal line after the Intercept row. The table includes separate columns\n    for the 95% confidence interval lower and upper bounds for each coefficient (computed at the 5% significance level)\n    and an \"Observations\" row (using model.summary.numInstances) above the R² row.\n    The RMSE row is placed as the last row.\n\n    The columns are ordered as:\n        Metric | Value | Significance | Std. Error | p-value | 95% CI Lower | 95% CI Upper\n\n    For the \"Value\", \"Std. Error\", \"95% CI Lower\", and \"95% CI Upper\" columns, commas are inserted every three digits,\n    with 3 decimal places (except for Observations which is formatted as an integer with commas).\n\n    Parameters:\n        model: A fitted LinearRegression model (with a .summary attribute).\n        assembler: The VectorAssembler used to assemble the features for the model.\n\n    Returns:\n        A formatted string containing the regression table.\n    \"\"\"\n    # Extract coefficients and standard errors as NumPy arrays\n    coeffs = model.coefficients.toArray()\n\n    std_errors_all = np.array(model.summary.coefficientStandardErrors)\n\n    # Check if the intercept's standard error is included (one extra element)\n    if len(std_errors_all) == len(coeffs) + 1:\n        intercept_se = std_errors_all[0]\n        std_errors = std_errors_all[1:]\n    else:\n        intercept_se = None\n        std_errors = std_errors_all\n\n    # Compute t-statistics for feature coefficients (t = beta / SE(beta))\n    # t_stats = coeffs / std_errors\n    t_stats = model.summary.tValues\n\n    # Degrees of freedom: number of instances minus number of predictors minus 1 (for intercept)\n    df = model.summary.numInstances - len(coeffs) - 1\n\n    # Compute the t-critical value for a 95% confidence interval (two-tailed, 5% significance)\n    t_critical = stats.t.ppf(0.975, df)\n\n    # Compute two-tailed p-values for each feature coefficient\n    # p_values = [2 * (1 - stats.t.cdf(np.abs(t), df)) for t in t_stats]\n    p_values = model.summary.pValues\n\n    # Function to assign significance stars based on p-value\n    def significance_stars(p):\n        if p &lt; 0.01:\n            return \"***\"\n        elif p &lt; 0.05:\n            return \"**\"\n        elif p &lt; 0.1:\n            return \"*\"\n        else:\n            return \"\"\n\n    # Build the table rows.\n    # Order: Metric, Value, Significance, Std. Error, p-value, 95% CI Lower, 95% CI Upper.\n    table = []\n    for feature, beta, se, p in zip(assembler.getInputCols(), coeffs, std_errors, p_values):\n        ci_lower = beta - t_critical * se\n        ci_upper = beta + t_critical * se\n        table.append([\n            \"Beta: \" + feature,       # Metric name\n            beta,                     # Beta estimate (Value)\n            significance_stars(p),    # Significance stars\n            se,                       # Standard error\n            p,                        # p-value\n            ci_lower,                 # 95% CI lower bound\n            ci_upper                  # 95% CI upper bound\n        ])\n\n    # Compute and add the intercept row with its SE, p-value, significance, and CI (if available)\n    if intercept_se is not None:\n        intercept_t = model.intercept / intercept_se\n        intercept_p = 2 * (1 - stats.t.cdf(np.abs(intercept_t), df))\n        intercept_sig = significance_stars(intercept_p)\n        ci_intercept_lower = model.intercept - t_critical * intercept_se\n        ci_intercept_upper = model.intercept + t_critical * intercept_se\n    else:\n        intercept_se = \"\"\n        intercept_p = \"\"\n        intercept_sig = \"\"\n        ci_intercept_lower = \"\"\n        ci_intercept_upper = \"\"\n\n    table.append([\n        \"Intercept\",\n        model.intercept,\n        intercept_sig,\n        intercept_se,\n        intercept_p,\n        ci_intercept_lower,\n        ci_intercept_upper\n    ])\n\n    # Append overall model metrics:\n    # Insert an Observations row using model.summary.numInstances,\n    # then an R² row, and finally the RMSE row as the last row.\n    table.append([\"Observations\", model.summary.numInstances, \"\", \"\", \"\", \"\", \"\"])\n    table.append([\"R²\", model.summary.r2, \"\", \"\", \"\", \"\", \"\"])\n    table.append([\"RMSE\", model.summary.rootMeanSquaredError, \"\", \"\", \"\", \"\", \"\"])\n\n    # Format the table.\n    # For the \"Value\" (index 1), \"Std. Error\" (index 3), \"95% CI Lower\" (index 5), and \"95% CI Upper\" (index 6) columns,\n    # format with commas and 3 decimal places, except for Observations which should be an integer with commas.\n    # For the p-value (index 4), format to 3 decimal places.\n    formatted_table = []\n    for row in table:\n        formatted_row = []\n        for i, item in enumerate(row):\n            if row[0] == \"Observations\" and i == 1 and isinstance(item, (int, float, np.floating)) and item != \"\":\n                # Format Observations as integer with commas, no decimals.\n                formatted_row.append(f\"{int(item):,}\")\n            elif isinstance(item, (int, float, np.floating)) and item != \"\":\n                if i in [1, 3, 5, 6]:\n                    formatted_row.append(f\"{item:,.3f}\")\n                elif i == 4:\n                    formatted_row.append(f\"{item:.3f}\")\n                else:\n                    formatted_row.append(f\"{item:.3f}\")\n            else:\n                formatted_row.append(item)\n        formatted_table.append(formatted_row)\n\n    # Generate the table string using tabulate.\n    table_str = tabulate(\n        formatted_table,\n        headers=[\"Metric\", \"Value\", \"Sig.\", \"Std. Error\", \"p-value\", \"95% CI Lower\", \"95% CI Upper\"],\n        tablefmt=\"pretty\",\n        colalign=(\"left\", \"right\", \"center\", \"right\", \"right\", \"right\", \"right\")\n    )\n\n    # Insert a dashed line after the Intercept row for clarity.\n    lines = table_str.split(\"\\n\")\n    dash_line = '-' * len(lines[0])\n    for i, line in enumerate(lines):\n        if \"Intercept\" in line and not line.strip().startswith('+'):\n            lines.insert(i+1, dash_line)\n            break\n\n    return \"\\n\".join(lines)\n\n\nice_cream = pd.read_csv('https://bcdanl.github.io/data/ben-and-jerry-cleaned.csv')\n\n\nice_cream\n\n\n  \n    \n\n\n\n\n\n\npriceper1\nflavor_descr\nsize1_descr\nhousehold_id\nhousehold_income\nhousehold_size\nusecoup\ncouponper1\nregion\nmarried\nrace\nhispanic_origin\nmicrowave\ndishwasher\nsfh\ninternet\ntvcable\n\n\n\n\n0\n3.41\nCAKE BATTER\n16.0 MLOZ\n2001456\n130000\n2\nTrue\n0.5\nCentral\nFalse\nwhite\nFalse\nTrue\nFalse\nFalse\nTrue\nTrue\n\n\n1\n3.50\nVAN CARAMEL FUDGE\n16.0 MLOZ\n2001456\n130000\n2\nFalse\n0.0\nCentral\nFalse\nwhite\nFalse\nTrue\nFalse\nFalse\nTrue\nTrue\n\n\n2\n3.50\nVAN CARAMEL FUDGE\n16.0 MLOZ\n2001456\n130000\n2\nFalse\n0.0\nCentral\nFalse\nwhite\nFalse\nTrue\nFalse\nFalse\nTrue\nTrue\n\n\n3\n3.00\nW-N-C-P-C\n16.0 MLOZ\n2001637\n70000\n1\nFalse\n0.0\nWest\nFalse\nwhite\nFalse\nTrue\nTrue\nTrue\nFalse\nTrue\n\n\n4\n3.99\nAMERICONE DREAM\n16.0 MLOZ\n2002791\n130000\n3\nFalse\n0.0\nSouth\nTrue\nwhite\nFalse\nTrue\nTrue\nTrue\nTrue\nTrue\n\n\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n\n\n21969\n3.34\nDUBLIN MUDSLIDE\n16.0 MLOZ\n9171249\n80000\n4\nFalse\n0.0\nSouth\nTrue\nwhite\nFalse\nTrue\nTrue\nTrue\nTrue\nTrue\n\n\n21970\n1.99\nPHISH FOOD\n16.0 MLOZ\n9171249\n80000\n4\nFalse\n0.0\nSouth\nTrue\nwhite\nFalse\nTrue\nTrue\nTrue\nTrue\nTrue\n\n\n21971\n4.99\nVAN\n16.0 MLOZ\n9176214\n80000\n1\nFalse\n0.0\nEast\nFalse\nwhite\nFalse\nTrue\nFalse\nFalse\nTrue\nTrue\n\n\n21972\n3.50\nVAN\n16.0 MLOZ\n9176214\n80000\n1\nFalse\n0.0\nEast\nFalse\nwhite\nFalse\nTrue\nFalse\nFalse\nTrue\nTrue\n\n\n21973\n3.50\nVAN\n16.0 MLOZ\n9176214\n80000\n1\nFalse\n0.0\nEast\nFalse\nwhite\nFalse\nTrue\nFalse\nFalse\nTrue\nTrue\n\n\n\n\n\n21974 rows × 17 columns\n\n    \n\n  \n    \n\n  \n    \n  \n    \n\n  \n\n    \n  \n\n\n\n  \n\n\n    \n        \n    \n\n  \n\n\n\n  \n\n\n  \n    \n    \n\n  \n    \n  \n    \n    \n  \n\n    \n  \n\n\n\nice_cream['tvcable'] = ice_cream['tvcable'].astype(bool)\n\n\ndf = spark.createDataFrame(ice_cream)"
+  },
+  {
+    "objectID": "posts/hw2-icecream/hw2_part2.html#descriptive-statistics",
+    "href": "posts/hw2-icecream/hw2_part2.html#descriptive-statistics",
+    "title": "Ben & Jerry’s Ice Cream",
+    "section": "Descriptive Statistics",
+    "text": "Descriptive Statistics\n\ndf.describe().show()\n\n+-------+------------------+---------------+-----------+--------------------+------------------+------------------+-------------------+-------+-----+\n|summary|         priceper1|   flavor_descr|size1_descr|        household_id|  household_income|    household_size|         couponper1| region| race|\n+-------+------------------+---------------+-----------+--------------------+------------------+------------------+-------------------+-------+-----+\n|  count|             21974|          21974|      21974|               21974|             21974|             21974|              21974|  21974|21974|\n|   mean| 3.314627108010865|           NULL|       NULL|1.6612005039000638E7|125290.79821607354|2.4564030217529806|0.12557882800885908|   NULL| NULL|\n| stddev|0.6656263892402016|           NULL|       NULL|1.1685954458195915E7| 57188.36322324326|1.3368209496554313| 0.5178886507790131|   NULL| NULL|\n|    min|               0.0|AMERICONE DREAM|  16.0 MLOZ|             2000358|             40000|                 1|                0.0|Central|asian|\n|    max|              9.48|  WHITE RUSSIAN|  32.0 MLOZ|            30440689|            310000|                 9|               8.98|   West|white|\n+-------+------------------+---------------+-----------+--------------------+------------------+------------------+-------------------+-------+-----+\n\n\n\nThe descriptive statistics give us a summary of the central tendencies and variation for the continuous variables in the dataset. This gives us an idea of how much Ben & Jerry’s ice cream normally costs and the characteristics of each household. For example, this helps us to understand the range of houshold income and household size."
+  },
+  {
+    "objectID": "posts/hw2-icecream/hw2_part2.html#counting-and-filtering",
+    "href": "posts/hw2-icecream/hw2_part2.html#counting-and-filtering",
+    "title": "Ben & Jerry’s Ice Cream",
+    "section": "Counting and Filtering",
+    "text": "Counting and Filtering\nNext, let’s perform some basic counting and filtering operations on the variables we’ll be working with.\n\ncoupon_usage = ice_cream['usecoup'].value_counts()\nprint(coupon_usage)\n\nusecoup\nFalse    19629\nTrue      2345\nName: count, dtype: int64\n\n\nThe above counting operation shows us how many households used a coupon on their ice cream purchase. In this case, 2,345 households used a coupon.\n\ncoupon_used = ice_cream[ice_cream['usecoup'] == True]\navg_price_coupon_used = coupon_used['priceper1'].mean()\nprint(avg_price_coupon_used)\n\n3.3771737739872068\n\n\nFor households that used a coupon, the average price of the ice cream they purchased was $3.38.\n\ncoupon_not_used = ice_cream[ice_cream['usecoup'] == False]\navg_price_coupon_not_used = coupon_not_used['priceper1'].mean()\nprint(avg_price_coupon_not_used)\n\n3.307154902003595\n\n\nFor households that did not use a coupon, the average price of the ice cream they purchased was $3.31."
+  },
+  {
+    "objectID": "posts/hw2-icecream/hw2_part2.html#group-operations",
+    "href": "posts/hw2-icecream/hw2_part2.html#group-operations",
+    "title": "Ben & Jerry’s Ice Cream",
+    "section": "Group Operations",
+    "text": "Group Operations\nWe can use group operations to analyze how different variables are related to each other. For example, we can look at how the price of ice cream changes across different types of households. Let’s take a look at how price of ice cream changes based on geography.\n\nprice_by_region = ice_cream.groupby('region')['priceper1'].mean()\nprint(price_by_region)\n\nregion\nCentral    3.277892\nEast       3.422322\nSouth      3.258359\nWest       3.325974\nName: priceper1, dtype: float64\n\n\nOn average, Ben & Jerry’s ice cream is the least expensive in the South region and most expensive in the East region.\nSimilarly, we can group the data by household income to analyze how price changes based on income.\n\nprice_by_income = ice_cream.groupby('household_income')['priceper1'].mean()\nprint(price_by_income)\n\nhousehold_income\n40000     3.343187\n50000     3.344026\n60000     3.456909\n70000     3.402600\n80000     3.318014\n110000    3.306350\n130000    3.325455\n150000    3.318129\n160000    3.266847\n170000    3.214524\n180000    3.263123\n190000    3.257739\n210000    3.316303\n230000    3.223304\n240000    3.324874\n260000    3.205166\n280000    3.445214\n300000    3.135817\n310000    3.205312\nName: priceper1, dtype: float64\n\n\nFinally, we can group the data by household size. This may give us some insights into whether or not household size impacts how much the household spends on ice cream.\n\nprice_by_size = ice_cream.groupby('household_size')['priceper1'].mean()\nprint(price_by_size)\n\nhousehold_size\n1    3.362255\n2    3.312518\n3    3.295934\n4    3.273378\n5    3.331149\n6    3.254255\n7    3.248901\n8    3.149375\n9    3.041636\nName: priceper1, dtype: float64\n\n\nOn average, it looks like larger households tend to spend less on ice cream than smaller households."
+  },
+  {
+    "objectID": "posts/hw2-icecream/hw2_part2.html#linear-regression",
+    "href": "posts/hw2-icecream/hw2_part2.html#linear-regression",
+    "title": "Ben & Jerry’s Ice Cream",
+    "section": "Linear Regression",
+    "text": "Linear Regression\nNext, let’s build a linear regression model using the Ben & Jerry’s dataset to predict the price per serving of ice cream. We will use household income, household size, and coupon usage as predictor variables.\n\ndtrain, dtest = df.randomSplit([.67, .33], seed = 1234)\n\n\nx_cols_1 = ['household_income', 'household_size', 'usecoup']\n\nassembler_1 = VectorAssembler(inputCols=x_cols_1, outputCol=\"predictors\")\n\ndtrain_1 = assembler_1.transform(dtrain)\ndtest_1  = assembler_1.transform(dtest)\n\n# training model\nmodel_1 = (\n        LinearRegression(featuresCol=\"predictors\",\n                                labelCol=\"priceper1\")\n    .fit(dtrain_1)\n)\n\n# making prediction\ndtrain_1 = model_1.transform(dtrain_1)\ndtest_1 = model_1.transform(dtest_1)\n\n\nprint(regression_table(model_1, assembler_1))\n\n+------------------------+--------+------+------------+---------+--------------+--------------+\n| Metric                 |  Value | Sig. | Std. Error | p-value | 95% CI Lower | 95% CI Upper |\n+------------------------+--------+------+------------+---------+--------------+--------------+\n| Beta: household_income | -0.000 | ***  |      0.004 |   0.000 |       -0.008 |        0.008 |\n| Beta: household_size   | -0.028 | ***  |      0.018 |   0.000 |       -0.063 |        0.007 |\n| Beta: usecoup          |  0.064 | ***  |      0.019 |   0.000 |        0.026 |        0.101 |\n| Intercept              |  3.476 | ***  |      0.000 |   0.000 |        3.476 |        3.476 |\n-----------------------------------------------------------------------------------------------\n| Observations           | 14,734 |      |            |         |              |              |\n| R²                     |  0.007 |      |            |         |              |              |\n| RMSE                   |  0.666 |      |            |         |              |              |\n+------------------------+--------+------+------------+---------+--------------+--------------+\n\n\nThis model helps us analyze how household income, household size, and coupon usage affect the price of Ben & Jerry’s ice cream. The coefficients, or beta values, show us to what extent each feature predicts or influences the price.\nThe coefficient for household income is 0. This means that an increase or decrease in household income does not affect the price of ice cream. The coefficient for household size is -0.028. This means that for every additional person in the household, the ice cream price per serving decreases by approximately 0.03. Perhaps larger households tend to buy larger amounts of ice cream that have a lower unit price. The coefficient for coupon usage is 0.064. This shows that if a coupon was used, the price per serving of ice cream increases by approximately 0.06. This does not make much sense because coupons usually reduce the price of the item purchased. A possible explanation for this is that households could be using coupons on more expensive, specialty ice cream products. Coupon usage seems to have the most impact on price per serving because it has the largest coefficient value."
+  },
+  {
+    "objectID": "posts/hw2-icecream/hw2_part2.html#conclusion",
+    "href": "posts/hw2-icecream/hw2_part2.html#conclusion",
+    "title": "Ben & Jerry’s Ice Cream",
+    "section": "Conclusion",
+    "text": "Conclusion\nBy analyzing this dataset, we were able to show how different household characteristics, such as household income, household size, and coupon usage, affect and predict the price per serving of Ben & Jerry’s ice cream. We also applied a linear regression model, which helped us further understand the relationship between these household characteristics and ice cream price. This information could be useful in marketing, as Ben & Jerry’s may want to tailor promotions to different income levels, household sizes, or other household characteristics."
   },
   {
     "objectID": "posts/python basics/python_basics_blog.html",
