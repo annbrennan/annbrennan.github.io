@@ -1,18 +1,5 @@
 [
   {
-    "listing": "/blog-listing.html",
-    "items": [
-      "/posts/spotify/spotify_willie_nelson.html",
-      "/posts/python basics/python_basics_blog.html",
-      "/posts/Homes DataFrame/hw4_pt_3.html",
-      "/posts/hw3-beer/hw3_part2.html",
-      "/posts/hw2-icecream/hw2_part2.html",
-      "/posts/PySpark Basics/pyspark-basics.html",
-      "/posts/homework/danl200-hw5-brennan-ann.html",
-      "/posts/welcome/index.html"
-    ]
-  },
-  {
     "listing": "/blog-post-title.html",
     "items": [
       "/posts/hw2-icecream/hw2_part2.html",
@@ -22,6 +9,19 @@
       "/posts/PySpark Basics/pyspark-basics.html",
       "/posts/python basics/python_basics_blog.html",
       "/posts/spotify/spotify_willie_nelson.html",
+      "/posts/welcome/index.html"
+    ]
+  },
+  {
+    "listing": "/blog-listing.html",
+    "items": [
+      "/posts/spotify/spotify_willie_nelson.html",
+      "/posts/python basics/python_basics_blog.html",
+      "/posts/Homes DataFrame/hw4_pt_3.html",
+      "/posts/hw3-beer/hw3_part2.html",
+      "/posts/hw2-icecream/hw2_part2.html",
+      "/posts/PySpark Basics/pyspark-basics.html",
+      "/posts/homework/danl200-hw5-brennan-ann.html",
       "/posts/welcome/index.html"
     ]
   }
