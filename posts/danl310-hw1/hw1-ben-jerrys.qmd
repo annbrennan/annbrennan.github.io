@@ -1,0 +1,116 @@
+---
+title: "DANL 310 - HW 1 - Ben & Jerry's Ice Cream"
+format: html
+editor: visual
+---
+
+# Ben & Jerry's Ice Cream Consumption Across Households
+
+## Motivating Question
+
+**How do household characteristics influence Ben & Jerry's consumption, price paid, and coupon usage?**
+
+To answer this question, I analyzed a dataset containing Ben & Jerry's ice cream purchases. The dataset also included information on household demographics, product prices, coupon use, and flavor preferences.
+
+## 1. Price Distribution by Ice Cream Size
+
+```{r}
+library(tidyverse)
+
+ice_cream <- read_csv("https://bcdanl.github.io/data/ben-and-jerry-cleaned.csv")
+
+```
+
+```{r}
+
+ggplot(ice_cream, aes(x = size1_descr, y = priceper1)) +
+  geom_boxplot(fill = "lightblue") +
+  labs(title = "Price Distribution by Ice Cream Size",
+       x = "Ice Cream Size",
+       y = "Price ($)")
+```
+
+As shown above, larger ice cream sizes tend to have higher prices. This is expected, however, there is some variation in price within each size. This suggests that different flavors may have different prices, which may influence household purchasing decisions.
+
+## 2. Average Price by Flavor
+
+```{r}
+top_10 <- ice_cream |>
+  count(flavor_descr, sort = TRUE) |>
+  head(10)
+
+ice_cream |>
+  filter(flavor_descr %in% top_10$flavor_descr) |>
+  group_by(flavor_descr) |>
+  summarise(avg_price = mean(priceper1, na.rm = TRUE),
+            n = n()) |>
+  arrange(desc(avg_price))
+```
+
+The flavors Chocolate Chip Cookie Dough and Cherry Garcia have the highest average prices. This shows that flavor impacts price.
+
+## 3. Household Income vs Price Paid (with coupons)
+
+```{r}
+ggplot(ice_cream, aes(x = household_income, y = priceper1, color = usecoup)) +
+  geom_point(alpha = 0.5) +
+  geom_smooth(method = "lm", se = TRUE, color = "black") +
+  labs(title = "Household Income vs. Price Paid",
+       x = "Household Income ($)",
+       y = "Price ($)",
+       color = "Used Coupon")
+```
+
+There is not much correlation between household income and price. However, higher income households tend to pay slightly more on average. Lower income households tend to use more coupons, which decreases the amount they spend.
+
+## 4. Coupon Use by Region
+
+```{r}
+ice_cream |>
+  group_by(region) |>
+  summarise(coupon_rate = mean(usecoup, na.rm = TRUE)) |>
+  arrange(desc(coupon_rate))
+```
+
+```{r}
+ggplot(ice_cream, aes(x = region, fill = usecoup)) +
+  geom_bar(position = "fill") +
+  labs(title = "Proportion of Coupon Use by Region",
+       x = "Region",
+       y = "Proportion")
+```
+
+The East and West regions show slightly more coupon usage compared to the South and Central regions. This shows that geography may influence whether or not customers use coupons, which in turn impacts the average price they pay for Ben & Jerry's ice cream.
+
+## 5. Price Paid by Household Size
+
+```{r}
+ggplot(ice_cream, aes(x = factor(household_size), y = priceper1)) +
+  geom_boxplot(fill = "lightblue") +
+  labs(title = "Price Paid by Household Size",
+       x = "Household Size",
+       y = "Price ($)")
+```
+
+Larger households tend to buy Ben & Jerry's ice cream at a slightly lower price than smaller households. This suggests that larger households may buy ice cream in bulk or use more coupons to save money.
+
+```{r}
+ice_cream |>
+  group_by(household_size) |>
+  summarise(coupon_rate = mean(usecoup, na.rm = TRUE)) |>
+  arrange(household_size)
+```
+
+Smaller households actually use coupons slightly more frequently than larger households. This could be because they buy ice cream less often or in smaller quantities. Larger households may buy their ice cream in bulk and may not need coupons in order to save money.
+
+## Conclusion
+
+-   **Flavor influences price** - flavors like Chocolate Chip Cookie Dough and Cherry Garcia are more expensive
+
+-   **Household characteristics** - income and household size influence price paid and coupon usage
+
+-   **Regional differences** - East and West regions have higher coupon usage
+
+-   **Price paid varies with household size** - larger households tend to pay less on average for Ben & Jerry's ice cream
+
+Analyzing this dataset helps explain why Ben & Jerry's may see different purchasing patterns across different regions and demographics. This information could be useful in marketing, as Ben & Jerry’s may want to tailor promotions to different income levels, household sizes, or other household characteristics.
