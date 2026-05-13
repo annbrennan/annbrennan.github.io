@@ -357,172 +357,46 @@
     "text": "References\n\nGoogle Colab, Google, colab.research.google.com/.\n“How Public Datasets from NOAA Can Help Insurers Do Predictive Analytics | Google Cloud Blog.” Google, Google, cloud.google.com/blog/topics/financial- services/insurers-use-noaa-datasets-for-predictive-analytics.\nLyubchich, Vyacheslav, et al. “Insurance risk assessment in the face of climate change: Integrating data science and statistics.” WIREs Computational Statistics, vol. 11, no. 4, 17 Apr. 2019, https://doi.org/10.1002/wics.1462.\nNcei. “Storm Events Database.” National Centers for Environmental Information, www.ncdc.noaa.gov/stormevents/ftp.jsp."
   },
   {
-    "objectID": "danl-210-quarto-reticulate.html",
-    "href": "danl-210-quarto-reticulate.html",
-    "title": "Using Python and R Together!",
+    "objectID": "danl-320-python-basic.html",
+    "href": "danl-320-python-basic.html",
+    "title": "Python Basics",
     "section": "",
-    "text": "In Python, variables can store data of different types without explicitly declaring the type.\nFor example:\n\nprint('Hello, world!')\n\nHello, world!\n\na = 1\na\n\n1\n\n\n\ninteger_variable = 10\nstring_variable = 'Hello'\nfloat_variable = 10.5\n\nfloat_variable\n\n10.5"
+    "text": "Python is a high-level, interpreted programming language. This is a simple Python code:\n\nprint('Hello, World!')\n\n\n\n\nIn Python, variables can store data of different types without explicitly declaring the type.\nFor example:\n\ninteger_variable = 10\nstring_variable = 'Hello'\nfloat_variable = 10.5\n\nfloat_variable\n\n10.5\n\n\n\n\n\nPython supports the usual logical conditions from mathematics:\n\n# Equals: a == b\n# Not Equals: a != b\n# Less than: a &lt; b\n# Less than or equal to: a &lt;= b\n# Greater than: a &gt; b\n# Greater than or equal to: a &gt;= b\n\nThese conditions can be used in several ways, most commonly in ‘if statements’ and loops.\n\n# if statement:\nif 5 &gt; 2:\n    print('Five is greater than two!')\n\n\n\n\nA function is a block of code which only runs when it is called.\nYou can pass data, known as parameters, into a function.\nA function can return data as a result.\n\n# Defining a function:\ndef my_function():\n    print('Hello from a function')\n\n# Calling a function:\nmy_function()\n\n\n\n\nA list is a collection which is ordered and changeable.\nA dictionary is a collection which is unordered, changeable and indexed.\n\n# List example:\nmy_list = ['apple', 'banana', 'cherry']\n\n# Dictionary example:\nmy_dict = {'name': 'John', 'age': 36}"
   },
   {
-    "objectID": "danl-210-quarto-reticulate.html#variables-and-data-types",
-    "href": "danl-210-quarto-reticulate.html#variables-and-data-types",
-    "title": "Using Python and R Together!",
-    "section": "",
-    "text": "In Python, variables can store data of different types without explicitly declaring the type.\nFor example:\n\nprint('Hello, world!')\n\nHello, world!\n\na = 1\na\n\n1\n\n\n\ninteger_variable = 10\nstring_variable = 'Hello'\nfloat_variable = 10.5\n\nfloat_variable\n\n10.5"
-  },
-  {
-    "objectID": "danl-210-quarto-reticulate.html#control-structures",
-    "href": "danl-210-quarto-reticulate.html#control-structures",
-    "title": "Using Python and R Together!",
-    "section": "0.2 Control Structures",
-    "text": "0.2 Control Structures\nPython supports the usual logical conditions from mathematics:\n\n# Equals: a == b\n# Not Equals: a != b\n# Less than: a &lt; b\n# Less than or equal to: a &lt;= b\n# Greater than: a &gt; b\n# Greater than or equal to: a &gt;= b\n\nThese conditions can be used in several ways, most commonly in ‘if statements’ and loops.\n\n# if statement:\nif 5 &gt; 2:\n    print('Five is greater than two!')\n\nFive is greater than two!"
-  },
-  {
-    "objectID": "danl-210-quarto-reticulate.html#functions",
-    "href": "danl-210-quarto-reticulate.html#functions",
-    "title": "Using Python and R Together!",
-    "section": "0.3 Functions",
-    "text": "0.3 Functions\nA function is a block of code which only runs when it is called.\nYou can pass data, known as parameters, into a function.\nA function can return data as a result.\n\n# Defining a function:\ndef my_function():\n    print('Hello from a function')\n\n# Calling a function:\nmy_function()\n\nHello from a function"
-  },
-  {
-    "objectID": "danl-210-quarto-reticulate.html#lists-and-dictionaries",
-    "href": "danl-210-quarto-reticulate.html#lists-and-dictionaries",
-    "title": "Using Python and R Together!",
-    "section": "0.4 Lists and Dictionaries",
-    "text": "0.4 Lists and Dictionaries\nA list is a collection which is ordered and changeable.\nA dictionary is a collection which is unordered, changeable and indexed.\n\n# List example:\nmy_list = ['apple', 'banana', 'cherry']\n\n# Dictionary example:\nmy_dict = {'name': 'John', 'age': 36}"
-  },
-  {
-    "objectID": "danl-210-quarto-reticulate.html#import-python-libraries",
-    "href": "danl-210-quarto-reticulate.html#import-python-libraries",
-    "title": "Using Python and R Together!",
-    "section": "1.1 Import Python libraries",
-    "text": "1.1 Import Python libraries\n\nimport pandas as pd\n\n\noj = pd.read_csv('https://bcdanl.github.io/data/dominick_oj.csv')\n\n\n\nCode!\noj\n\n\n         sales  price      brand  ad\n0       8256.0   3.87  tropicana   0\n1       6144.0   3.87  tropicana   0\n2       3840.0   3.87  tropicana   0\n3       8000.0   3.87  tropicana   0\n4       8896.0   3.87  tropicana   0\n...        ...    ...        ...  ..\n28942   2944.0   2.00  dominicks   0\n28943   4928.0   1.94  dominicks   0\n28944  13440.0   1.59  dominicks   0\n28945  55680.0   1.49  dominicks   0\n28946   7040.0   1.75  dominicks   0\n\n[28947 rows x 4 columns]\n\n\n\noj.describe()\n\n               sales         price            ad\ncount   28947.000000  28947.000000  28947.000000\nmean    17312.213356      2.282488      0.237261\nstd     27477.660437      0.648001      0.425411\nmin        64.000000      0.520000      0.000000\n25%      4864.000000      1.790000      0.000000\n50%      8384.000000      2.170000      0.000000\n75%     17408.000000      2.730000      0.000000\nmax    716416.000100      3.870000      1.000000"
-  },
-  {
-    "objectID": "danl-210-quarto-reticulate.html#python-r-interaction",
-    "href": "danl-210-quarto-reticulate.html#python-r-interaction",
-    "title": "Using Python and R Together!",
-    "section": "1.2 Python-R Interaction",
-    "text": "1.2 Python-R Interaction\nBelow is using Python’s DataFrame oj to visualize using R’s ggplot\n\nlibrary(tidyverse)\n\n# Access the Python pandas DataFrame\noj &lt;- py$oj\n\n# Plot using ggplot2\nggplot(oj, aes(x = log(sales), y = log(price), \n               color = brand)) +\n  geom_point(alpha = .25) +\n  geom_smooth(method = lm) +\n  theme_minimal()\n\n\n\n\n\n\n\n\n\n1.2.1 Interactive DataFrame with R’s DT Package\n\n\n\n\n\n\nIn *.ipynb on Google Colab, we can use itables or just Google Colab’s default to print DataFrame.\n\n# !pip install itables\nfrom itables import init_notebook_mode, show\ninit_notebook_mode(all_interactive=False)\n\noj = pd.read_csv('https://bcdanl.github.io/data/dominick_oj.csv')\nshow(oj)"
-  },
-  {
-    "objectID": "classwork.2.html#heading-2",
-    "href": "classwork.2.html#heading-2",
-    "title": "Untitled",
-    "section": "Heading 2",
-    "text": "Heading 2\n\nHeading 3"
-  },
-  {
-    "objectID": "classwork.2.html#emphasis",
-    "href": "classwork.2.html#emphasis",
-    "title": "Untitled",
-    "section": "Emphasis",
-    "text": "Emphasis\nitalic\nitalic\nbold\nbold"
-  },
-  {
-    "objectID": "classwork.2.html#lists",
-    "href": "classwork.2.html#lists",
-    "title": "Untitled",
-    "section": "Lists",
-    "text": "Lists\n\nItem 1\nItem 2\n\nSub item 2.1\nSub item 2.2\n\n\n\nFirst Item\nSecond Item"
-  },
-  {
-    "objectID": "classwork.2.html#links-and-images",
-    "href": "classwork.2.html#links-and-images",
-    "title": "Untitled",
-    "section": "Links and Images",
-    "text": "Links and Images\nDANL 210"
-  },
-  {
-    "objectID": "classwork.2.html#blockquote",
-    "href": "classwork.2.html#blockquote",
-    "title": "Untitled",
-    "section": "Blockquote",
-    "text": "Blockquote\n\nBe yourself. Everyone else is already taken. - Oscar Wilde."
-  },
-  {
-    "objectID": "classwork.2.html#emojis",
-    "href": "classwork.2.html#emojis",
-    "title": "Untitled",
-    "section": "Emojis",
-    "text": "Emojis\n😄\n😸"
-  },
-  {
-    "objectID": "classwork.2.html#code-blocks",
-    "href": "classwork.2.html#code-blocks",
-    "title": "Untitled",
-    "section": "Code Blocks",
-    "text": "Code Blocks\n\"string\"\nimport numpy as np"
-  },
-  {
-    "objectID": "blog-listing.html",
-    "href": "blog-listing.html",
-    "title": "A. Brennan Analytics",
-    "section": "",
-    "text": "Order By\n      Default\n      \n        Title\n      \n      \n        Date - Oldest\n      \n      \n        Date - Newest\n      \n      \n        Author\n      \n    \n  \n    \n      \n      \n    \n\n\n\n\n\n\n\n\n\n\nSpotify Data Frame\n\n\n\n\n1 min\n\n\n\n\n\n\n\n\n\n\n\nPython Basics\n\n\n\n\n2 min\n\n\n\n\n\n\n\n\n\n\n\nHW 4 - Homes DataFrame\n\n\n\n\n7 min\n\n\n\n\n\n\n\n\n\n\n\nHW 3 - Beer Markets\n\n\n\n\n5 min\n\n\n\n\n\n\n\n\n\n\n\nHW 2 - Ben & Jerry’s Ice Cream\n\n\n\n\n4 min\n\n\n\n\n\n\n\n\n\n\n\nDANL 310 - HW 1 - Ben & Jerry’s Ice Cream\n\n\n\n\n4 min\n\n\n\n\n\n\n\n\n\n\n\nPySpark Basics\n\n\n\n\n\nFeb 14, 2025\n\n\nAnn Brennan\n\n2 min\n\n\n\n\n\n\n\n\n\n\n\nHomework 5 - NFL\n\n\n\n\n\nDec 11, 2023\n\n\nAnn Brennan\n\n6 min\n\n\n\n\n\n\n\n\n\n\n\nWelcome To My Blog\n\n\n\n\n\nOct 27, 2023\n\n\nAnn Brennan\n\n1 min\n\n\n\n\nNo matching items"
-  },
-  {
-    "objectID": "12.1.html",
-    "href": "12.1.html",
-    "title": "Untitled",
-    "section": "",
-    "text": "library(tidyverse)\n\n── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──\n✔ dplyr     1.1.2     ✔ readr     2.1.4\n✔ forcats   1.0.0     ✔ stringr   1.5.0\n✔ ggplot2   3.4.3     ✔ tibble    3.2.1\n✔ lubridate 1.9.2     ✔ tidyr     1.3.0\n✔ purrr     1.0.2     \n── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──\n✖ dplyr::filter() masks stats::filter()\n✖ dplyr::lag()    masks stats::lag()\nℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors\n\ntable1\n\n# A tibble: 6 × 4\n  country      year  cases population\n  &lt;chr&gt;       &lt;dbl&gt;  &lt;dbl&gt;      &lt;dbl&gt;\n1 Afghanistan  1999    745   19987071\n2 Afghanistan  2000   2666   20595360\n3 Brazil       1999  37737  172006362\n4 Brazil       2000  80488  174504898\n5 China        1999 212258 1272915272\n6 China        2000 213766 1280428583\n\ntable2\n\n# A tibble: 12 × 4\n   country      year type            count\n   &lt;chr&gt;       &lt;dbl&gt; &lt;chr&gt;           &lt;dbl&gt;\n 1 Afghanistan  1999 cases             745\n 2 Afghanistan  1999 population   19987071\n 3 Afghanistan  2000 cases            2666\n 4 Afghanistan  2000 population   20595360\n 5 Brazil       1999 cases           37737\n 6 Brazil       1999 population  172006362\n 7 Brazil       2000 cases           80488\n 8 Brazil       2000 population  174504898\n 9 China        1999 cases          212258\n10 China        1999 population 1272915272\n11 China        2000 cases          213766\n12 China        2000 population 1280428583\n\ntable3\n\n# A tibble: 6 × 3\n  country      year rate             \n  &lt;chr&gt;       &lt;dbl&gt; &lt;chr&gt;            \n1 Afghanistan  1999 745/19987071     \n2 Afghanistan  2000 2666/20595360    \n3 Brazil       1999 37737/172006362  \n4 Brazil       2000 80488/174504898  \n5 China        1999 212258/1272915272\n6 China        2000 213766/1280428583\n\n# Spread across two tibbles\ntable4a  # cases\n\n# A tibble: 3 × 3\n  country     `1999` `2000`\n  &lt;chr&gt;        &lt;dbl&gt;  &lt;dbl&gt;\n1 Afghanistan    745   2666\n2 Brazil       37737  80488\n3 China       212258 213766\n\ntable4b\n\n# A tibble: 3 × 3\n  country         `1999`     `2000`\n  &lt;chr&gt;            &lt;dbl&gt;      &lt;dbl&gt;\n1 Afghanistan   19987071   20595360\n2 Brazil       172006362  174504898\n3 China       1272915272 1280428583\n\ntable4a %&gt;% \n  pivot_longer(cols = c(`1999`, `2000`), \n               names_to = \"year\", \n               values_to = \"cases\")\n\n# A tibble: 6 × 3\n  country     year   cases\n  &lt;chr&gt;       &lt;chr&gt;  &lt;dbl&gt;\n1 Afghanistan 1999     745\n2 Afghanistan 2000    2666\n3 Brazil      1999   37737\n4 Brazil      2000   80488\n5 China       1999  212258\n6 China       2000  213766"
-  },
-  {
-    "objectID": "11.29.html",
-    "href": "11.29.html",
-    "title": "Untitled",
-    "section": "",
-    "text": "Section"
-  },
-  {
-    "objectID": "basic-python-intro.html",
-    "href": "basic-python-intro.html",
-    "title": "Introduction to Python",
+    "objectID": "danl-320-python-basic.html#what-is-python",
+    "href": "danl-320-python-basic.html#what-is-python",
+    "title": "Python Basics",
     "section": "",
     "text": "Python is a high-level, interpreted programming language. This is a simple Python code:\n\nprint('Hello, World!')"
   },
   {
-    "objectID": "basic-python-intro.html#what-is-python",
-    "href": "basic-python-intro.html#what-is-python",
-    "title": "Introduction to Python",
+    "objectID": "danl-320-python-basic.html#variables-and-data-types",
+    "href": "danl-320-python-basic.html#variables-and-data-types",
+    "title": "Python Basics",
     "section": "",
-    "text": "Python is a high-level, interpreted programming language. This is a simple Python code:\n\nprint('Hello, World!')"
+    "text": "In Python, variables can store data of different types without explicitly declaring the type.\nFor example:\n\ninteger_variable = 10\nstring_variable = 'Hello'\nfloat_variable = 10.5\n\nfloat_variable\n\n10.5"
   },
   {
-    "objectID": "basic-python-intro.html#variables-and-data-types",
-    "href": "basic-python-intro.html#variables-and-data-types",
-    "title": "Introduction to Python",
-    "section": "Variables and Data Types",
-    "text": "Variables and Data Types\nIn Python, variables can store data of different types without explicitly declaring the type.\nFor example:\n\ninteger_variable = 10\nstring_variable = 'Hello'\nfloat_variable = 10.5\n\nfloat_variable\n\n10.5"
-  },
-  {
-    "objectID": "basic-python-intro.html#control-structures",
-    "href": "basic-python-intro.html#control-structures",
-    "title": "Introduction to Python",
-    "section": "Control Structures",
-    "text": "Control Structures\nPython supports the usual logical conditions from mathematics:\n\n# Equals: a == b\n# Not Equals: a != b\n# Less than: a &lt; b\n# Less than or equal to: a &lt;= b\n# Greater than: a &gt; b\n# Greater than or equal to: a &gt;= b\n\nThese conditions can be used in several ways, most commonly in ‘if statements’ and loops.\n\n# if statement:\nif 5 &gt; 2:\n    print('Five is greater than two!')"
-  },
-  {
-    "objectID": "basic-python-intro.html#functions",
-    "href": "basic-python-intro.html#functions",
-    "title": "Introduction to Python",
-    "section": "Functions",
-    "text": "Functions\nA function is a block of code which only runs when it is called.\nYou can pass data, known as parameters, into a function.\nA function can return data as a result.\n\n# Defining a function:\ndef my_function():\n    print('Hello from a function')\n\n# Calling a function:\nmy_function()"
-  },
-  {
-    "objectID": "basic-python-intro.html#lists-and-dictionaries",
-    "href": "basic-python-intro.html#lists-and-dictionaries",
-    "title": "Introduction to Python",
-    "section": "Lists and Dictionaries",
-    "text": "Lists and Dictionaries\nA list is a collection which is ordered and changeable.\nA dictionary is a collection which is unordered, changeable and indexed.\n\n# List example:\nmy_list = ['apple', 'banana', 'cherry']\n\n# Dictionary example:\nmy_dict = {'name': 'John', 'age': 36}"
-  },
-  {
-    "objectID": "blog-post-title.html",
-    "href": "blog-post-title.html",
-    "title": "A. Brennan",
+    "objectID": "danl-320-python-basic.html#control-structures",
+    "href": "danl-320-python-basic.html#control-structures",
+    "title": "Python Basics",
     "section": "",
-    "text": "DANL 310 - HW 1 - Ben & Jerry’s Ice Cream\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nHW 2 - Ben & Jerry’s Ice Cream\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nHW 3 - Beer Markets\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nHW 4 - Homes DataFrame\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nHomework 5 - NFL\n\n\n\n\n\n\n\n\nDec 11, 2023\n\n\nAnn Brennan\n\n\n\n\n\n\n\n\n\n\n\n\nPySpark Basics\n\n\n\n\n\n\n\n\nFeb 14, 2025\n\n\nAnn Brennan\n\n\n\n\n\n\n\n\n\n\n\n\nPython Basics\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nSpotify Data Frame\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nWelcome To My Blog\n\n\n\n\n\n\n\n\nOct 27, 2023\n\n\nAnn Brennan\n\n\n\n\n\nNo matching items"
+    "text": "Python supports the usual logical conditions from mathematics:\n\n# Equals: a == b\n# Not Equals: a != b\n# Less than: a &lt; b\n# Less than or equal to: a &lt;= b\n# Greater than: a &gt; b\n# Greater than or equal to: a &gt;= b\n\nThese conditions can be used in several ways, most commonly in ‘if statements’ and loops.\n\n# if statement:\nif 5 &gt; 2:\n    print('Five is greater than two!')"
+  },
+  {
+    "objectID": "danl-320-python-basic.html#functions",
+    "href": "danl-320-python-basic.html#functions",
+    "title": "Python Basics",
+    "section": "",
+    "text": "A function is a block of code which only runs when it is called.\nYou can pass data, known as parameters, into a function.\nA function can return data as a result.\n\n# Defining a function:\ndef my_function():\n    print('Hello from a function')\n\n# Calling a function:\nmy_function()"
+  },
+  {
+    "objectID": "danl-320-python-basic.html#lists-and-dictionaries",
+    "href": "danl-320-python-basic.html#lists-and-dictionaries",
+    "title": "Python Basics",
+    "section": "",
+    "text": "A list is a collection which is ordered and changeable.\nA dictionary is a collection which is unordered, changeable and indexed.\n\n# List example:\nmy_list = ['apple', 'banana', 'cherry']\n\n# Dictionary example:\nmy_dict = {'name': 'John', 'age': 36}"
   },
   {
     "objectID": "danl-200-cw-10.html",
@@ -595,46 +469,305 @@
     "text": "9 Q3b\n\nUse the wide-form data.frame of covid to find the top 10 countries in terms of the correlation between their cases and the USA case.\n\nUse cor(data.frame), which returns a matrix.\nThen convert it to data.frame using as.data.frame(matrix)"
   },
   {
-    "objectID": "danl-320-python-basic.html",
-    "href": "danl-320-python-basic.html",
-    "title": "Python Basics",
+    "objectID": "blog-post-title.html",
+    "href": "blog-post-title.html",
+    "title": "A. Brennan",
     "section": "",
-    "text": "Python is a high-level, interpreted programming language. This is a simple Python code:\n\nprint('Hello, World!')\n\n\n\n\nIn Python, variables can store data of different types without explicitly declaring the type.\nFor example:\n\ninteger_variable = 10\nstring_variable = 'Hello'\nfloat_variable = 10.5\n\nfloat_variable\n\n10.5\n\n\n\n\n\nPython supports the usual logical conditions from mathematics:\n\n# Equals: a == b\n# Not Equals: a != b\n# Less than: a &lt; b\n# Less than or equal to: a &lt;= b\n# Greater than: a &gt; b\n# Greater than or equal to: a &gt;= b\n\nThese conditions can be used in several ways, most commonly in ‘if statements’ and loops.\n\n# if statement:\nif 5 &gt; 2:\n    print('Five is greater than two!')\n\n\n\n\nA function is a block of code which only runs when it is called.\nYou can pass data, known as parameters, into a function.\nA function can return data as a result.\n\n# Defining a function:\ndef my_function():\n    print('Hello from a function')\n\n# Calling a function:\nmy_function()\n\n\n\n\nA list is a collection which is ordered and changeable.\nA dictionary is a collection which is unordered, changeable and indexed.\n\n# List example:\nmy_list = ['apple', 'banana', 'cherry']\n\n# Dictionary example:\nmy_dict = {'name': 'John', 'age': 36}"
+    "text": "DANL 310 - HW 1 - Ben & Jerry’s Ice Cream\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nHW 2 - Ben & Jerry’s Ice Cream\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nHW 3 - Beer Markets\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nHW 4 - Homes DataFrame\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nHomework 5 - NFL\n\n\n\n\n\n\n\n\nDec 11, 2023\n\n\nAnn Brennan\n\n\n\n\n\n\n\n\n\n\n\n\nPySpark Basics\n\n\n\n\n\n\n\n\nFeb 14, 2025\n\n\nAnn Brennan\n\n\n\n\n\n\n\n\n\n\n\n\nPython Basics\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nSpotify Data Frame\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nWelcome To My Blog\n\n\n\n\n\n\n\n\nOct 27, 2023\n\n\nAnn Brennan\n\n\n\n\n\nNo matching items"
   },
   {
-    "objectID": "danl-320-python-basic.html#what-is-python",
-    "href": "danl-320-python-basic.html#what-is-python",
-    "title": "Python Basics",
+    "objectID": "basic-python-intro.html",
+    "href": "basic-python-intro.html",
+    "title": "Introduction to Python",
     "section": "",
     "text": "Python is a high-level, interpreted programming language. This is a simple Python code:\n\nprint('Hello, World!')"
   },
   {
-    "objectID": "danl-320-python-basic.html#variables-and-data-types",
-    "href": "danl-320-python-basic.html#variables-and-data-types",
-    "title": "Python Basics",
+    "objectID": "basic-python-intro.html#what-is-python",
+    "href": "basic-python-intro.html#what-is-python",
+    "title": "Introduction to Python",
     "section": "",
-    "text": "In Python, variables can store data of different types without explicitly declaring the type.\nFor example:\n\ninteger_variable = 10\nstring_variable = 'Hello'\nfloat_variable = 10.5\n\nfloat_variable\n\n10.5"
+    "text": "Python is a high-level, interpreted programming language. This is a simple Python code:\n\nprint('Hello, World!')"
   },
   {
-    "objectID": "danl-320-python-basic.html#control-structures",
-    "href": "danl-320-python-basic.html#control-structures",
-    "title": "Python Basics",
-    "section": "",
-    "text": "Python supports the usual logical conditions from mathematics:\n\n# Equals: a == b\n# Not Equals: a != b\n# Less than: a &lt; b\n# Less than or equal to: a &lt;= b\n# Greater than: a &gt; b\n# Greater than or equal to: a &gt;= b\n\nThese conditions can be used in several ways, most commonly in ‘if statements’ and loops.\n\n# if statement:\nif 5 &gt; 2:\n    print('Five is greater than two!')"
+    "objectID": "basic-python-intro.html#variables-and-data-types",
+    "href": "basic-python-intro.html#variables-and-data-types",
+    "title": "Introduction to Python",
+    "section": "Variables and Data Types",
+    "text": "Variables and Data Types\nIn Python, variables can store data of different types without explicitly declaring the type.\nFor example:\n\ninteger_variable = 10\nstring_variable = 'Hello'\nfloat_variable = 10.5\n\nfloat_variable\n\n10.5"
   },
   {
-    "objectID": "danl-320-python-basic.html#functions",
-    "href": "danl-320-python-basic.html#functions",
-    "title": "Python Basics",
-    "section": "",
-    "text": "A function is a block of code which only runs when it is called.\nYou can pass data, known as parameters, into a function.\nA function can return data as a result.\n\n# Defining a function:\ndef my_function():\n    print('Hello from a function')\n\n# Calling a function:\nmy_function()"
+    "objectID": "basic-python-intro.html#control-structures",
+    "href": "basic-python-intro.html#control-structures",
+    "title": "Introduction to Python",
+    "section": "Control Structures",
+    "text": "Control Structures\nPython supports the usual logical conditions from mathematics:\n\n# Equals: a == b\n# Not Equals: a != b\n# Less than: a &lt; b\n# Less than or equal to: a &lt;= b\n# Greater than: a &gt; b\n# Greater than or equal to: a &gt;= b\n\nThese conditions can be used in several ways, most commonly in ‘if statements’ and loops.\n\n# if statement:\nif 5 &gt; 2:\n    print('Five is greater than two!')"
   },
   {
-    "objectID": "danl-320-python-basic.html#lists-and-dictionaries",
-    "href": "danl-320-python-basic.html#lists-and-dictionaries",
-    "title": "Python Basics",
+    "objectID": "basic-python-intro.html#functions",
+    "href": "basic-python-intro.html#functions",
+    "title": "Introduction to Python",
+    "section": "Functions",
+    "text": "Functions\nA function is a block of code which only runs when it is called.\nYou can pass data, known as parameters, into a function.\nA function can return data as a result.\n\n# Defining a function:\ndef my_function():\n    print('Hello from a function')\n\n# Calling a function:\nmy_function()"
+  },
+  {
+    "objectID": "basic-python-intro.html#lists-and-dictionaries",
+    "href": "basic-python-intro.html#lists-and-dictionaries",
+    "title": "Introduction to Python",
+    "section": "Lists and Dictionaries",
+    "text": "Lists and Dictionaries\nA list is a collection which is ordered and changeable.\nA dictionary is a collection which is unordered, changeable and indexed.\n\n# List example:\nmy_list = ['apple', 'banana', 'cherry']\n\n# Dictionary example:\nmy_dict = {'name': 'John', 'age': 36}"
+  },
+  {
+    "objectID": "11.29.html",
+    "href": "11.29.html",
+    "title": "Untitled",
     "section": "",
-    "text": "A list is a collection which is ordered and changeable.\nA dictionary is a collection which is unordered, changeable and indexed.\n\n# List example:\nmy_list = ['apple', 'banana', 'cherry']\n\n# Dictionary example:\nmy_dict = {'name': 'John', 'age': 36}"
+    "text": "Section"
+  },
+  {
+    "objectID": "12.1.html",
+    "href": "12.1.html",
+    "title": "Untitled",
+    "section": "",
+    "text": "library(tidyverse)\n\n── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──\n✔ dplyr     1.1.2     ✔ readr     2.1.4\n✔ forcats   1.0.0     ✔ stringr   1.5.0\n✔ ggplot2   4.0.2     ✔ tibble    3.2.1\n✔ lubridate 1.9.2     ✔ tidyr     1.3.0\n✔ purrr     1.0.2     \n── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──\n✖ dplyr::filter() masks stats::filter()\n✖ dplyr::lag()    masks stats::lag()\nℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors\n\ntable1\n\n# A tibble: 6 × 4\n  country      year  cases population\n  &lt;chr&gt;       &lt;dbl&gt;  &lt;dbl&gt;      &lt;dbl&gt;\n1 Afghanistan  1999    745   19987071\n2 Afghanistan  2000   2666   20595360\n3 Brazil       1999  37737  172006362\n4 Brazil       2000  80488  174504898\n5 China        1999 212258 1272915272\n6 China        2000 213766 1280428583\n\ntable2\n\n# A tibble: 12 × 4\n   country      year type            count\n   &lt;chr&gt;       &lt;dbl&gt; &lt;chr&gt;           &lt;dbl&gt;\n 1 Afghanistan  1999 cases             745\n 2 Afghanistan  1999 population   19987071\n 3 Afghanistan  2000 cases            2666\n 4 Afghanistan  2000 population   20595360\n 5 Brazil       1999 cases           37737\n 6 Brazil       1999 population  172006362\n 7 Brazil       2000 cases           80488\n 8 Brazil       2000 population  174504898\n 9 China        1999 cases          212258\n10 China        1999 population 1272915272\n11 China        2000 cases          213766\n12 China        2000 population 1280428583\n\ntable3\n\n# A tibble: 6 × 3\n  country      year rate             \n  &lt;chr&gt;       &lt;dbl&gt; &lt;chr&gt;            \n1 Afghanistan  1999 745/19987071     \n2 Afghanistan  2000 2666/20595360    \n3 Brazil       1999 37737/172006362  \n4 Brazil       2000 80488/174504898  \n5 China        1999 212258/1272915272\n6 China        2000 213766/1280428583\n\n# Spread across two tibbles\ntable4a  # cases\n\n# A tibble: 3 × 3\n  country     `1999` `2000`\n  &lt;chr&gt;        &lt;dbl&gt;  &lt;dbl&gt;\n1 Afghanistan    745   2666\n2 Brazil       37737  80488\n3 China       212258 213766\n\ntable4b\n\n# A tibble: 3 × 3\n  country         `1999`     `2000`\n  &lt;chr&gt;            &lt;dbl&gt;      &lt;dbl&gt;\n1 Afghanistan   19987071   20595360\n2 Brazil       172006362  174504898\n3 China       1272915272 1280428583\n\ntable4a %&gt;% \n  pivot_longer(cols = c(`1999`, `2000`), \n               names_to = \"year\", \n               values_to = \"cases\")\n\n# A tibble: 6 × 3\n  country     year   cases\n  &lt;chr&gt;       &lt;chr&gt;  &lt;dbl&gt;\n1 Afghanistan 1999     745\n2 Afghanistan 2000    2666\n3 Brazil      1999   37737\n4 Brazil      2000   80488\n5 China       1999  212258\n6 China       2000  213766"
+  },
+  {
+    "objectID": "blog-listing.html",
+    "href": "blog-listing.html",
+    "title": "A. Brennan Analytics",
+    "section": "",
+    "text": "Order By\n      Default\n      \n        Title\n      \n      \n        Date - Oldest\n      \n      \n        Date - Newest\n      \n      \n        Author\n      \n    \n  \n    \n      \n      \n    \n\n\n\n\n\n\n\n\n\n\nSpotify Data Frame\n\n\n\n\n1 min\n\n\n\n\n\n\n\n\n\n\n\nPython Basics\n\n\n\n\n2 min\n\n\n\n\n\n\n\n\n\n\n\nHW 4 - Homes DataFrame\n\n\n\n\n7 min\n\n\n\n\n\n\n\n\n\n\n\nHW 3 - Beer Markets\n\n\n\n\n5 min\n\n\n\n\n\n\n\n\n\n\n\nHW 2 - Ben & Jerry’s Ice Cream\n\n\n\n\n4 min\n\n\n\n\n\n\n\n\n\n\n\nDANL 310 - HW 1 - Ben & Jerry’s Ice Cream\n\n\n\n\n4 min\n\n\n\n\n\n\n\n\n\n\n\nPySpark Basics\n\n\n\n\n\nFeb 14, 2025\n\n\nAnn Brennan\n\n2 min\n\n\n\n\n\n\n\n\n\n\n\nHomework 5 - NFL\n\n\n\n\n\nDec 11, 2023\n\n\nAnn Brennan\n\n6 min\n\n\n\n\n\n\n\n\n\n\n\nWelcome To My Blog\n\n\n\n\n\nOct 27, 2023\n\n\nAnn Brennan\n\n1 min\n\n\n\n\nNo matching items"
+  },
+  {
+    "objectID": "classwork.2.html#heading-2",
+    "href": "classwork.2.html#heading-2",
+    "title": "Untitled",
+    "section": "Heading 2",
+    "text": "Heading 2\n\nHeading 3"
+  },
+  {
+    "objectID": "classwork.2.html#emphasis",
+    "href": "classwork.2.html#emphasis",
+    "title": "Untitled",
+    "section": "Emphasis",
+    "text": "Emphasis\nitalic\nitalic\nbold\nbold"
+  },
+  {
+    "objectID": "classwork.2.html#lists",
+    "href": "classwork.2.html#lists",
+    "title": "Untitled",
+    "section": "Lists",
+    "text": "Lists\n\nItem 1\nItem 2\n\nSub item 2.1\nSub item 2.2\n\n\n\nFirst Item\nSecond Item"
+  },
+  {
+    "objectID": "classwork.2.html#links-and-images",
+    "href": "classwork.2.html#links-and-images",
+    "title": "Untitled",
+    "section": "Links and Images",
+    "text": "Links and Images\nDANL 210"
+  },
+  {
+    "objectID": "classwork.2.html#blockquote",
+    "href": "classwork.2.html#blockquote",
+    "title": "Untitled",
+    "section": "Blockquote",
+    "text": "Blockquote\n\nBe yourself. Everyone else is already taken. - Oscar Wilde."
+  },
+  {
+    "objectID": "classwork.2.html#emojis",
+    "href": "classwork.2.html#emojis",
+    "title": "Untitled",
+    "section": "Emojis",
+    "text": "Emojis\n😄\n😸"
+  },
+  {
+    "objectID": "classwork.2.html#code-blocks",
+    "href": "classwork.2.html#code-blocks",
+    "title": "Untitled",
+    "section": "Code Blocks",
+    "text": "Code Blocks\n\"string\"\nimport numpy as np"
+  },
+  {
+    "objectID": "danl-210-quarto-reticulate.html",
+    "href": "danl-210-quarto-reticulate.html",
+    "title": "Using Python and R Together!",
+    "section": "",
+    "text": "In Python, variables can store data of different types without explicitly declaring the type.\nFor example:\n\nprint('Hello, world!')\n\nHello, world!\n\na = 1\na\n\n1\n\n\n\ninteger_variable = 10\nstring_variable = 'Hello'\nfloat_variable = 10.5\n\nfloat_variable\n\n10.5"
+  },
+  {
+    "objectID": "danl-210-quarto-reticulate.html#variables-and-data-types",
+    "href": "danl-210-quarto-reticulate.html#variables-and-data-types",
+    "title": "Using Python and R Together!",
+    "section": "",
+    "text": "In Python, variables can store data of different types without explicitly declaring the type.\nFor example:\n\nprint('Hello, world!')\n\nHello, world!\n\na = 1\na\n\n1\n\n\n\ninteger_variable = 10\nstring_variable = 'Hello'\nfloat_variable = 10.5\n\nfloat_variable\n\n10.5"
+  },
+  {
+    "objectID": "danl-210-quarto-reticulate.html#control-structures",
+    "href": "danl-210-quarto-reticulate.html#control-structures",
+    "title": "Using Python and R Together!",
+    "section": "0.2 Control Structures",
+    "text": "0.2 Control Structures\nPython supports the usual logical conditions from mathematics:\n\n# Equals: a == b\n# Not Equals: a != b\n# Less than: a &lt; b\n# Less than or equal to: a &lt;= b\n# Greater than: a &gt; b\n# Greater than or equal to: a &gt;= b\n\nThese conditions can be used in several ways, most commonly in ‘if statements’ and loops.\n\n# if statement:\nif 5 &gt; 2:\n    print('Five is greater than two!')\n\nFive is greater than two!"
+  },
+  {
+    "objectID": "danl-210-quarto-reticulate.html#functions",
+    "href": "danl-210-quarto-reticulate.html#functions",
+    "title": "Using Python and R Together!",
+    "section": "0.3 Functions",
+    "text": "0.3 Functions\nA function is a block of code which only runs when it is called.\nYou can pass data, known as parameters, into a function.\nA function can return data as a result.\n\n# Defining a function:\ndef my_function():\n    print('Hello from a function')\n\n# Calling a function:\nmy_function()\n\nHello from a function"
+  },
+  {
+    "objectID": "danl-210-quarto-reticulate.html#lists-and-dictionaries",
+    "href": "danl-210-quarto-reticulate.html#lists-and-dictionaries",
+    "title": "Using Python and R Together!",
+    "section": "0.4 Lists and Dictionaries",
+    "text": "0.4 Lists and Dictionaries\nA list is a collection which is ordered and changeable.\nA dictionary is a collection which is unordered, changeable and indexed.\n\n# List example:\nmy_list = ['apple', 'banana', 'cherry']\n\n# Dictionary example:\nmy_dict = {'name': 'John', 'age': 36}"
+  },
+  {
+    "objectID": "danl-210-quarto-reticulate.html#import-python-libraries",
+    "href": "danl-210-quarto-reticulate.html#import-python-libraries",
+    "title": "Using Python and R Together!",
+    "section": "1.1 Import Python libraries",
+    "text": "1.1 Import Python libraries\n\nimport pandas as pd\n\n\noj = pd.read_csv('https://bcdanl.github.io/data/dominick_oj.csv')\n\n\n\nCode!\noj\n\n\n         sales  price      brand  ad\n0       8256.0   3.87  tropicana   0\n1       6144.0   3.87  tropicana   0\n2       3840.0   3.87  tropicana   0\n3       8000.0   3.87  tropicana   0\n4       8896.0   3.87  tropicana   0\n...        ...    ...        ...  ..\n28942   2944.0   2.00  dominicks   0\n28943   4928.0   1.94  dominicks   0\n28944  13440.0   1.59  dominicks   0\n28945  55680.0   1.49  dominicks   0\n28946   7040.0   1.75  dominicks   0\n\n[28947 rows x 4 columns]\n\n\n\noj.describe()\n\n               sales         price            ad\ncount   28947.000000  28947.000000  28947.000000\nmean    17312.213356      2.282488      0.237261\nstd     27477.660437      0.648001      0.425411\nmin        64.000000      0.520000      0.000000\n25%      4864.000000      1.790000      0.000000\n50%      8384.000000      2.170000      0.000000\n75%     17408.000000      2.730000      0.000000\nmax    716416.000100      3.870000      1.000000"
+  },
+  {
+    "objectID": "danl-210-quarto-reticulate.html#python-r-interaction",
+    "href": "danl-210-quarto-reticulate.html#python-r-interaction",
+    "title": "Using Python and R Together!",
+    "section": "1.2 Python-R Interaction",
+    "text": "1.2 Python-R Interaction\nBelow is using Python’s DataFrame oj to visualize using R’s ggplot\n\nlibrary(tidyverse)\n\n# Access the Python pandas DataFrame\noj &lt;- py$oj\n\n# Plot using ggplot2\nggplot(oj, aes(x = log(sales), y = log(price), \n               color = brand)) +\n  geom_point(alpha = .25) +\n  geom_smooth(method = lm) +\n  theme_minimal()\n\n\n\n\n\n\n\n\n\n1.2.1 Interactive DataFrame with R’s DT Package\n\n\n\n\n\n\nIn *.ipynb on Google Colab, we can use itables or just Google Colab’s default to print DataFrame.\n\n# !pip install itables\nfrom itables import init_notebook_mode, show\ninit_notebook_mode(all_interactive=False)\n\noj = pd.read_csv('https://bcdanl.github.io/data/dominick_oj.csv')\nshow(oj)"
+  },
+  {
+    "objectID": "danl-410-capstone-template-html.html",
+    "href": "danl-410-capstone-template-html.html",
+    "title": "Wildfires, Insurer Withdrawal, and the Expansion of FAIR Plans in California",
+    "section": "",
+    "text": "In recent years, wildfires have become more frequent and severe across the western United States, particularly in California. This has contributed to growing economic costs for households, insurers, and policymakers. These events have also begun to reshape the functioning of private insurance markets in California. As wildfire risk increases, insurers face rising claims and uncertainty, causing many to reassess their exposure in high-risk areas. This is visible in an increase of policy non-renewals. This means insurers choose not to continue coverage for existing customers. This shift raises concerns about access to insurance and the stability of housing markets in wildfire-prone areas.\nHomeowners who are unable to obtain or maintain private coverage must turn to alternative options. The most prominent alternative is California’s FAIR (Fair Access to Insurance Requirements) Plan. The FAIR Plan is a state-mandated insurer of last resort designed to provide basic property insurance to high-risk properties that cannot acquire coverage in the private market. It serves as an important safety net, however, FAIR Plan coverage is typically more expensive and offers limited protection compared to standard policies. As a result, increased reliance on the FAIR Plan may signal instability in the insurance market and create financial burdens for homeowners.\nThis project examines the relationship between wildfire activity, insurer behavior, and the expansion of FAIR Plan coverage in California. The primary research question is: How does wildfire activity affect insurer non-renewals, and how do non-renewals drive FAIR Plan growth? This question aims to help understand how climate-related risks translate into market outcomes and policy challenges.\nTo answer this question, this study uses a county-year level dataset covering all 58 counties in California from 2015 to 2021. This dataset combines information from multiple data sources, including the California Department of Insurance (CDI), which provides data on insurer non-renewals and FAIR Plan policy counts. It also includes Cal Fire, which provides measures of wildfire activity such as acres burned, and the U.S. Census Bureau, which contributes socioeconomic controls including housing units, median home value, and median income. The unit of observation is county-year, allowing for analysis of changes within counties over time while accounting for differences across regions.\nThe main empirical methods will be a fixed effects panel regression and linear regression model. These models will be used to estimate relationships between the variables of interest. County fixed effects control for time-invariant characteristics such as geography, baseline fire risk, and existing economic conditions. Year fixed effects control for statewide shocks, including severe wildfire seasons or changes in state insurance requirements. By isolating variation within counties, this framework focuses on the effect of changing wildfire activity on insurer non-renewals and their subsequent impact on FAIR Plan enrollment. This analysis aims to provide more credible estimates of these relationships by concentrating on variation within counties over time.\nThe results of this analysis indicate that increased wildfire activity may be associated with higher insurer non-renewals. This suggests that insurers reduce their exposure in response to greater risk. Additionally, higher non-renewal rates are associated with increased FAIR Plan enrollment. This indicates that homeowners who lose their private coverage turn to the FAIR Plan as an insurer of last resort. Overall, the results suggest that climate-related risk is pushing homeowners away from private insurance and toward FAIR Plan coverage. However, there are significant trade-offs associated with this shift, as FAIR Plan policies are often more expensive with less coverage.\nThe findings of this project have important implications for multiple stakeholders. For the insurance industry, the results highlight the challenges of maximizing profits and managing risk with increasingly severe wildfire incidents. For policymakers, the expansion of FAIR Plan enrollment suggests that the program is functioning as intended for the short-term, however, this is not a long-term solution. The FAIR Plan program is intended as a temporary safety net, and may not be sustainable if homeowners continue to increase reliance on it. For housing markets, rising non-renewals and higher insurance costs may reduce property values, limit mortgage availability, and reduce housing availability in high-risk areas. Overall, this project contributes to the understanding of how environmental risk is associated with and translates to market changes and policy responses. It also provides evidence that can inform future decisions about insurance regulation, climate risk management, and housing policy in wildfire-prone regions."
+  },
+  {
+    "objectID": "danl-410-capstone-template-html.html#data-sources",
+    "href": "danl-410-capstone-template-html.html#data-sources",
+    "title": "Wildfires, Insurer Withdrawal, and the Expansion of FAIR Plans in California",
+    "section": "3.1 Data Sources",
+    "text": "3.1 Data Sources\nThis analysis combines data from three primary sources to create a county-level panel dataset with wildfire activity, insurance policy outcomes, and socioeconomic features in California. First, the data on insurer non-renewals and FAIR policy counts are obtained from the California Department of Insurance (CDI). The CDI collects this information to monitor insurer behavior. Their goal is to protect consumers and keep the insurance market stable. This data provides annual counts of non-renewed policies, as well as new and renewed FAIR Plan policies at the county level.\nSecond, wildfire activity data is collected from the California Department of Forestry and Fire Protection (Cal Fire). This dataset includes measures of wildfire severity in California, such as total acres burned per county and year. Cal Fire collects this data for fire management, risk assessment, and public reporting purposes. It is a widely used source for analysis on wildfires.\nThird, socioeconomic characteristics are obtained from the U.S. Census Bureau, specifically the American Community Survey (ACS). The ACS provides annual estimates on features such as median household income, median home value, and total housing units. These variables are included to control for differences in economic conditions and housing markets across counties in California.\nAll three datasets were accessed online in March of 2026 and merged by county and year. The new dataset allows for a comprehensive analysis of how the relationships between wildfire risk, insurer behavior, and socioeconomic characteristics change over time."
+  },
+  {
+    "objectID": "danl-410-capstone-template-html.html#unit-of-observation",
+    "href": "danl-410-capstone-template-html.html#unit-of-observation",
+    "title": "Wildfires, Insurer Withdrawal, and the Expansion of FAIR Plans in California",
+    "section": "3.2 Unit of Observation",
+    "text": "3.2 Unit of Observation\nThe unit of observation in this project is the county-year. Each row in the dataset represents one California county observed in a given year. The dataset includes 58 counties observed over the period from 2015 through 2021. The final panel contains 438 observations."
+  },
+  {
+    "objectID": "danl-410-capstone-template-html.html#sample-and-scope",
+    "href": "danl-410-capstone-template-html.html#sample-and-scope",
+    "title": "Wildfires, Insurer Withdrawal, and the Expansion of FAIR Plans in California",
+    "section": "3.3 Sample and Scope",
+    "text": "3.3 Sample and Scope\nThe sample includes all 58 counties in California over the period from 2015 through 2021. This time frame captures multiple major wildfire seasons in order to analyze the relationship between wildfire risk and insurance market outcomes. The dataset includes three different variable categories: insurance market outcomes (non-renewals and FAIR Plan policies), wildfire activity (acres burned), and socioeconomic controls (income, home value, and housing units). The final dataset is structured as a county-year panel, where each observation corresponds to a specific county in a given year."
+  },
+  {
+    "objectID": "danl-410-capstone-template-html.html#data-cleaning",
+    "href": "danl-410-capstone-template-html.html#data-cleaning",
+    "title": "Wildfires, Insurer Withdrawal, and the Expansion of FAIR Plans in California",
+    "section": "3.4 Data Cleaning",
+    "text": "3.4 Data Cleaning\nIn order to construct the final dataset, it is necessary to clean and filter the data. First, wildfire data is spatially joined with California county boundaries using geographic information system (GIS) methods. Each wildfire perimeter is assigned to the counties it intersects in order to link fires with specific geographic areas. The fire-level data is then aggregated to the county-year level by summing the total acres burned and summing the number of fires.\nSecond, the wildfire dataset is filtered to include only the years 2014 through 2021. The year 2014 is included to construct a one year lag of wildfire activity, specifically acres burned lagged by one year. This approach links each year’s wildfire exposure to insurer behavior in the following year. The lag structure reflects the fact that insurers do not respond immediately. Instead, they typically adjust their policies in the subsequent plan year after observing wildfire losses from the prior year.\nThird, missing values for acres burned and number of fires are replaced with zeros. Counties with zero wildfire activity are still included in the dataset, serving as a baseline group for the analysis.\nNext, insurance data from the California Department of Insurance is cleaned and transformed. County identifiers are standardized, and character variables are converted to numeric format where necessary. FAIR Plan coverage is constructed by combining the number of new and renewed FAIR Plan policies into a single measure of total FAIR Plan policies. It is important to note that the number of non-renewals are insurer initiated, and exclude those initiated by consumers to exclusively reflect insurer behavior.\nAdditionally, socioeconomic control variables are obtained from the American Community Survey and reshaped into the county-year panel format. The control variables are merged with the insurance and wildfire datasets using consistent county-year identifiers.\nFinally, a few key variables are transformed for analysis. Log transformations are applied to skewed variables including FAIR Plan policies, lagged acres burned, and non-renewals."
+  },
+  {
+    "objectID": "danl-410-capstone-template-html.html#key-variables",
+    "href": "danl-410-capstone-template-html.html#key-variables",
+    "title": "Wildfires, Insurer Withdrawal, and the Expansion of FAIR Plans in California",
+    "section": "3.5 Key Variables",
+    "text": "3.5 Key Variables\nThe primary outcome variables in this analysis aim to capture both insurer behavior and reliance on an insurer of last resort. The first outcome, insurer non-renewals, is measured as the number of policies not renewed by insurers in a given county-year. The second outcome, FAIR Plan policies, is the sum of new and renewed FAIR Plan policies. This represents a total count of participation in the FAIR Plan. The main explanatory variable is wildfire activity, which is measured as total acres burned in a county-year. A lagged version of this variable is used to reflect the timing of insurer responses. Insurer non-renewals are also included as an explanatory variable when the outcome is FAIR Plan policies. Control variables include median household income, median home value, and total housing units. These variables account for differences in economic conditions and housing markets across different counties."
+  },
+  {
+    "objectID": "danl-410-capstone-template-html.html#data-quality-and-limitations",
+    "href": "danl-410-capstone-template-html.html#data-quality-and-limitations",
+    "title": "Wildfires, Insurer Withdrawal, and the Expansion of FAIR Plans in California",
+    "section": "3.6 Data Quality and Limitations",
+    "text": "3.6 Data Quality and Limitations\nAlthough this dataset is constructed from credible administrative sources, it is important to note its limitations. First, the measure of wildfire activity is solely based on total acres burned, which may not fully represent perceived wildfire risk or expected future losses. For example, insurers may respond to other variables such as proximity to fires or anticipated risk rather than just realized damage. Additionally, spatially assigning fires to counties based on geographic overlap may cause measurement error, particularly for fires that spread to multiple counties. Second, the insurance data does not include information on premiums, underwriting criteria, or specific policy characteristics. Because of this, the analysis does not reflect pricing adjustments or changes in policy terms, which are notable insurer behaviors. Third, the sample size is limited to 58 counties over seven years, which is a relatively small panel dataset. The limited time span may reduce the statistical power and precision of estimates. Finally, although this analysis controls for year and county fixed effects, the results should be interpreted as identifying strong associations rather than definitive causal effects. Additional factors, such as policy changes or unobserved insurer strategies, may influence the relationships between variables."
+  },
+  {
+    "objectID": "danl-410-capstone-template-html.html#data-dictionary",
+    "href": "danl-410-capstone-template-html.html#data-dictionary",
+    "title": "Wildfires, Insurer Withdrawal, and the Expansion of FAIR Plans in California",
+    "section": "3.7 Data Dictionary",
+    "text": "3.7 Data Dictionary\nfair_policies\nNumber of policies enrolled in the California FAIR Plan (county-year level).\nacres_burned_lag1\nTotal acres burned by wildfires in the previous year (one-year lag).\nvoluntary_non_renewed_insurer_initiated\nNumber of insurance policies not renewed by insurers (excluding consumer-initiated cancellations).\nmedian_income\nMedian household income in the county (in dollars). Controls for local economic conditions.\nhousing_units\nTotal number of housing units in the county. Controls for county size and amount of housing.\nmedian_home_value\nMedian value of owner-occupied housing units (in dollars). Controls for housing market conditions.\nlog_fair_policies\nNatural log of FAIR Plan policies. Used to reduce skewness.\nlog_acres_burned\nNatural log of wildfire acres burned. Used to reduce skewness.\nlog_non_renewed\nNatural log of insurer-initiated non-renewals. Used to reduce skewness."
+  },
+  {
+    "objectID": "danl-410-capstone-template-html.html#summary-statistics",
+    "href": "danl-410-capstone-template-html.html#summary-statistics",
+    "title": "Wildfires, Insurer Withdrawal, and the Expansion of FAIR Plans in California",
+    "section": "3.8 Summary Statistics",
+    "text": "3.8 Summary Statistics\n\n\nCode\ndf |&gt;\n  select(\n    fair_policies,\n    acres_burned_lag1,\n    voluntary_non_renewed_insurer_initiated,\n    median_income,\n    housing_units,\n    median_home_value\n  ) |&gt;\n  skim()\n\n\n\nData summary\n\n\nName\nselect(…)\n\n\nNumber of rows\n438\n\n\nNumber of columns\n6\n\n\n_______________________\n\n\n\nColumn type frequency:\n\n\n\nnumeric\n6\n\n\n________________________\n\n\n\nGroup variables\nNone\n\n\n\nVariable type: numeric\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nskim_variable\nn_missing\ncomplete_rate\nmean\nsd\np0\np25\np50\np75\np100\nhist\n\n\n\n\nfair_policies\n37\n0.92\n3141.73\n12804.26\n6\n92.00\n362.00\n1226.00\n105875\n▇▁▁▁▁\n\n\nacres_burned_lag1\n89\n0.80\n68212.43\n184812.19\n0\n260.57\n2715.21\n38612.51\n1338779\n▇▁▁▁▁\n\n\nvoluntary_non_renewed_insurer_initiated\n32\n0.93\n3335.85\n6125.78\n11\n482.75\n1304.00\n3157.75\n47150\n▇▁▁▁▁\n\n\nmedian_income\n32\n0.93\n64893.00\n20039.63\n34974\n50412.25\n59425.50\n75954.25\n140258\n▇▇▃▁▁\n\n\nhousing_units\n32\n0.93\n242744.11\n509451.21\n1626\n24066.75\n78079.00\n240604.50\n3578801\n▇▁▁▁▁\n\n\nmedian_home_value\n32\n0.93\n387687.93\n221348.23\n133300\n231600.00\n305650.00\n479950.00\n1225900\n▇▃▂▁▁"
+  },
+  {
+    "objectID": "danl-410-capstone-template-html.html#empirical-approach",
+    "href": "danl-410-capstone-template-html.html#empirical-approach",
+    "title": "Wildfires, Insurer Withdrawal, and the Expansion of FAIR Plans in California",
+    "section": "4.1 Empirical Approach",
+    "text": "4.1 Empirical Approach\nThis analysis uses a combination of fixed effects panel regression and linear regression models to examine the relationship between wildfire activity, insurer non-renewals, and FAIR Plan enrollment. The primary goal is to estimate how changes in wildfire exposure influence insurer behavior, and in turn, how insurer withdrawal affects the reliance on California’s FAIR Plan. A fixed effects structure is suitable for this analysis because the dataset consists of observations from the same counties over time. Counties differ in many ways, such as geography, baseline wildfire risk, and housing market structure. These differences may influence wildfire exposure and insurance outcomes. The model’s county fixed effects control for these time invariant differences across counties. Year fixed effects are included to control for statewide shocks that would impact all counties in a given year, such as particularly severe wildfire seasons or changes in state insurance regulations. Additionally, a predictive modeling component is implemented using a train-test split to evaluate out of sample performance. This assesses how well the model can predict FAIR Plan enrollment and insurer non-renewals based on observed variables."
+  },
+  {
+    "objectID": "danl-410-capstone-template-html.html#model-specification",
+    "href": "danl-410-capstone-template-html.html#model-specification",
+    "title": "Wildfires, Insurer Withdrawal, and the Expansion of FAIR Plans in California",
+    "section": "4.2 Model Specification",
+    "text": "4.2 Model Specification\nThe primary empirical model estimates the relationship between wildfire activity, insurer non-renewals, and FAIR Plan enrollment using a two-way fixed effects panel regression. The outcome variable is the logarithm of FAIR Plan policies at the county-year level. The use of a logarithm reduces skewness while still capturing proportional changes in relationships in FAIR Plan enrollment.\n\\(\\log({FAIR\\_policies}_{it})\\) \\(=\\) \\(\\beta_0\\) \\(+\\) \\(\\beta_1 \\log({acres\\_burned}_{i,t-1})\\) \\(+\\) \\(\\beta_2 \\log({non\\_renewals}_{it})\\) \\(+\\) \\(\\beta_3 X_{it}\\) \\(+\\) \\(\\alpha_i\\) \\(+\\) \\(\\gamma_t\\) \\(+\\) \\(\\varepsilon_{it}\\)\nIn this model specification, \\(i\\) indexes counties and \\(t\\) indexes years. The outcome variable is the log of FAIR Plan policies in county \\(i\\) at time \\(t\\). The main explanatory variables are the log of acres burned in the previous year and the log of insurer initiated non-renewed policies. The vector \\(X_{it}\\) includes three control variables: median household income, housing units, and median home value. County fixed effects (\\(\\alpha_i\\)) control for time invariant county characteristics. Year fixed effects (\\(\\gamma_t\\)) control for statewide shocks impacting all counties in a given year. The error term is denoted by \\(\\varepsilon_{it}\\).\nAdditionally, alternative specifications are estimated using different combinations of fixed effects, including models with only year fixed effects, only county fixed effects, and both. This helps evaluate how sensitive the results are to different sources of variation."
+  },
+  {
+    "objectID": "danl-410-capstone-template-html.html#additional-outcome-insurer-non-renewals",
+    "href": "danl-410-capstone-template-html.html#additional-outcome-insurer-non-renewals",
+    "title": "Wildfires, Insurer Withdrawal, and the Expansion of FAIR Plans in California",
+    "section": "4.3 Additional Outcome: Insurer Non-Renewals",
+    "text": "4.3 Additional Outcome: Insurer Non-Renewals\nThis analysis also examines insurer behavior directly by estimating models with insurer non-renewals as the outcome variable. In these specifications, lagged wildfire activity is the primary explanatory variable. This helps evaluate whether wildfire risk leads insurers to withdraw from high-risk markets. This two step approach first links wildfire activity to non-renewals and then links non-renewals to FAIR Plan growth, which provides a more complete picture of how environmental risk affects insurance market outcomes."
+  },
+  {
+    "objectID": "danl-410-capstone-template-html.html#prediction-and-model-evaluation",
+    "href": "danl-410-capstone-template-html.html#prediction-and-model-evaluation",
+    "title": "Wildfires, Insurer Withdrawal, and the Expansion of FAIR Plans in California",
+    "section": "4.4 Prediction and Model Evaluation",
+    "text": "4.4 Prediction and Model Evaluation\nIn addition to the panel regression analysis, a predictive modeling technique is conducted using a train-test split. The dataset is divided into a training sample (2015-2019) and a testing sample (2020-2021). The linear regression model is estimated on the training data and then used to generate predictions for FAIR Plan enrollment in the testing time period. Model performance is evaluated using the root mean squared error (RMSE). RMSE measures the average magnitude of errors in the prediction. Lower RMSE values indicate better accuracy in the model’s predictions. This approach helps show how well the model performs on new data and whether the relationships found in the regression are useful for prediction."
+  },
+  {
+    "objectID": "danl-410-capstone-template-html.html#interpretation-and-identification",
+    "href": "danl-410-capstone-template-html.html#interpretation-and-identification",
+    "title": "Wildfires, Insurer Withdrawal, and the Expansion of FAIR Plans in California",
+    "section": "4.5 Interpretation and Identification",
+    "text": "4.5 Interpretation and Identification\nThe coefficients in the regression models are interpreted as correlations between variables rather than causal effects. For example, the coefficient for lagged acres burned represents the relationship between changes in wildfire activity and changes in FAIR Plan enrollment within a county, holding other factors constant. Including county and year fixed effects strengthens the analysis by controlling for unobserved differences across counties and state-wide trends over time. However, this analysis does not use an empirical model that supports causal claims. The results should be interpreted as showing correlational relationships, not causal effects."
+  },
+  {
+    "objectID": "danl-410-capstone-template-html.html#figure-1-wildfire-activity-insurer-non-renewals-and-fair-plan-enrollment-over-time",
+    "href": "danl-410-capstone-template-html.html#figure-1-wildfire-activity-insurer-non-renewals-and-fair-plan-enrollment-over-time",
+    "title": "Wildfires, Insurer Withdrawal, and the Expansion of FAIR Plans in California",
+    "section": "5.1 Figure 1: Wildfire Activity, Insurer Non-Renewals, and FAIR Plan Enrollment Over Time",
+    "text": "5.1 Figure 1: Wildfire Activity, Insurer Non-Renewals, and FAIR Plan Enrollment Over Time\n\n\nCode\nggplot(time_long, aes(x = year, y = value, color = variable)) +\n  geom_line(size = 1.2) +\n  geom_point(size = 2) +\n  labs(\n    title = \"Wildfires, Non-Renewals, and FAIR Plan Growth Over Time\",\n    x = \"Year\",\n    y = \"Standardized Values\",\n    color = \"Variable\"\n  ) +\n  theme_minimal()\n\n\n\n\n\n\n\n\n\nFigure 1 shows a clear pattern over time linking wildfire severity to insurance market responses. Wildfire activity shows variation over time, with a large spike in 2020. This reflects one of the most severe wildfire seasons for California in recent history. This spike is followed by noticeable increases in both insurer non-renewals and FAIR Plan enrollment during the following year.\nA key pattern in this graph is the lag between wildfire exposure and insurer behavior. Wildfire activity peaks in 2020, but increases in non-renewals do not occur until the following year. This is consistent with the idea that insurers make decisions after observing losses. Through this lag structure, policy decisions are typically made annually.\nAt the same time, FAIR Plan enrollment shows a steady upward trend throughout the period from 2015 through 2021. This suggests that as private insurers reduce the number of policies in high-risk areas, homeowners increasingly rely on FAIR Plan policies as an alternative form of coverage. These patterns provide initial visual evidence of interconnected relationships between the key variables: as wildfire risk increases, insurers withdraw from the market, and FAIR Plan coverage increases."
+  },
+  {
+    "objectID": "danl-410-capstone-template-html.html#figure-2-geographic-distribution-of-wildfire-activity-insurer-non-renewals-and-fair-plan-enrollment-in-california-2021",
+    "href": "danl-410-capstone-template-html.html#figure-2-geographic-distribution-of-wildfire-activity-insurer-non-renewals-and-fair-plan-enrollment-in-california-2021",
+    "title": "Wildfires, Insurer Withdrawal, and the Expansion of FAIR Plans in California",
+    "section": "5.2 Figure 2: Geographic Distribution of Wildfire Activity, Insurer Non-Renewals, and FAIR Plan Enrollment in California (2021)",
+    "text": "5.2 Figure 2: Geographic Distribution of Wildfire Activity, Insurer Non-Renewals, and FAIR Plan Enrollment in California (2021)\n\n\nCode\nggplot(map_long) +\n  geom_sf(aes(fill = value_scaled), color = \"white\", size = 0.2) +\n  scale_fill_viridis_c(option = \"plasma\", na.value = \"gray90\") +\n  facet_wrap(~variable) +\n  labs(\n    title = \"Wildfires, Non-Renewals, and FAIR Plans (Standardized, 2021)\",\n    fill = \"Standardized Value\"\n  ) +\n  theme_minimal() +\n  theme(\n    panel.grid = element_blank(),\n    axis.text = element_blank(),\n    axis.ticks = element_blank(),\n    strip.text = element_text(size = 6, face = \"bold\")\n  )\n\n\n\n\n\n\n\n\n\nFigure 2 shows the geographic distribution of wildfire activity, insurer non-renewals, and FAIR Plan enrollment across California counties in 2021. The maps use a color gradient, with darker colors (purple and dark orange) indicating higher values and lighter colors (yellow and light orange) indicating lower values.\nOverall, the maps show a clear spatial pattern, where counties with higher wildfire activity also tend to have higher non-renewals and greater FAIR Plan enrollment. These patterns are concentrated in high-risk areas instead of being evenly distributed across the state. This alignment suggests that insurer withdrawal is concentrated in areas with greater wildfire exposure. FAIR Plan enrollment is also highest in the same counties, indicating that the FAIR Plan is being used where private coverage is reduced."
+  },
+  {
+    "objectID": "danl-410-capstone-template-html.html#primary-fixed-effects-regression-results",
+    "href": "danl-410-capstone-template-html.html#primary-fixed-effects-regression-results",
+    "title": "Wildfires, Insurer Withdrawal, and the Expansion of FAIR Plans in California",
+    "section": "5.3 Primary Fixed Effects Regression Results",
+    "text": "5.3 Primary Fixed Effects Regression Results\n\n\nCode\nstargazer(model,\n          type = \"text\",\n          title = \"Fixed Effects Regression Results\",\n          dep.var.labels = \"Log(FAIR Policies)\",\n          covariate.labels = c(\"Log(Acres Burned, Lagged)\",\n                               \"Log(Non-Renewals)\",\n                               \"Median Income\",\n                               \"Housing Units\",\n                               \"Median Home Value\"),\n          omit = c(\"factor\"),\n          digits = 3)\n\n\n\nFixed Effects Regression Results\n=====================================================\n                              Dependent variable:    \n                          ---------------------------\n                              Log(FAIR Policies)     \n-----------------------------------------------------\nLog(Acres Burned, Lagged)            0.006           \n                                    (0.009)          \n                                                     \nLog(Non-Renewals)                  1.260***          \n                                    (0.111)          \n                                                     \nMedian Income                      -0.00001          \n                                   (0.00001)         \n                                                     \nHousing Units                     -0.00003***        \n                                   (0.00000)         \n                                                     \nMedian Home Value                  -0.00000          \n                                   (0.00000)         \n                                                     \nConstant                           18.343***         \n                                    (2.502)          \n                                                     \n-----------------------------------------------------\nObservations                          401            \nR2                                   0.958           \nAdjusted R2                          0.950           \nResidual Std. Error            0.436 (df = 332)      \nF Statistic                111.633*** (df = 68; 332) \n=====================================================\nNote:                     *p&lt;0.1; **p&lt;0.05; ***p&lt;0.01\n\n\nThe primary fixed effects panel regression examines how wildfire activity and insurer non-renewals affect FAIR Plan enrollment at the county-year level. It controls for county and year fixed effects as well as socioeconomic variables.\nThe key result is a strong and statistically significant relationship between insurer non-renewals and FAIR Plan enrollment. A 1% increase in non-renewals is associated with approximately a 1.26% increase in FAIR Plan policies, holding all other factors constant. This suggests a strong substitution effect between private insurance and the FAIR Plan. On the other hand, wildfire activity (lagged acres burned) is not statistically significant once insurer behavior and the fixed effects are included. This suggests that wildfire exposure does not directly translate into FAIR Plan growth, but may affect it indirectly through insurer decisions."
+  },
+  {
+    "objectID": "danl-410-capstone-template-html.html#alternative-specification-insurer-non-renewals-as-outcome-variable",
+    "href": "danl-410-capstone-template-html.html#alternative-specification-insurer-non-renewals-as-outcome-variable",
+    "title": "Wildfires, Insurer Withdrawal, and the Expansion of FAIR Plans in California",
+    "section": "5.4 Alternative Specification: Insurer Non-Renewals as Outcome Variable",
+    "text": "5.4 Alternative Specification: Insurer Non-Renewals as Outcome Variable\n\n\nCode\nstargazer(model2,\n          type = \"text\",\n          title = \"Fixed Effects Regression Results\",\n          dep.var.labels = \"Log(Non-Renewals)\",\n          covariate.labels = c(\"Log(Acres Burned, Lagged)\",\n                               \"Log(FAIR Policies)\",\n                               \"Median Income\",\n                               \"Housing Units\",\n                               \"Median Home Value\"),\n          omit = c(\"factor\"),\n          digits = 3)\n\n\n\nFixed Effects Regression Results\n=====================================================\n                              Dependent variable:    \n                          ---------------------------\n                               Log(Non-Renewals)     \n-----------------------------------------------------\nLog(Acres Burned, Lagged)          -0.009**          \n                                    (0.004)          \n                                                     \nLog(FAIR Policies)                  0.00000          \n                                   (0.00001)         \n                                                     \nMedian Income                       0.00000          \n                                   (0.00000)         \n                                                     \nHousing Units                      -0.00000*         \n                                   (0.00000)         \n                                                     \nMedian Home Value                  7.348***          \n                                    (1.168)          \n                                                     \n-----------------------------------------------------\nObservations                          406            \nR2                                   0.984           \nAdjusted R2                          0.980           \nResidual Std. Error            0.216 (df = 338)      \nF Statistic                302.484*** (df = 67; 338) \n=====================================================\nNote:                     *p&lt;0.1; **p&lt;0.05; ***p&lt;0.01\n\n\nAdditionally, insurer non-renewals are used as the outcome variable to examine whether wildfire activity is directly associated with insurer withdrawal behavior. FAIR Plan enrollment is not included in this model.\nIn this model, lagged wildfire activity is statistically significant, but the effect is very small. The coefficient of -0.009 suggests that a 1% increase in lagged acres burned is associated with a 0.009% decrease in insurer non-renewals, holding other factors constant. Although statistically significant, the magnitude of this effect is quite small. When combined with earlier results showing weak and insignificant effects of wildfire activity, this suggests that wildfire exposure does not have a strong direct relationship with insurance outcomes. Overall, this shows that wildfires mainly affect the insurance market through how insurers respond, rather than a direct impact on insurance outcomes."
+  },
+  {
+    "objectID": "danl-410-capstone-template-html.html#predictive-model-results---linear-regression",
+    "href": "danl-410-capstone-template-html.html#predictive-model-results---linear-regression",
+    "title": "Wildfires, Insurer Withdrawal, and the Expansion of FAIR Plans in California",
+    "section": "5.5 Predictive Model Results - Linear Regression",
+    "text": "5.5 Predictive Model Results - Linear Regression\n\n\nCode\netable(model_year_fe, model_county_fe, model_both_fe)\n\n\n                                                    model_year_fe\nDependent Var.:                                log(fair_policies)\n                                                                 \nlog(acres_burned_lag1)                            0.0012 (0.0250)\nlog(voluntary_non_renewed_insurer_initiated)   0.7902*** (0.0536)\nmedian_income                                -2.71e-5** (9.43e-6)\nhousing_units                                6.56e-7*** (1.56e-7)\nmedian_home_value                              2.21e-6* (8.61e-7)\nFixed-Effects:                               --------------------\nyear                                                          Yes\ncounty                                                         No\n________________________________________     ____________________\nS.E. type                                                     IID\nObservations                                                  315\nR2                                                        0.68590\nWithin R2                                                 0.64863\n\n                                                   model_county_fe\nDependent Var.:                                 log(fair_policies)\n                                                                  \nlog(acres_burned_lag1)                            -0.0016 (0.0138)\nlog(voluntary_non_renewed_insurer_initiated)     1.231*** (0.1379)\nmedian_income                                 8.47e-5*** (1.36e-5)\nhousing_units                                -4.23e-5*** (6.54e-6)\nmedian_home_value                                1.32e-6 (1.84e-6)\nFixed-Effects:                               ---------------------\nyear                                                            No\ncounty                                                         Yes\n________________________________________     _____________________\nS.E. type                                                      IID\nObservations                                                   315\nR2                                                         0.93250\nWithin R2                                                  0.63438\n\n                                                     model_both_fe\nDependent Var.:                                 log(fair_policies)\n                                                                  \nlog(acres_burned_lag1)                             0.0041 (0.0119)\nlog(voluntary_non_renewed_insurer_initiated)     1.083*** (0.1169)\nmedian_income                                   -3.28e-6 (1.24e-5)\nhousing_units                                -3.66e-5*** (4.88e-6)\nmedian_home_value                                -1.9e-6 (1.41e-6)\nFixed-Effects:                               ---------------------\nyear                                                           Yes\ncounty                                                         Yes\n________________________________________     _____________________\nS.E. type                                                      IID\nObservations                                                   315\nR2                                                         0.96332\nWithin R2                                                  0.39284\n---\nSignif. codes: 0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\n\n\n\nCode\nrmse &lt;- sqrt(mean((actual - preds)^2, na.rm = TRUE))\n\nrmse\n\n\n[1] 1.002992\n\n\nA linear regression model is also used to assess how well the variables explain FAIR Plan enrollment. Three baseline models are estimated using only year fixed effects, only county fixed effects, and both fixed effects. Insurer non-renewals are consistently the strongest predictor of FAIR Plan enrollment across all three models.\nWildfire activity is not statistically significant in any of the models. This reinforces the earlier results showing a weak direct relationship between wildfire exposure and FAIR Plan enrollment once fixed effects are included. The model fit improves when county fixed effects are added, indicating that differences across counties are important in explaining the model results.\nThe model is then evaluated using a train-test split (2015-2019 for training and 2020-2021 for testing). The resulting root mean squared error (RMSE) is 1.003. This indicates moderate predictive accuracy. Overall, the predictive model results reinforce the main findings from the fixed effects regression. Non-renewals are directly correlated with FAIR Plan enrollment, while wildfire activity shows a much weaker direct relationship."
   },
   {
     "objectID": "danl_proj_nba.html#salary-distribution-among-teams",
@@ -683,7 +816,7 @@
     "href": "index.html#experience",
     "title": "Ann Brennan",
     "section": "Experience",
-    "text": "Experience\nGallagher | Financial & Actuarial Consulting Intern  June 2024 - August 2024"
+    "text": "Experience\nGallagher | Financial & Actuarial Consulting Intern  June 2024 - August 2024, June 2025 - August 2025"
   },
   {
     "objectID": "posts/danl310-hw1/hw1-ben-jerrys.html",
