@@ -259,7 +259,7 @@ This Shiny application provides an interactive exploration of exercise rates by 
 
 ## Dashboard
 
-- **Dashboard:** [View Dashboard](YOUR_DASHBOARD_URL)
+- **Dashboard:** [View Dashboard](https://annbrennan.github.io/posts/dashboard/dashboard.html)
 
 This dashboard explores how exercise rates vary by income, education, geography across the United States. It allows the user to compare differences in physical activity across socioeconomic groups and states, helping to identify patterns in health behavior. 
 
