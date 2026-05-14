@@ -1,0 +1,17 @@
+{
+  "hash": "0029adfac3627acd94683ed9d3795b88",
+  "result": {
+    "engine": "knitr",
+    "markdown": "---\ntitle: \"Dashboard - Exercise Patterns Across Income and Education Levels in the United States\"\nformat: dashboard\n---\n\n\n\n\n# Exercise Rates by Income\n\n::: {.cell}\n::: {.cell-output-display}\n![](dashboard_files/figure-html/unnamed-chunk-1-1.png){width=768}\n:::\n:::\n\n\nThis chart shows a clear positive relationship between income and exercise rates. As income increases, the percentage of individuals who report exercising in the past 30 days also increases. This pattern suggests that higher income individuals are more likely to participate in physical activity. This could be because having a higher income provides greater access to resources that support exercise, such as gym memberships, safe neighborhoods, and flexible time. These resources may be less available to lower income groups. \n\n# Exercise Rates by Education\n\n\n::: {.cell}\n::: {.cell-output-display}\n![](dashboard_files/figure-html/visualization-2-1.png){width=768}\n:::\n:::\n\n\nThis chart shows a similar positive relationship between education level and exercise rates. Individuals with less than a high school edcuation have the lowest exercise rate (about 60%), whereas college graduates have the highest exercise rate (about 90%). Each step up in education level is correlated with an increase in exercise participation. This suggests that education is strongly associated with healthier behaviors like exercise. Higher levels of education may increase awareness of the benefits of physical activity and correlate with occupations that give an individual more time or opportunity to exercise. \n\n# Exercise Rates Across the United States\n\n\n::: {.cell}\n::: {.cell-output-display}\n![](dashboard_files/figure-html/visualization-3-1.png){width=768}\n:::\n:::\n\n\nThis map shows geographic variation in exercise rates across states. Some states show much higher levels of physical activity than others. Western and a few northeastern states tend to have higher exercise rates (darker shades), while some southern and midwestern states appear to have lower rates (lighter shades). These regional differences may reflect socioeconomic and environmental factors, such as differences in income distribution, education levels, climate, and infrastructure. ",
+    "supporting": [
+      "dashboard_files"
+    ],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

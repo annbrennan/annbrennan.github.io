@@ -11,6 +11,8 @@ website:
         href: capstone-ann-brennan.qmd
       - text: Final Projects
         menu:
+        - text: DANL310
+          href: danl-310-final-project-ann-brennan.qmd
         - text: DANL200
           href: project.qmd
         - text: DANL210
@@ -21,7 +23,7 @@ website:
         href: blog-listing.qmd
         
   page-footer: 
-    center: "Powered with GitHub and Quarto<br>© Brennan, 2023"
+    center: "Powered with GitHub and Quarto<br>© Brennan, 2026"
 
 format:
   html:
